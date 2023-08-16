@@ -4,9 +4,7 @@ import { Link } from "gatsby"
 import { makeStyles } from '@material-ui/core'
 import scrollTo from 'gatsby-plugin-smoothscroll'
 import Button from '@material-ui/core/Button'
-import chillGrillLogoOG from '../images/chill_logo_og.jpeg'
-import RocSitesLogo from "../images/logo/logo.png"
-import coneIcon from "../images/cone_icon.png"
+import PittsfordPrintingMainLogo from "../images/pittsford_printing_main_logo.png"
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -22,14 +20,14 @@ import "./main.css"
 const withStyles = makeStyles(() => ({
   "@global": {
     "*": {
-      // fontFamily: "Angkor !important",
+      fontFamily: "Roboto !important",
       fontWeight: "100"
     }
   },
   navBarRoot: {
     position: "fixed",
     display: "flex",
-    background: "gray",
+    background: "white",
     color: "white",
     justifyContent: "space-between",
     width: "100%",
@@ -48,7 +46,8 @@ const withStyles = makeStyles(() => ({
     // fontWeight: "bold",
     textTransform: "none",
     margin: "auto 10px",
-    textDecoration: "none"
+    textDecoration: "none",
+    fontFamily: '"Roboto", "Helvetica", "Arial", "sans-serif"'
   },
   navBarButtonWrapper: {
     display: "flex",
@@ -67,18 +66,18 @@ const withStyles = makeStyles(() => ({
   },
   navLogo: {
     display: "flex",
-    width: "60px",
+    width: "150px",
     margin: "auto",
   },
   drawerItem: {
     "&:hover": {
-      backgroundImage: "#f03d3dcf",
-      border: "1px solid ##f03d3dcf",
+      backgroundImage: "#03178ed1",
+      border: "1px solid #03178ed1",
       color: "white"
     },
     "&:selected:hover": {
-      backgroundImage: "#f03d3dcf",
-      border: "1px solid ##f03d3dcf",
+      backgroundImage: "#03178ed1",
+      border: "1px solid #03178ed1",
       color: "white"
     }
   },
@@ -88,36 +87,51 @@ const withStyles = makeStyles(() => ({
   hamburgerIcon: {
     margin: "20px",
     fontSize: "2.5rem",
-    color: "red",
+    color: "#03178e",
     "@media(min-width: 601px)": {
       display: "none"
     }
   },
   navLeftWrapper: {
     display: "flex",
+    justifyContent: "space-between",
+    width: "100%"
   },
   navCallButton: {
     display: "flex",
-    backgroundColor: "#f03d3dcf",
-    padding: "8px 16px",
-    color: "white",
-    textTransform: "none",
-    borderRadius: "35px",
-    height: "50px",
-    margin: "auto 20px"
-  },
-  navCallButtonMobile: {
-    display: "flex",
-    backgroundColor: "#f03d3dcf",
+    backgroundColor: "#03178e",
     padding: "8px 16px",
     color: "white",
     textTransform: "none",
     borderRadius: "35px",
     height: "50px",
     margin: "auto 20px",
+    "& > span": {
+      fontWeight: "bold"
+    }
+  },
+  navCallButtonMobile: {
+    display: "flex",
+    backgroundColor: "#03178e",
+    padding: "8px 16px",
+    color: "white",
+    textTransform: "none",
+    borderRadius: "35px",
+    height: "50px",
+    margin: "auto 20px",
+    "&:hover": {
+      backgroundColor: "#03178ed1",
+      border: "1px solid #03178ed1",
+    },
     "@media(max-width: 600px)": {
-      fontSize: "0.75rem",
-      margin: "auto"
+      fontSize: "0.8rem",
+      fontWeight: "bold",
+      margin: "auto",
+      width: "120px",
+      "&:hover": {
+        backgroundColor: "#03178ed1",
+        border: "1px solid #03178ed1",
+      },
     }
   },
   drawerLinkWrapper: {
@@ -125,11 +139,11 @@ const withStyles = makeStyles(() => ({
     flexDirection: "column",
   },
   navButtonMobile: {
-  color: "white",
+  color: "black",
   // fontWeight: "bold",
   textTransform: "none",
   margin: "10px 16px",
-  textDecoration: "none"
+  textDecoration: "none",
 }
 }))
 
@@ -150,44 +164,44 @@ const Header = ({ siteTitle }) => {
       <div className={classes.navLeftWrapper}>
         <div className={classes.navBarTitle}>
           <Link to="/" style={{ color: '#001841', textDecoration: `none` }}>
-            <img className={classes.navLogo} src={RocSitesLogo} alt="company logo" />
+            <img className={classes.navLogo} src={PittsfordPrintingMainLogo} alt="company logo" />
           </Link>
         </div>
         <div className={classes.navBarButtonWrapper}>
           <AnchorLink className={classes.navButton}
-            to="/#sectionOne" title="Section 1">
+            to="/#sectionOne" title="Services">
           </AnchorLink>
           <AnchorLink className={classes.navButton}
-            to="/#sectionTwo" title="Section 2">
+            to="/#sectionTwo" title="About">
           </AnchorLink>
           <AnchorLink className={classes.navButton}
-            to="/#sectionThree" title="Section 3">
+            to="/#sectionThree" title="Contact Us">
           </AnchorLink>
 
           <Button
             className={classes.navCallButton}
-            target="_blank" href="tel:"
+            target="_blank" href="tel:(585) 383-0150"
           >
-            <PhoneIcon class="drawerPhoneIcon" />
+            <PhoneIcon sx={{color: "white"}} class="drawerPhoneIcon" />
             Call Us
           </Button>
         </div>
       </div>
 
-      <div class="socialLinkWrapperNav">
+      {/* <div class="socialLinkWrapperNav">
         <a href="" target="_blank" class="socialLink">
           <img class="socialNav" src={InstagramIcon} />
         </a>
         <a href="" target="_blank" class="socialLink">
           <img class="socialNavFb" src={FacebookIcon} />
         </a>
-      </div>
+      </div> */}
       <div className={classes.navBarHamburgerDrawerWrapper}>
         <Button
           className={classes.navCallButtonMobile}
-          target="_blank" href="tel:(315) 597-8946"
+          target="_blank" href="tel:(585) 383-0150"
         >
-          <PhoneIcon class="drawerPhoneIcon" />
+          <PhoneIcon sx={{color: "white", fontWeight: "bold", marginRight: "5px"}} class="drawerPhoneIcon" />
           Call Us
         </Button>
         <MenuIcon
@@ -209,13 +223,13 @@ const Header = ({ siteTitle }) => {
             <List>
               <div className={classes.drawerLinkWrapper}>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionOne" title="Section 1">
+                  to="/#sectionOne" title="Services">
                 </AnchorLink>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionTwo" title="Section 2">
+                  to="/#sectionTwo" title="About Us">
                 </AnchorLink>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionThree" title="Section 3">
+                  to="/#sectionThree" title="Contact Us">
                 </AnchorLink>
               </div>
 
@@ -223,17 +237,17 @@ const Header = ({ siteTitle }) => {
                 class="drawerItemLogin"
                 target="_blank" href="tel:"
               >
-                <PhoneIcon class="drawerPhoneIcon" />
+                <PhoneIcon sx={{color: "white", marginRight: "10px"}} class="drawerPhoneIcon" />
                 Call Us
               </Button>
-              <div class="socialLinkWrapperNavMobile">
+              {/* <div class="socialLinkWrapperNavMobile">
                 <a href="" target="_blank" class="socialLink">
                   <img class="socialDrawer" src={InstagramIcon} />
                 </a>
                 <a href="" target="_blank" class="socialLink">
                   <img class="socialDrawerFb" src={FacebookIcon} />
                 </a>
-              </div>
+              </div> */}
             </List>
 
           </div>

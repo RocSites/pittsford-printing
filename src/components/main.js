@@ -124,7 +124,7 @@ const withStyles = makeStyles(() => ({
         marginRight: "0px",
         fontSize: "2em",
         fontWeight: "500",
-        // fontFamily: "Angkor, sans-serif !important",
+        fontFamily: "Roboto, sans-serif !important",
         textAlign: "center",
         margin: "auto",
         "@media(max-width: 600px)": {
