@@ -169,13 +169,13 @@ const Header = ({ siteTitle }) => {
         </div>
         <div className={classes.navBarButtonWrapper}>
           <AnchorLink className={classes.navButton}
-            to="/#sectionOne" title="Services">
+            to="/#services" title="Services">
           </AnchorLink>
           <AnchorLink className={classes.navButton}
-            to="/#sectionTwo" title="About">
+            to="/#about" title="About">
           </AnchorLink>
           <AnchorLink className={classes.navButton}
-            to="/#sectionThree" title="Contact Us">
+            to="/#contact" title="Contact Us">
           </AnchorLink>
 
           <Button

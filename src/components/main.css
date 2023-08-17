@@ -142,7 +142,16 @@ body {
     display: flex;
     justify-content: center;
     border: 5px solid black;
-    height: 500px;
+    padding: 5%;
+    min-height: 500px;
+}
+
+.servicesSectionWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
 }
 
 .aboutSectionWrapper {

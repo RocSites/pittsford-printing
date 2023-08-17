@@ -13,6 +13,7 @@ import StarRateIcon from '@material-ui/icons/StarRate';
 import FacebookIcon from "../images/facebook_icon4.svg"
 import InstagramIcon from "../images/instagram_icon4.svg"
 import GoogleIcon from "../images/google_icon.png"
+import PittsfordPrintingMainLogo from "../images/pittsford_printing_main_logo.png"
 import "./main.css"
 
 const withStyles = makeStyles(() => ({
@@ -33,8 +34,19 @@ const withStyles = makeStyles(() => ({
     },
     servicesWrapper: {
         display: "flex",
+        flexWrap: "wrap"
+    },
+    servicesItem: {
+        display: "flex",
         flexDirection: "column",
-        background: "#008a9c"
+        alignItems: "center",
+        justifyContent: "center",
+        flex: "1 0 25%",
+        border: "1px solid red",
+        margin: "5px"
+    },
+    servicesImage: {
+        width: "150px"
     },
     aboutWrapper: {
         display: "flex",
@@ -462,7 +474,8 @@ const withStyles = makeStyles(() => ({
     container: {
         display: "flex",
         flexDirection: "column",
-        margin: "20px 0"
+        width: "100%",
+        margin: "20px 0",
     },
     containerMarginBottomSmall: {
         display: "flex",
@@ -495,6 +508,21 @@ const withStyles = makeStyles(() => ({
             marginRight: "15%",
         }
     },
+    actionButton: {
+        border: "1px solid red",
+        width: "250px",
+        height: "100px",
+        borderRadius: "35px",
+        "& > span": {
+            textTransform: "none"
+        }
+    },
+    actionButtonWrapper: {
+        display: "flex",
+        justifyContent: "space-evenly",
+        width: "100%",
+
+    }
 
 }))
 
@@ -548,39 +576,97 @@ const Main = () => {
                     <div className={classes.container}>
                         <span className={classes.scrollToSectionOne} id="sectionOne"></span>
                     </div>
-                    <div className={classes.containerMarginBottomSmall}>
-                        <Typography className={classes.someOfWorkHeader}>Section 1 Header Line 1... <br /> Section 1 Line 2.</Typography>
+                    {/* <div className={classes.containerMarginBottomSmall}>
+                        <Typography className={classes.someOfWorkHeader}>Let's Get Started</Typography>
+                    </div> */}
+                    <div className={classes.actionButtonWrapper}>
+                        <Button className={classes.actionButton}>Online Ordering</Button>
+                        <Button className={classes.actionButton}>Request a Quote</Button>
+                        <Button className={classes.actionButton}>Send a File</Button>
+                        <Button className={classes.actionButton}>Pay My Invoice</Button>
                     </div>
                 </div>
 
             </section>
             <div className={classes.container}>
-                <span className={classes.scrollToSectionOne} id="sectionTwo"></span>
+                <span className={classes.scrollToSectionOne} id="services"></span>
             </div>
-            <section class="sectionWrapper">
-                <Typography className={classes.someOfWorkHeader}>Section 2 Header Line 1... <br /> Section 2 Line 2.</Typography>
+            <section class="servicesSectionWrapper">
+                <Typography className={classes.someOfWorkHeader}>Our Services</Typography>
+                <div className={classes.servicesWrapper}>
+                    <div className={classes.servicesItem}>
+                        <Typography>Posters, Signs, Banner, & Stickers, Wide Format Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                    <div className={classes.servicesItem}>
+                        <Typography>Printing Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                    <div className={classes.servicesItem}>
+                        <Typography>Graphic Design Services - redundant? <br /> Bindery & Finishing Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                    <div className={classes.servicesItem}>
+                        <Typography>Mailing Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                    <div className={classes.servicesItem}>
+                        <Typography>Graphic Design Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                    <div className={classes.servicesItem}>
+                        <Typography>All Other Services</Typography>
+                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                    </div>
+                </div>
 
-                <Link to="/chill-menu" class="menuContent menuLink chillBlock">
+                {/* <Link to="/chill-menu" class="menuContent menuLink chillBlock">
                     Page 2
                 </Link>
                 <Link to="/grill-menu" class="menuContent menuLink grillBlock">
                     Page 3
-                </Link>
+                </Link> */}
             </section>
-            <span className={classes.scrollToLocation} id="sectionThree"></span>
+            <span className={classes.scrollToLocation} id="about"></span>
 
-            <section class="py-5 section-bubble3">
+            <section class="sectionWrapper">
                 <div className={classes.container}>
                     <div className={classes.aboutWrapper}>
                         <div className={classes.aboutSectionWrapper}>
-                            <Typography className={classes.aboutTitleHeader}>Section 3</Typography>
+                            <Typography className={classes.aboutTitleHeader}>About Us</Typography>
                             <Typography className={classes.addressText}>Section 3 subtext</Typography>
+                            <Typography>Pittsford Printing is the premier printing provider for local businesses in Pittsford, NY area.
+                                We specialize in printing, mailing, signs, posters, banners, stickers, decals and much more. We are known
+                                for our excellent customer service, quality and competitive price.
+                            </Typography>
+                            <br/>
+                            <Typography>Originally part of a large printing franchise system, we first opened our doors for business in Pittsford
+                                Plaza in August, 1988. Owners Carol and Russ Sherman were at the helm. In the summer of 2003, we changed our name to
+                                Pittsford Printing and moved to our current, expanded location at 3750 Monroe Avenue. Our formula for success has always
+                                been attention to detail and great customer service at an affordable price.
+                            </Typography>
+                            <br/>
+                            <Typography>
+                                With over 27 years of commercial printing experience, we have built a strong reputation for high quality standards. We care about
+                                your satisfaction with every job we do for you. Put our experience to work for you! We go out of our way for the businesses we work with.
+                                Our staff is dedicated to providing first class, professional and friendly service!
+                            </Typography>
+                            <br/>
+                            <Typography>We’re proud of the strong roots we’ve built in Monroe County. We pride ourselves on being a complete printing, mailing and copying
+                                source and have always been on the leading edge of technology. We understand that an investment in technology can actually save money by improving efficiencies.
+                            </Typography>
+                            <br/>
+                            <Typography>
+                            Whether your job is simple black and white copies or complex, full-color advertising packages, Pittsford Printing can produce it from concept to 
+                            finished product in the fastest possible time. We offer design and type services, one to 4-color offset printing, digital B/W, digital color copying/printing, 
+                            and bulk mailing services of any size. Pittsford Printing would like to be your printer – give us a call!
+                            </Typography>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <span className={classes.scrollToContact} id="contactForm"></span>
+            <span className={classes.scrollToContact} id="contact"></span>
             <section class="py-5 section-bubble4">
                 <div className={classes.container}>
                     <div>
