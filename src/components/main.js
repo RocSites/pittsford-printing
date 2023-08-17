@@ -5,8 +5,14 @@ import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import { Link } from "gatsby"
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import rocBuildingOne from "../images/yassine-khalfalli-roc-image.jpg"
 import rocRiver from "../images/yassine-khalfalli-river.jpg"
+import signOne from "../images/tim-douglas-signjpg.jpg"
+import printPaper from "../images/rombo-prints.jpg"
+import bindingOne from "../images/anastasia-zhenina-binding.jpg"
+import mailOne from "../images/erica-steeves-mail.jpg"
+import graphicDesignOne from "../images/balazs-ketyi-graphic-design.jpg"
+import windowGraphicOne from "../images/metin-ozer-window-graphic.jpg"
+import manualOne from "../images/brett-jordan-manual.jpg"
 import fiveStar from '../images/fiveStar.png'
 import Divider from '@material-ui/core/Divider'
 import PhoneIcon from '@material-ui/icons/Phone'
@@ -51,8 +57,6 @@ const withStyles = makeStyles(() => ({
         alignItems: "center",
         justifyContent: "center",
         flex: "1 0 25%",
-        border: "1px solid red",
-        borderRadius: "35px",
         margin: "5px",
         padding: "25px",
         "@media(max-width:600px)": {
@@ -60,7 +64,9 @@ const withStyles = makeStyles(() => ({
         }
     },
     servicesImage: {
-        width: "150px"
+        width: "100%",
+        aspectRatio: "1/1",
+        objectFit: "cover"
     },
     servicesTitle: {
         fontWeight: "bold",
@@ -415,7 +421,7 @@ const withStyles = makeStyles(() => ({
     },
     aboutTitleHeader: {
         textAlign: "center",
-        fontSize: "2rem",
+        fontSize: "2.5rem",
         color: "black",
         textTransform: "uppercase",
         marginBottom: "10px"
@@ -532,7 +538,7 @@ const withStyles = makeStyles(() => ({
         borderRadius: "35px",
         padding: "20px",
         "@media(max-width:600px)": {
-            marginTop: "50%",
+            marginTop: "65%",
             marginLeft: "5%",
             marginRight: "5%",
             padding: "5px"
@@ -553,10 +559,10 @@ const withStyles = makeStyles(() => ({
         }
     },
     actionButton: {
-        width: "250px",
         height: "100px",
         borderRadius: "35px",
         backgroundColor: "#03178e",
+        margin: "15px 0",
         "& > span": {
             textTransform: "none",
             fontWeight: "bold",
@@ -566,8 +572,17 @@ const withStyles = makeStyles(() => ({
             backgroundColor: "#03178ead"
         },
         "@media(max-width:600px)": {
-            margin: "20px 0"
+            marginTop: "25px"
         }
+    },
+    actionButtonInner: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        margin: "0 15px"
+    },
+    actionButtonText: {
+        padding: "0 25px"
     },
     actionIcon: {
         marginRight: "5px"
@@ -641,22 +656,36 @@ const Main = () => {
                         <Typography className={classes.someOfWorkHeader}>Let's Get Started</Typography>
                     </div> */}
                     <div className={classes.actionButtonWrapper}>
-                        <Button className={classes.actionButton}>
-                            <ShoppingCartIcon className={classes.actionIcon} />
-                            Place an Order
-                        </Button>
-                        <Button className={classes.actionButton}>
-                            <RequestQuoteIcon className={classes.actionIcon} />
-                            Request a Quote
-                        </Button>
-                        <Button className={classes.actionButton}>
-                            <CloudUploadIcon className={classes.actionIcon} />
-                            Send a File
-                        </Button>
-                        <Button className={classes.actionButton}>
-                            <ReceiptLongIcon className={classes.actionIcon} />
-                            Pay My Invoice
-                        </Button>
+                        <div className={classes.actionButtonInner}>
+                            <Button className={classes.actionButton}>
+                                <ShoppingCartIcon className={classes.actionIcon} />
+                                Place an Order
+                            </Button>
+                            <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography>
+                        </div>
+                        <div className={classes.actionButtonInner}>
+                            <Button className={classes.actionButton}>
+                                <RequestQuoteIcon className={classes.actionIcon} />
+                                Request a Quote
+                            </Button>
+                            <Typography className={classes.actionButtonText}>Whether your job is simple black and white copies or complex, full-color advertising packages,
+                                we've got you covered! </Typography>
+                        </div>
+                        <div className={classes.actionButtonInner}>
+                            <Button className={classes.actionButton}>
+                                <CloudUploadIcon className={classes.actionIcon} />
+                                Send a File
+                            </Button>
+                            <Typography className={classes.actionButtonText}>Need to send something to us?</Typography>
+                        </div>
+                        <div className={classes.actionButtonInner}>
+                            <Button className={classes.actionButton}>
+                                <ReceiptLongIcon className={classes.actionIcon} />
+                                Pay My Invoice
+                            </Button>
+                            <Typography className={classes.actionButtonText}>Some placeholder text</Typography>
+                        </div>
+
                     </div>
                 </div>
 
@@ -668,28 +697,34 @@ const Main = () => {
                 <Typography className={classes.someOfWorkHeader}>Our Services</Typography>
                 <div className={classes.servicesWrapper}>
                     <div className={classes.servicesItem}>
-                        <Typography className={classes.servicesTitle}>Posters, Signs, Banner, & Stickers, Wide Format Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography className={classes.servicesTitle}>Wide Format Services</Typography>
+                        <Typography>Posters, Signs, Banner, & Stickers</Typography>
+                        <img className={classes.servicesImage} src={signOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Printing Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography>Offset, Digital Full Color B/W, INKJET Addressing</Typography>
+                        <img className={classes.servicesImage} src={printPaper} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography className={classes.servicesTitle}>Graphic Design Services - redundant? <br /> Bindery & Finishing Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography className={classes.servicesTitle}>Bindery & Finishing Services</Typography>
+                        <Typography>Collating, Folding, Creasing, Laminating</Typography>
+                        <img className={classes.servicesImage} src={bindingOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Mailing Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography>Full Service, Postal Presorting, Postage Discounts</Typography>
+                        <img className={classes.servicesImage} src={mailOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Graphic Design Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography>Business Stationery, Calenders, Logo Design</Typography>
+                        <img className={classes.servicesImage} src={graphicDesignOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>All Other Services</Typography>
-                        <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
+                        <Typography>Manuals, Books, Business Cards, Embossing</Typography>
+                        <img className={classes.servicesImage} src={manualOne} />
                     </div>
                 </div>
 
