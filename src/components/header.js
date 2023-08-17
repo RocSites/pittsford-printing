@@ -20,7 +20,7 @@ import "./main.css"
 const withStyles = makeStyles(() => ({
   "@global": {
     "*": {
-      fontFamily: "Roboto !important",
+      // fontFamily: "Roboto !important",
       fontWeight: "100"
     }
   },
@@ -40,6 +40,9 @@ const withStyles = makeStyles(() => ({
   navBarTitle: {
     maxWidth: 960,
     padding: `1.45rem 1.0875rem`,
+    "@media(max-width: 600px)": {
+      margin: "auto"
+    }
   },
   navButton: {
     color: "black",
@@ -87,7 +90,8 @@ const withStyles = makeStyles(() => ({
   hamburgerIcon: {
     margin: "20px",
     fontSize: "2.5rem",
-    color: "#03178e",
+    color: "black",
+    // color: "#eb0e2b",
     "@media(min-width: 601px)": {
       display: "none"
     }

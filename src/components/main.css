@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Angkor&family=Inter&family=Roboto:wght@400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Angkor&family=DM+Sans:ital,opsz,wght@0,9..40,200;1,9..40,200&family=Inter&family=Roboto:wght@300&family=Tilt+Prism&display=swap');
 html,
 body {
     width: 100%;
@@ -141,7 +141,7 @@ body {
 .sectionWrapper {
     display: flex;
     justify-content: center;
-    border: 5px solid black;
+    align-items: center;
     padding: 5%;
     min-height: 500px;
 }

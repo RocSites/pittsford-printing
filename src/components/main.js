@@ -6,9 +6,14 @@ import { Link } from "gatsby"
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import rocBuildingOne from "../images/yassine-khalfalli-roc-image.jpg"
+import rocRiver from "../images/yassine-khalfalli-river.jpg"
 import fiveStar from '../images/fiveStar.png'
 import Divider from '@material-ui/core/Divider'
 import PhoneIcon from '@material-ui/icons/Phone'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import StarRateIcon from '@material-ui/icons/StarRate';
 import FacebookIcon from "../images/facebook_icon4.svg"
 import InstagramIcon from "../images/instagram_icon4.svg"
@@ -34,7 +39,11 @@ const withStyles = makeStyles(() => ({
     },
     servicesWrapper: {
         display: "flex",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        "@media(max-width:600px)": {
+            flexDirection: "column",
+            alignItems: "center",
+        }
     },
     servicesItem: {
         display: "flex",
@@ -43,10 +52,21 @@ const withStyles = makeStyles(() => ({
         justifyContent: "center",
         flex: "1 0 25%",
         border: "1px solid red",
-        margin: "5px"
+        borderRadius: "35px",
+        margin: "5px",
+        padding: "25px",
+        "@media(max-width:600px)": {
+            width: "100%"
+        }
     },
     servicesImage: {
         width: "150px"
+    },
+    servicesTitle: {
+        fontWeight: "bold",
+        textAlign: "center",
+        marginBottom: "20px",
+        fontSize: "1.25rem"
     },
     aboutWrapper: {
         display: "flex",
@@ -98,7 +118,7 @@ const withStyles = makeStyles(() => ({
     },
     someOfWorkHeader: {
         textAlign: "center",
-        fontSize: "2rem",
+        fontSize: "2.5rem",
         color: "black",
         padding: "10px",
         width: "100%",
@@ -246,9 +266,9 @@ const withStyles = makeStyles(() => ({
     },
     contactButton: {
         margin: "20px",
-        backgroundColor: "#333333",
+        backgroundColor: "#03178e",
         color: "white",
-        borderColor: "#333333",
+        borderColor: "#03178e",
         borderRadius: "35px",
         padding: "15px",
         paddingLeft: "25px",
@@ -398,7 +418,7 @@ const withStyles = makeStyles(() => ({
         fontSize: "2rem",
         color: "black",
         textTransform: "uppercase",
-        marginBottom: 0
+        marginBottom: "10px"
     },
     addressText: {
         textAlign: "center",
@@ -477,6 +497,15 @@ const withStyles = makeStyles(() => ({
         width: "100%",
         margin: "20px 0",
     },
+    actionSection: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        margin: "20px 0",
+        "@media(max-width:600px)": {
+            flexDirection: "column"
+        }
+    },
     containerMarginBottomSmall: {
         display: "flex",
         flexDirection: "column",
@@ -489,39 +518,68 @@ const withStyles = makeStyles(() => ({
         aspectRatio: "1/1",
         height: "100vh",
         marginTop: "112px",
-        marginBottom: "0px"
+        marginBottom: "0px",
+        filter: "brightness(0.5)"
     },
     mainBanner: {
         display: "flex",
         marginTop: "25%",
-        marginLeft: "25%",
-        marginRight: "15%",
+        marginLeft: "14%",
+        marginRight: "14%",
         textAlign: "center",
         position: "absolute",
-        backgroundColor: "white",
         justifyContent: "center",
-        padding: "20px",
         borderRadius: "35px",
+        padding: "20px",
         "@media(max-width:600px)": {
             marginTop: "50%",
-            marginLeft: "15%",
-            marginRight: "15%",
+            marginLeft: "5%",
+            marginRight: "5%",
+            padding: "5px"
+        }
+    },
+    mainBannerText: {
+        color: "white",
+        // fontSize: "3rem",
+        fontSize: "5rem",
+        textAlign: "left",
+        // textTransform: "uppercase",
+        fontWeight: "bold",
+        // fontFamily: "DM Sans, sans-serif",
+        zIndex: 1,
+        "@media(max-width:600px)": {
+            fontSize: "2.5rem",
+            textAlign: "center"
         }
     },
     actionButton: {
-        border: "1px solid red",
         width: "250px",
         height: "100px",
         borderRadius: "35px",
+        backgroundColor: "#03178e",
         "& > span": {
-            textTransform: "none"
+            textTransform: "none",
+            fontWeight: "bold",
+            color: "white"
+        },
+        "&:hover": {
+            backgroundColor: "#03178ead"
+        },
+        "@media(max-width:600px)": {
+            margin: "20px 0"
         }
+    },
+    actionIcon: {
+        marginRight: "5px"
     },
     actionButtonWrapper: {
         display: "flex",
         justifyContent: "space-evenly",
         width: "100%",
-
+        "@media(max-width:600px)": {
+            flexDirection: "column",
+            alignItems: "center",
+        }
     }
 
 }))
@@ -567,23 +625,38 @@ const Main = () => {
 
     return (
         <div className={classes.mainRoot}>
-            {/* <div className={classes.mainBanner}>We are closed Tuesday, August 1st. We will reopen Wednesday, August 2nd</div> */}
-
-            <img src={rocBuildingOne} className={classes.landingImage} />
+            <div className={classes.mainBanner}>
+                <Typography className={classes.mainBannerText}>
+                    Rochester's <br />premier printing provider.
+                </Typography>
+            </div>
+            <img src={rocRiver} className={classes.landingImage} />
 
             <section class="sectionWrapper">
-                <div className={classes.container}>
-                    <div className={classes.container}>
+                <div className={classes.actionSection}>
+                    {/* <div className={classes.container}>
                         <span className={classes.scrollToSectionOne} id="sectionOne"></span>
-                    </div>
+                    </div> */}
                     {/* <div className={classes.containerMarginBottomSmall}>
                         <Typography className={classes.someOfWorkHeader}>Let's Get Started</Typography>
                     </div> */}
                     <div className={classes.actionButtonWrapper}>
-                        <Button className={classes.actionButton}>Online Ordering</Button>
-                        <Button className={classes.actionButton}>Request a Quote</Button>
-                        <Button className={classes.actionButton}>Send a File</Button>
-                        <Button className={classes.actionButton}>Pay My Invoice</Button>
+                        <Button className={classes.actionButton}>
+                            <ShoppingCartIcon className={classes.actionIcon} />
+                            Place an Order
+                        </Button>
+                        <Button className={classes.actionButton}>
+                            <RequestQuoteIcon className={classes.actionIcon} />
+                            Request a Quote
+                        </Button>
+                        <Button className={classes.actionButton}>
+                            <CloudUploadIcon className={classes.actionIcon} />
+                            Send a File
+                        </Button>
+                        <Button className={classes.actionButton}>
+                            <ReceiptLongIcon className={classes.actionIcon} />
+                            Pay My Invoice
+                        </Button>
                     </div>
                 </div>
 
@@ -595,27 +668,27 @@ const Main = () => {
                 <Typography className={classes.someOfWorkHeader}>Our Services</Typography>
                 <div className={classes.servicesWrapper}>
                     <div className={classes.servicesItem}>
-                        <Typography>Posters, Signs, Banner, & Stickers, Wide Format Services</Typography>
+                        <Typography className={classes.servicesTitle}>Posters, Signs, Banner, & Stickers, Wide Format Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography>Printing Services</Typography>
+                        <Typography className={classes.servicesTitle}>Printing Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography>Graphic Design Services - redundant? <br /> Bindery & Finishing Services</Typography>
+                        <Typography className={classes.servicesTitle}>Graphic Design Services - redundant? <br /> Bindery & Finishing Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography>Mailing Services</Typography>
+                        <Typography className={classes.servicesTitle}>Mailing Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography>Graphic Design Services</Typography>
+                        <Typography className={classes.servicesTitle}>Graphic Design Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                     <div className={classes.servicesItem}>
-                        <Typography>All Other Services</Typography>
+                        <Typography className={classes.servicesTitle}>All Other Services</Typography>
                         <img className={classes.servicesImage} src={PittsfordPrintingMainLogo} />
                     </div>
                 </div>
@@ -634,32 +707,32 @@ const Main = () => {
                     <div className={classes.aboutWrapper}>
                         <div className={classes.aboutSectionWrapper}>
                             <Typography className={classes.aboutTitleHeader}>About Us</Typography>
-                            <Typography className={classes.addressText}>Section 3 subtext</Typography>
+                            {/* <Typography className={classes.addressText}>Section 3 subtext</Typography> */}
                             <Typography>Pittsford Printing is the premier printing provider for local businesses in Pittsford, NY area.
                                 We specialize in printing, mailing, signs, posters, banners, stickers, decals and much more. We are known
                                 for our excellent customer service, quality and competitive price.
                             </Typography>
-                            <br/>
+                            <br />
                             <Typography>Originally part of a large printing franchise system, we first opened our doors for business in Pittsford
                                 Plaza in August, 1988. Owners Carol and Russ Sherman were at the helm. In the summer of 2003, we changed our name to
                                 Pittsford Printing and moved to our current, expanded location at 3750 Monroe Avenue. Our formula for success has always
                                 been attention to detail and great customer service at an affordable price.
                             </Typography>
-                            <br/>
+                            <br />
                             <Typography>
                                 With over 27 years of commercial printing experience, we have built a strong reputation for high quality standards. We care about
                                 your satisfaction with every job we do for you. Put our experience to work for you! We go out of our way for the businesses we work with.
                                 Our staff is dedicated to providing first class, professional and friendly service!
                             </Typography>
-                            <br/>
+                            <br />
                             <Typography>We’re proud of the strong roots we’ve built in Monroe County. We pride ourselves on being a complete printing, mailing and copying
                                 source and have always been on the leading edge of technology. We understand that an investment in technology can actually save money by improving efficiencies.
                             </Typography>
-                            <br/>
+                            <br />
                             <Typography>
-                            Whether your job is simple black and white copies or complex, full-color advertising packages, Pittsford Printing can produce it from concept to 
-                            finished product in the fastest possible time. We offer design and type services, one to 4-color offset printing, digital B/W, digital color copying/printing, 
-                            and bulk mailing services of any size. Pittsford Printing would like to be your printer – give us a call!
+                                Whether your job is simple black and white copies or complex, full-color advertising packages, Pittsford Printing can produce it from concept to
+                                finished product in the fastest possible time. We offer design and type services, one to 4-color offset printing, digital B/W, digital color copying/printing,
+                                and bulk mailing services of any size. Pittsford Printing would like to be your printer – give us a call!
                             </Typography>
                         </div>
                     </div>
@@ -672,20 +745,20 @@ const Main = () => {
                     <div>
                         <Typography className={classes.connectHeader}>Connect With Us</Typography>
                         <div className={classes.phoneEmailWrapper}>
-                            <a href="tel:" className={classes.contactPhone}>
+                            <a href="tel:(585) 383-0150" className={classes.contactPhone}>
                                 <Button className={classes.contactButton}>
                                     <PhoneIcon className={classes.phoneIcon} />
-                                    (123) 456-7890
+                                    (585) 383-0150
                                 </Button>
                             </a>
-                            <div className={classes.socialLinkWrapper}>
+                            {/* <div className={classes.socialLinkWrapper}>
                                 <a href="" target="_blank" className={classes.socialLink}>
                                     <img className={classes.socialFooter} src={InstagramIcon} />
                                 </a>
                                 <a href="" target="_blank" className={classes.socialLink}>
                                     <img className={classes.socialFacebookSpacing} src={FacebookIcon} />
                                 </a>
-                            </div>
+                            </div> */}
 
                         </div>
                         <div className={classes.reviewsWrapper}>
