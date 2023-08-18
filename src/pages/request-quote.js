@@ -6,12 +6,11 @@ import grillMenu from "../images/grill_menu.jpeg"
 import "../components/main.css"
 
 
-const GrillMenu = () => (
+const RequestQuote = () => (
   <Layout>
-    <SEO title="Grill Menu" />
-    <h1 class="menuHeader">Grill Menu</h1>
-    <img class="menuImage"  src={grillMenu}/>
+    <SEO title="Request a Quote" />
+    <h1 class="menuHeader">Request a Quote</h1>
   </Layout>
 )
 
-export default GrillMenu
+export default RequestQuote

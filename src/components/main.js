@@ -560,6 +560,11 @@ const withStyles = makeStyles(() => ({
         borderRadius: "35px",
         backgroundColor: "#03178e",
         margin: "15px 0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        textDecoration: "none",
         "& > span": {
             textTransform: "none",
             fontWeight: "bold",
@@ -655,32 +660,40 @@ const Main = () => {
                     </div> */}
                     <div className={classes.actionButtonWrapper}>
                         <div className={classes.actionButtonInner}>
-                            <Button className={classes.actionButton}>
-                                <ShoppingCartIcon className={classes.actionIcon} />
-                                Place an Order
-                            </Button>
+                            <Link className={classes.actionButton} to="/order">
+                                <Button className={classes.actionButton}>
+                                    <ShoppingCartIcon className={classes.actionIcon} />
+                                    Place an Order
+                                </Button>
+                            </Link>
                             <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography>
                         </div>
                         <div className={classes.actionButtonInner}>
-                            <Button className={classes.actionButton}>
-                                <RequestQuoteIcon className={classes.actionIcon} />
-                                Request a Quote
-                            </Button>
+                            <Link className={classes.actionButton} to="/request-quote">
+                                <Button className={classes.actionButton}>
+                                    <RequestQuoteIcon className={classes.actionIcon} />
+                                    Request a Quote
+                                </Button>
+                            </Link>
                             <Typography className={classes.actionButtonText}>Whether your job is simple black and white copies or complex, full-color advertising packages,
                                 we've got you covered! </Typography>
                         </div>
                         <div className={classes.actionButtonInner}>
-                            <Button className={classes.actionButton}>
-                                <CloudUploadIcon className={classes.actionIcon} />
-                                Send a File
-                            </Button>
+                            <Link className={classes.actionButton} to="/send-file">
+                                <Button className={classes.actionButton}>
+                                    <CloudUploadIcon className={classes.actionIcon} />
+                                    Send a File
+                                </Button>
+                            </Link>
                             <Typography className={classes.actionButtonText}>Need to send something to us?</Typography>
                         </div>
                         <div className={classes.actionButtonInner}>
-                            <Button className={classes.actionButton}>
-                                <ReceiptLongIcon className={classes.actionIcon} />
-                                Pay My Invoice
-                            </Button>
+                            <Link className={classes.actionButton} to="/pay-invoice">
+                                <Button className={classes.actionButton}>
+                                    <ReceiptLongIcon className={classes.actionIcon} />
+                                    Pay My Invoice
+                                </Button>
+                            </Link>
                             <Typography className={classes.actionButtonText}>Some placeholder text</Typography>
                         </div>
 
