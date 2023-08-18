@@ -229,13 +229,13 @@ const Header = ({ siteTitle }) => {
             <List>
               <div className={classes.drawerLinkWrapper}>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionOne" title="Services">
+                  to="/#services" title="Services">
                 </AnchorLink>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionTwo" title="About Us">
+                  to="/#about" title="About Us">
                 </AnchorLink>
                 <AnchorLink className={classes.navButtonMobile}
-                  to="/#sectionThree" title="Contact Us">
+                  to="/#contact" title="Contact Us">
                 </AnchorLink>
               </div>
 

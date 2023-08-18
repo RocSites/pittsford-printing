@@ -21,7 +21,7 @@ const withStyles = makeStyles(() => ({
       minHeight: "100vh"
     },
     footerRoot:{
-      background: "#0074eb",
+      backgroundColor: "#03178e",
       color: "black",
       display: "flex",
       minHeight: "50px"
@@ -32,7 +32,6 @@ const withStyles = makeStyles(() => ({
       alignItems: "center",
       width: "100%",
       flexDirection: "column"
-
     },
     copyrightText: {
       marginTop: "auto",

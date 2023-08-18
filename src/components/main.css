@@ -145,7 +145,16 @@ body {
     justify-content: center;
     align-items: center;
     padding: 5%;
-    min-height: 500px;
+    min-height: 70vw;
+}
+
+.actionSectionWrapper {
+    background-color: #f7edd4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+    min-height: 70vw;
 }
 
 .servicesSectionWrapper {
@@ -179,7 +188,7 @@ body {
 
 .footerRoot {
     display: flex;
-    background-color: #333333;
+    background-color: #03178e;
     color: white;
     height: 110px;
 }

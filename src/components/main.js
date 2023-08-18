@@ -10,6 +10,7 @@ import signOne from "../images/tim-douglas-signjpg.jpg"
 import printPaper from "../images/rombo-prints.jpg"
 import bindingOne from "../images/anastasia-zhenina-binding.jpg"
 import mailOne from "../images/erica-steeves-mail.jpg"
+import EmailIcon from '@mui/icons-material/Email';
 import graphicDesignOne from "../images/balazs-ketyi-graphic-design.jpg"
 import windowGraphicOne from "../images/metin-ozer-window-graphic.jpg"
 import manualOne from "../images/brett-jordan-manual.jpg"
@@ -66,13 +67,18 @@ const withStyles = makeStyles(() => ({
     servicesImage: {
         width: "100%",
         aspectRatio: "1/1",
-        objectFit: "cover"
+        objectFit: "cover",
+        borderRadius: "5px"
     },
     servicesTitle: {
         fontWeight: "bold",
         textAlign: "center",
         marginBottom: "20px",
         fontSize: "1.25rem"
+    },
+    servicesSubtitle: {
+        marginBottom: "10px",
+        fontSize: "0.9rem"
     },
     aboutWrapper: {
         display: "flex",
@@ -196,7 +202,7 @@ const withStyles = makeStyles(() => ({
     },
     scrollToSectionOne: {
         height: "80px",
-        background: "#ffffff"
+        // backgroundColor: "#f7edd4"
     },
     scrollToServices: {
         paddingBottom: "80px",
@@ -260,9 +266,12 @@ const withStyles = makeStyles(() => ({
     phoneEmailWrapper: {
         display: "flex",
         justifyContent: "center",
+        alignItems: "flex-end",
+        margin: "35px",
         "@media(max-width: 600px)": {
             flexDirection: "column",
-            textAlign: "center"
+            textAlign: "center",
+            alignItems: "center"
         }
     },
     contactPhone: {
@@ -296,7 +305,6 @@ const withStyles = makeStyles(() => ({
     reviewsWrapper: {
         display: "flex",
         flexDirection: "column",
-        margin: "auto",
         textAlign: "center",
         alignItems: "center",
     },
@@ -305,7 +313,7 @@ const withStyles = makeStyles(() => ({
     },
     reviewStarWrapper: {
         display: "flex",
-        flexDirection: "column"
+        alignItems: "center"
     },
     reviewLink: {
         textDecoration: "none"
@@ -334,6 +342,12 @@ const withStyles = makeStyles(() => ({
     },
     phoneIcon: {
         marginRight: "10px"
+    },
+    contactWrapper: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
     },
     emailIcon: {
         marginRight: "10px"
@@ -423,7 +437,7 @@ const withStyles = makeStyles(() => ({
         textAlign: "center",
         fontSize: "2.5rem",
         color: "black",
-        textTransform: "uppercase",
+        // textTransform: "uppercase",
         marginBottom: "10px"
     },
     addressText: {
@@ -443,7 +457,7 @@ const withStyles = makeStyles(() => ({
         fontSize: "2rem",
         textAlign: "center",
         color: "black",
-        textTransform: "uppercase"
+        // textTransform: "uppercase"
     },
     socialLinkWrapper: {
         display: "flex",
@@ -468,6 +482,7 @@ const withStyles = makeStyles(() => ({
         textTransform: "none",
         color: "white",
         margin: 0,
+        marginRight: "10px"
     },
     socialFooterMargin: {
         height: "40px",
@@ -492,9 +507,8 @@ const withStyles = makeStyles(() => ({
     },
     reviewButton: {
         backgroundColor: "#333333",
-        borderRadius: "25px",
-        padding: "20px",
-        marginBottom: "20px",
+        borderRadius: "35px",
+        padding: "15px",
         border: "none"
     },
     container: {
@@ -503,11 +517,19 @@ const withStyles = makeStyles(() => ({
         width: "100%",
         margin: "20px 0",
     },
+    servicesContainer: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        padding: "20px 0",
+        // backgroundColor: "#f7edd4"
+    },
     actionSection: {
         display: "flex",
         flexDirection: "column",
         width: "100%",
         margin: "20px 0",
+        marginTop: "8%",
         "@media(max-width:600px)": {
             flexDirection: "column"
         }
@@ -650,7 +672,7 @@ const Main = () => {
             </div>
             {/* <img src={rocRiver} className={classes.landingImage} /> */}
 
-            <section class="sectionWrapper">
+            <section class="actionSectionWrapper">
                 <div className={classes.actionSection}>
                     {/* <div className={classes.container}>
                         <span className={classes.scrollToSectionOne} id="sectionOne"></span>
@@ -701,7 +723,7 @@ const Main = () => {
                 </div>
 
             </section>
-            <div className={classes.container}>
+            <div className={classes.servicesContainer}>
                 <span className={classes.scrollToSectionOne} id="services"></span>
             </div>
             <section class="servicesSectionWrapper">
@@ -709,32 +731,32 @@ const Main = () => {
                 <div className={classes.servicesWrapper}>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Wide Format Services</Typography>
-                        <Typography>Posters, Signs, Banner, & Stickers</Typography>
+                        <Typography className={classes.servicesSubtitle}>Posters, Signs, Banner, & Stickers</Typography>
                         <img className={classes.servicesImage} src={signOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Printing Services</Typography>
-                        <Typography>Offset, Digital Full Color B/W, INKJET Addressing</Typography>
+                        <Typography className={classes.servicesSubtitle}>Offset, Digital Full Color B/W, INKJET Addressing</Typography>
                         <img className={classes.servicesImage} src={printPaper} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Bindery & Finishing Services</Typography>
-                        <Typography>Collating, Folding, Creasing, Laminating</Typography>
+                        <Typography className={classes.servicesSubtitle}>Collating, Folding, Creasing, Laminating</Typography>
                         <img className={classes.servicesImage} src={bindingOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Mailing Services</Typography>
-                        <Typography>Full Service, Postal Presorting, Postage Discounts</Typography>
+                        <Typography className={classes.servicesSubtitle}>Full Service, Postal Presorting, Postage Discounts</Typography>
                         <img className={classes.servicesImage} src={mailOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Graphic Design Services</Typography>
-                        <Typography>Business Stationery, Calenders, Logo Design</Typography>
+                        <Typography className={classes.servicesSubtitle}>Business Stationery, Calenders, Logo Design</Typography>
                         <img className={classes.servicesImage} src={graphicDesignOne} />
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>All Other Services</Typography>
-                        <Typography>Manuals, Books, Business Cards, Embossing</Typography>
+                        <Typography className={classes.servicesSubtitle}>Manuals, Books, Business Cards, Embossing</Typography>
                         <img className={classes.servicesImage} src={manualOne} />
                     </div>
                 </div>
@@ -748,7 +770,7 @@ const Main = () => {
             </section>
             <span className={classes.scrollToLocation} id="about"></span>
 
-            <section class="sectionWrapper">
+            <section class="actionSectionWrapper">
                 <div className={classes.container}>
                     <div className={classes.aboutWrapper}>
                         <div className={classes.aboutSectionWrapper}>
@@ -797,32 +819,42 @@ const Main = () => {
                                     (585) 383-0150
                                 </Button>
                             </a>
-                            {/* <div className={classes.socialLinkWrapper}>
-                                <a href="" target="_blank" className={classes.socialLink}>
-                                    <img className={classes.socialFooter} src={InstagramIcon} />
+                            <div className={classes.contactWrapper}>
+                                <Typography>General Questions</Typography>
+                                <a href="mailto:info@pittsfordprinting.com" className={classes.contactPhone}>
+                                    <Button className={classes.contactButton}>
+                                        <EmailIcon className={classes.phoneIcon} />
+                                        info@pittsfordprinting.com
+                                    </Button>
                                 </a>
-                                <a href="" target="_blank" className={classes.socialLink}>
-                                    <img className={classes.socialFacebookSpacing} src={FacebookIcon} />
+                            </div>
+                            <div className={classes.contactWrapper}>
+                                <Typography>Katie Sherman</Typography>
+                                <a href="mailto:katie@pittsfordprinting.com" className={classes.contactPhone}>
+                                    <Button className={classes.contactButton}>
+                                        <EmailIcon className={classes.phoneIcon} />
+                                        katie@pittsfordprinting.com
+                                    </Button>
                                 </a>
-                            </div> */}
-
-                        </div>
-                        <div className={classes.reviewsWrapper}>
-                            <a className={classes.reviewLink}
-                                href=""
-                                target="_blank"
-                            >
-                                <Button
-                                    className={classes.reviewButton}
+                            </div>
+                            <div className={classes.reviewsWrapper}>
+                                <a className={classes.reviewLink}
+                                    href=""
+                                    target="_blank"
                                 >
-                                    <div className={classes.reviewStarWrapper}>
-                                        <Typography className={classes.reviewHeader}>Leave us a review!</Typography>
-                                        <img className={classes.socialFooterMargin} src={GoogleIcon} />
-                                        <FiveStar />
-                                    </div>
-                                </Button>
-                            </a>
+                                    <Button
+                                        className={classes.reviewButton}
+                                    >
+                                        <div className={classes.reviewStarWrapper}>
+                                            <Typography className={classes.reviewHeader}>Leave us a review!</Typography>
+                                            <img className={classes.socialFooterMargin} src={GoogleIcon} />
+                                            {/* <FiveStar /> */}
+                                        </div>
+                                    </Button>
+                                </a>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
