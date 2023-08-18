@@ -179,7 +179,7 @@ const withStyles = makeStyles(() => ({
             marginRight: "0px",
             fontSize: "2em",
             fontWeight: "100",
-            // fontFamily: "Raleway, sans-serif",
+            fontFamily: "Roboto, sans-serif !important",
             textAlign: "center",
             margin: "auto"
         }
@@ -268,7 +268,7 @@ const withStyles = makeStyles(() => ({
     contactPhone: {
         color: "black",
         textDecoration: "none",
-        // fontFamily: "Raleway, sans-serif",
+        fontFamily: "Roboto, sans-serif !important",
     },
     contactButton: {
         margin: "20px",
@@ -370,7 +370,7 @@ const withStyles = makeStyles(() => ({
         backgroundColor: "#1f5a76",
         margin: "auto",
         marginRight: "10px",
-        fontFamily: "proxima-nova, Helvetica, Arial, sans-serif",
+        fontFamily: "Roboto, sans-serif !important",
         borderRadius: "14px"
     },
     bbbCirleText: {
@@ -523,35 +523,32 @@ const withStyles = makeStyles(() => ({
         objectFit: "cover",
         aspectRatio: "1/1",
         height: "100vh",
-        marginTop: "112px",
+        marginTop: "0px",
         marginBottom: "0px",
         filter: "brightness(0.5)"
     },
     mainBanner: {
         display: "flex",
-        marginTop: "25%",
-        marginLeft: "14%",
-        marginRight: "14%",
-        textAlign: "center",
-        position: "absolute",
-        justifyContent: "center",
-        borderRadius: "35px",
+        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${rocRiver})`,
+        backgroundSize: "cover",
+        paddingTop: "8%",
+        paddingRight: "30px",
+        justifyContent: "flex-end",
+        height: "100vh",
         padding: "20px",
         "@media(max-width:600px)": {
-            marginTop: "65%",
-            marginLeft: "5%",
-            marginRight: "5%",
-            padding: "5px"
+            paddingTop: "50%",
+            justifyContent: "center",
+
         }
     },
     mainBannerText: {
         color: "white",
         // fontSize: "3rem",
         fontSize: "5rem",
-        textAlign: "left",
-        // textTransform: "uppercase",
+        textAlign: "right",
         fontWeight: "bold",
-        // fontFamily: "DM Sans, sans-serif",
+        fontFamily: "Roboto, sans-serif !important",
         zIndex: 1,
         "@media(max-width:600px)": {
             fontSize: "2.5rem",
@@ -566,7 +563,8 @@ const withStyles = makeStyles(() => ({
         "& > span": {
             textTransform: "none",
             fontWeight: "bold",
-            color: "white"
+            color: "white",
+            fontSize: "1.5rem"
         },
         "&:hover": {
             backgroundColor: "#03178ead"
@@ -642,10 +640,10 @@ const Main = () => {
         <div className={classes.mainRoot}>
             <div className={classes.mainBanner}>
                 <Typography className={classes.mainBannerText}>
-                    Rochester's <br />premier printing provider.
+                    Rochester's <br />premier printing <br /> provider.
                 </Typography>
             </div>
-            <img src={rocRiver} className={classes.landingImage} />
+            {/* <img src={rocRiver} className={classes.landingImage} /> */}
 
             <section class="sectionWrapper">
                 <div className={classes.actionSection}>

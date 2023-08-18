@@ -20,25 +20,25 @@ import "./main.css"
 const withStyles = makeStyles(() => ({
   "@global": {
     "*": {
-      // fontFamily: "Roboto !important",
+      fontFamily: "Roboto, sans-serif !important",
       fontWeight: "100"
     }
   },
   navBarRoot: {
-    position: "fixed",
+    position: "absolute",
     display: "flex",
-    background: "white",
     color: "white",
+    backgroundColor: "transparent",
     justifyContent: "space-between",
     width: "100%",
     height: "112px",
     top: 0,
-    boxShadow: "1px 0 10px 0 rgb(89 98 115 / 20%)",
+    boxShadow: "none",
     zIndex: "1",
-    opacity: "0.85"
   },
   navBarTitle: {
     maxWidth: 960,
+    color: "white",
     padding: `1.45rem 1.0875rem`,
     "@media(max-width: 600px)": {
       margin: "auto"
@@ -50,7 +50,9 @@ const withStyles = makeStyles(() => ({
     textTransform: "none",
     margin: "auto 10px",
     textDecoration: "none",
-    fontFamily: '"Roboto", "Helvetica", "Arial", "sans-serif"'
+    fontFamily: '"Roboto", "Helvetica", "Arial", "sans-serif"',
+    color: "white",
+    // fontWeight: "bold"
   },
   navBarButtonWrapper: {
     display: "flex",
@@ -90,7 +92,7 @@ const withStyles = makeStyles(() => ({
   hamburgerIcon: {
     margin: "20px",
     fontSize: "2.5rem",
-    color: "black",
+    color: "white",
     // color: "#eb0e2b",
     "@media(min-width: 601px)": {
       display: "none"
@@ -186,7 +188,7 @@ const Header = ({ siteTitle }) => {
             className={classes.navCallButton}
             target="_blank" href="tel:(585) 383-0150"
           >
-            <PhoneIcon sx={{color: "white"}} class="drawerPhoneIcon" />
+            <PhoneIcon sx={{color: "red"}} class="drawerPhoneIcon" />
             Call Us
           </Button>
         </div>
@@ -205,7 +207,7 @@ const Header = ({ siteTitle }) => {
           className={classes.navCallButtonMobile}
           target="_blank" href="tel:(585) 383-0150"
         >
-          <PhoneIcon sx={{color: "white", fontWeight: "bold", marginRight: "5px"}} class="drawerPhoneIcon" />
+          <PhoneIcon sx={{color: "red", fontWeight: "bold", marginRight: "5px"}} class="drawerPhoneIcon" />
           Call Us
         </Button>
         <MenuIcon
@@ -241,7 +243,7 @@ const Header = ({ siteTitle }) => {
                 class="drawerItemLogin"
                 target="_blank" href="tel:"
               >
-                <PhoneIcon sx={{color: "white", marginRight: "10px"}} class="drawerPhoneIcon" />
+                <PhoneIcon sx={{color: "red", marginRight: "10px"}} class="drawerPhoneIcon" />
                 Call Us
               </Button>
               {/* <div class="socialLinkWrapperNavMobile">
