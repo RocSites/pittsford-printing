@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import { makeStyles } from '@material-ui/core'
@@ -36,6 +36,19 @@ const withStyles = makeStyles(() => ({
     boxShadow: "none",
     zIndex: "1",
   },
+  navBarRootScroll: {
+    position: "fixed",
+    display: "flex",
+    // background: "#4c86d1",
+    backgroundColor: "white",
+    color: "white",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "112px",
+    top: 0,
+    boxShadow: "1px 0 10px 0 rgb(89 98 115 / 20%)",
+    zIndex: 2,
+  },
   navBarTitle: {
     maxWidth: 960,
     color: "white",
@@ -53,6 +66,13 @@ const withStyles = makeStyles(() => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", "sans-serif"',
     color: "white",
     // fontWeight: "bold"
+  },
+
+  navButtonScroll: {
+    color: "black",
+    textTransform: "none",
+    margin: "auto 10px",
+    textDecoration: "none"
   },
   navBarButtonWrapper: {
     display: "flex",
@@ -145,12 +165,12 @@ const withStyles = makeStyles(() => ({
     flexDirection: "column",
   },
   navButtonMobile: {
-  color: "black",
-  // fontWeight: "bold",
-  textTransform: "none",
-  margin: "10px 16px",
-  textDecoration: "none",
-}
+    color: "black",
+    // fontWeight: "bold",
+    textTransform: "none",
+    margin: "10px 16px",
+    textDecoration: "none",
+  }
 }))
 
 
@@ -163,9 +183,46 @@ const Header = ({ siteTitle }) => {
     setOpenDrawer(drawerOpen => !drawerOpen)
   }
 
+  //navbar scroll when active state
+  const [navbarScroll, setNavbarScroll] = useState(false)
+
+  //logo scroll when active
+  const [navBarColor, setNavBarColor] = useState("white")
+
+  //navbar scroll changeBackground function
+  const changeBackground = () => {
+    console.log(window.scrollY)
+    if (window.scrollY >= 66) {
+      setNavbarScroll(true)
+    } else {
+      setNavbarScroll(false)
+    }
+  }
+
+  useEffect(() => {
+    changeBackground()
+    // adding the event when scroll change background
+    window.addEventListener("scroll", changeBackground)
+  })
+
+  //logo scroll function
+  const changeColor = () => {
+    if (window.scrollY >= 60) {
+      setNavBarColor("blue")
+    } else {
+      setNavBarColor("white")
+    }
+  }
+
+  useEffect(() => {
+    changeColor()
+    // adding the event when scroll change Logo
+    window.addEventListener("scroll", changeColor)
+  })
+
   return (
     <header
-      className={classes.navBarRoot}
+      className={navbarScroll ? classes.navBarRootScroll : classes.navBarRoot}
     >
       <div className={classes.navLeftWrapper}>
         <div className={classes.navBarTitle}>
@@ -174,13 +231,13 @@ const Header = ({ siteTitle }) => {
           </Link>
         </div>
         <div className={classes.navBarButtonWrapper}>
-          <AnchorLink className={classes.navButton}
+          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
             to="/#services" title="Services">
           </AnchorLink>
-          <AnchorLink className={classes.navButton}
+          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
             to="/#about" title="About">
           </AnchorLink>
-          <AnchorLink className={classes.navButton}
+          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
             to="/#contact" title="Contact Us">
           </AnchorLink>
 
@@ -188,7 +245,7 @@ const Header = ({ siteTitle }) => {
             className={classes.navCallButton}
             target="_blank" href="tel:(585) 383-0150"
           >
-            <PhoneIcon sx={{color: "red"}} class="drawerPhoneIcon" />
+            <PhoneIcon sx={{ color: "red" }} class="drawerPhoneIcon" />
             Call Us
           </Button>
         </div>
@@ -207,7 +264,7 @@ const Header = ({ siteTitle }) => {
           className={classes.navCallButtonMobile}
           target="_blank" href="tel:(585) 383-0150"
         >
-          <PhoneIcon sx={{color: "red", fontWeight: "bold", marginRight: "5px"}} class="drawerPhoneIcon" />
+          <PhoneIcon sx={{ color: "red", fontWeight: "bold", marginRight: "5px" }} class="drawerPhoneIcon" />
           Call Us
         </Button>
         <MenuIcon
@@ -243,7 +300,7 @@ const Header = ({ siteTitle }) => {
                 class="drawerItemLogin"
                 target="_blank" href="tel:"
               >
-                <PhoneIcon sx={{color: "red", marginRight: "10px"}} class="drawerPhoneIcon" />
+                <PhoneIcon sx={{ color: "red", marginRight: "10px" }} class="drawerPhoneIcon" />
                 Call Us
               </Button>
               {/* <div class="socialLinkWrapperNavMobile">

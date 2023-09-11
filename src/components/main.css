@@ -81,6 +81,7 @@ body {
 .drawerPhoneIcon {
     margin-right: 5px;
     width: 25px;
+    fill: red;
 }
 
 .marginBottomSmall {

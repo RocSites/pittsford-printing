@@ -561,7 +561,6 @@ const withStyles = makeStyles(() => ({
         "@media(max-width:600px)": {
             paddingTop: "50%",
             justifyContent: "center",
-
         }
     },
     mainBannerText: {
@@ -670,8 +669,6 @@ const Main = () => {
                     Rochester's <br />premier printing <br /> provider.
                 </Typography>
             </div>
-            {/* <img src={rocRiver} className={classes.landingImage} /> */}
-
             <section class="actionSectionWrapper">
                 <div className={classes.actionSection}>
                     {/* <div className={classes.container}>
