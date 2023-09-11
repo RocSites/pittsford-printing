@@ -275,6 +275,38 @@ body {
     margin: 40px 0;
 }
 
+.uploadButton {
+    display: flex;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    padding: 20px;
+    border-radius: 35px;
+}
+
+.paymentLink {
+    display: flex;
+    text-decoration: none;
+    background-color:#03178e;
+    color: white;
+    padding: 20px;
+    border-radius: 35px;
+    width: 300px;
+    margin: 20px;
+}
+
+.paymentPreText {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.paymentText {
+    text-align: left;
+}
+
 @keyframes twinkle {
     from {
         transform: translateX(1vw);
