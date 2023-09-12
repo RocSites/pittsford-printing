@@ -118,6 +118,14 @@ const withStyles = makeStyles(() => ({
       display: "none"
     }
   },
+  hamburgerIconScroll: {
+    color: "#0047bb",
+    margin: "1rem",
+    fontSize: "2.5rem",
+    "@media(min-width: 601px)": {
+      display: "none"
+    }
+  },
   navLeftWrapper: {
     display: "flex",
     justifyContent: "space-between",
@@ -191,7 +199,6 @@ const Header = ({ siteTitle }) => {
 
   //navbar scroll changeBackground function
   const changeBackground = () => {
-    console.log(window.scrollY)
     if (window.scrollY >= 66) {
       setNavbarScroll(true)
     } else {
@@ -268,7 +275,7 @@ const Header = ({ siteTitle }) => {
           Call Us
         </Button>
         <MenuIcon
-          className={classes.hamburgerIcon}
+          className={navbarScroll ? classes.hamburgerIconScroll : classes.hamburgerIcon}
           onClick={toggleDrawer}
         />
         <Drawer

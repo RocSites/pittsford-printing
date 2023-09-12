@@ -530,6 +530,7 @@ const withStyles = makeStyles(() => ({
         width: "100%",
         margin: "20px 0",
         marginTop: "8%",
+        marginBottom: "8%",
         "@media(max-width:600px)": {
             flexDirection: "column"
         }
@@ -685,7 +686,7 @@ const Main = () => {
                                     Place an Order
                                 </Button>
                             </Link>
-                            <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography>
+                            {/* <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography> */}
                         </div>
                         <div className={classes.actionButtonInner}>
                             <Link className={classes.actionButton} to="/request-quote">
@@ -694,8 +695,8 @@ const Main = () => {
                                     Request a Quote
                                 </Button>
                             </Link>
-                            <Typography className={classes.actionButtonText}>Whether your job is simple black and white copies or complex, full-color advertising packages,
-                                we've got you covered! </Typography>
+                            {/* <Typography className={classes.actionButtonText}>Whether your job is simple black and white copies or complex, full-color advertising packages,
+                                we've got you covered! </Typography> */}
                         </div>
                         <div className={classes.actionButtonInner}>
                             <Link className={classes.actionButton} to="/send-file">
@@ -704,7 +705,7 @@ const Main = () => {
                                     Send a File
                                 </Button>
                             </Link>
-                            <Typography className={classes.actionButtonText}>Need to send something to us?</Typography>
+                            {/* <Typography className={classes.actionButtonText}>Need to send something to us?</Typography> */}
                         </div>
                         <div className={classes.actionButtonInner}>
                             <Link className={classes.actionButton} to="/pay-invoice">
@@ -713,7 +714,7 @@ const Main = () => {
                                     Pay My Invoice
                                 </Button>
                             </Link>
-                            <Typography className={classes.actionButtonText}>Some placeholder text</Typography>
+                            {/* <Typography className={classes.actionButtonText}>Some placeholder text</Typography> */}
                         </div>
 
                     </div>
@@ -817,7 +818,7 @@ const Main = () => {
                                 </Button>
                             </a>
                             <div className={classes.contactWrapper}>
-                                <Typography>General Questions</Typography>
+                                {/* <Typography>General Questions</Typography> */}
                                 <a href="mailto:info@pittsfordprinting.com" className={classes.contactPhone}>
                                     <Button className={classes.contactButton}>
                                         <EmailIcon className={classes.phoneIcon} />
@@ -825,7 +826,7 @@ const Main = () => {
                                     </Button>
                                 </a>
                             </div>
-                            <div className={classes.contactWrapper}>
+                            {/* <div className={classes.contactWrapper}>
                                 <Typography>Katie Sherman</Typography>
                                 <a href="mailto:katie@pittsfordprinting.com" className={classes.contactPhone}>
                                     <Button className={classes.contactButton}>
@@ -833,25 +834,25 @@ const Main = () => {
                                         katie@pittsfordprinting.com
                                     </Button>
                                 </a>
-                            </div>
-                            <div className={classes.reviewsWrapper}>
-                                <a className={classes.reviewLink}
-                                    href=""
-                                    target="_blank"
-                                >
-                                    <Button
-                                        className={classes.reviewButton}
-                                    >
-                                        <div className={classes.reviewStarWrapper}>
-                                            <Typography className={classes.reviewHeader}>Leave us a review!</Typography>
-                                            <img className={classes.socialFooterMargin} src={GoogleIcon} />
-                                            {/* <FiveStar /> */}
-                                        </div>
-                                    </Button>
-                                </a>
-                            </div>
-                        </div>
+                            </div> */}
 
+                        </div>
+                        <div className={classes.reviewsWrapper}>
+                            <a className={classes.reviewLink}
+                                href=""
+                                target="_blank"
+                            >
+                                <Button
+                                    className={classes.reviewButton}
+                                >
+                                    <div className={classes.reviewStarWrapper}>
+                                        <Typography className={classes.reviewHeader}>Leave us a review!</Typography>
+                                        <img className={classes.socialFooterMargin} src={GoogleIcon} />
+                                        {/* <FiveStar /> */}
+                                    </div>
+                                </Button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
