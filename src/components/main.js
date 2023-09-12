@@ -74,7 +74,8 @@ const withStyles = makeStyles(() => ({
         fontWeight: "bold",
         textAlign: "center",
         marginBottom: "20px",
-        fontSize: "1.25rem"
+        fontSize: "1.25rem",        
+        color: "#03178e",
     },
     servicesSubtitle: {
         marginBottom: "10px",
@@ -131,7 +132,7 @@ const withStyles = makeStyles(() => ({
     someOfWorkHeader: {
         textAlign: "center",
         fontSize: "2.5rem",
-        color: "black",
+        color: "#03178e",
         padding: "10px",
         width: "100%",
         margin: "auto",
@@ -436,9 +437,12 @@ const withStyles = makeStyles(() => ({
     aboutTitleHeader: {
         textAlign: "center",
         fontSize: "2.5rem",
-        color: "black",
+        color: "#03178e",
         // textTransform: "uppercase",
         marginBottom: "10px"
+    },
+    aboutTextBlue: {
+        color: "#03178e",
     },
     addressText: {
         textAlign: "center",
@@ -554,6 +558,7 @@ const withStyles = makeStyles(() => ({
         display: "flex",
         backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${rocRiver})`,
         backgroundSize: "cover",
+        backgroundPosition: "center",
         paddingTop: "8%",
         paddingRight: "30px",
         justifyContent: "flex-end",
@@ -774,28 +779,28 @@ const Main = () => {
                         <div className={classes.aboutSectionWrapper}>
                             <Typography className={classes.aboutTitleHeader}>About Us</Typography>
                             {/* <Typography className={classes.addressText}>Section 3 subtext</Typography> */}
-                            <Typography>Pittsford Printing is the premier printing provider for local businesses in Pittsford, NY area.
+                            <Typography className={classes.aboutTextBlue}>Pittsford Printing is the premier printing provider for local businesses in Pittsford, NY area.
                                 We specialize in printing, mailing, signs, posters, banners, stickers, decals and much more. We are known
                                 for our excellent customer service, quality and competitive price.
                             </Typography>
                             <br />
-                            <Typography>Originally part of a large printing franchise system, we first opened our doors for business in Pittsford
+                            <Typography className={classes.aboutTextBlue}>Originally part of a large printing franchise system, we first opened our doors for business in Pittsford
                                 Plaza in August, 1988. Owners Carol and Russ Sherman were at the helm. In the summer of 2003, we changed our name to
                                 Pittsford Printing and moved to our current, expanded location at 3750 Monroe Avenue. Our formula for success has always
                                 been attention to detail and great customer service at an affordable price.
                             </Typography>
                             <br />
-                            <Typography>
+                            <Typography className={classes.aboutTextBlue}>
                                 With over 27 years of commercial printing experience, we have built a strong reputation for high quality standards. We care about
                                 your satisfaction with every job we do for you. Put our experience to work for you! We go out of our way for the businesses we work with.
                                 Our staff is dedicated to providing first class, professional and friendly service!
                             </Typography>
                             <br />
-                            <Typography>We’re proud of the strong roots we’ve built in Monroe County. We pride ourselves on being a complete printing, mailing and copying
+                            <Typography className={classes.aboutTextBlue}>We’re proud of the strong roots we’ve built in Monroe County. We pride ourselves on being a complete printing, mailing and copying
                                 source and have always been on the leading edge of technology. We understand that an investment in technology can actually save money by improving efficiencies.
                             </Typography>
                             <br />
-                            <Typography>
+                            <Typography className={classes.aboutTextBlue}>
                                 Whether your job is simple black and white copies or complex, full-color advertising packages, Pittsford Printing can produce it from concept to
                                 finished product in the fastest possible time. We offer design and type services, one to 4-color offset printing, digital B/W, digital color copying/printing,
                                 and bulk mailing services of any size. Pittsford Printing would like to be your printer – give us a call!
