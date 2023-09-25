@@ -122,6 +122,19 @@ body {
     margin: auto;
 }
 
+.bottomHeaderRoot {
+    background-color: #1ba8e2;
+    position: relative;
+    top: 180px;
+    width: 80%;
+    margin: auto;
+}
+
+.bottomHeaderWrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .aboutTitleHeader {
     text-align: center;
     font-size: 2rem;

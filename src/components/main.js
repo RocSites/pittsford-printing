@@ -559,7 +559,7 @@ const withStyles = makeStyles(() => ({
         backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${rocRiver})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        paddingTop: "8%",
+        paddingTop: "19%",
         paddingRight: "30px",
         justifyContent: "flex-end",
         height: "100vh",
@@ -671,10 +671,14 @@ const Main = () => {
     return (
         <div className={classes.mainRoot}>
             <div className={classes.mainBanner}>
+            {/* <button>Send a File</button> */}
+
                 <Typography className={classes.mainBannerText}>
-                    Rochester's <br />premier printing <br /> provider.
+                    Printing & Mailing <br />... Made Easy
                 </Typography>
+
             </div>
+
             <section class="actionSectionWrapper">
                 <div className={classes.actionSection}>
                     {/* <div className={classes.container}>
@@ -688,21 +692,20 @@ const Main = () => {
                             <Link className={classes.actionButton} to="/order">
                                 <Button className={classes.actionButton}>
                                     <ShoppingCartIcon className={classes.actionIcon} />
-                                    Place an Order
+                                    Order/Quote Request
                                 </Button>
                             </Link>
                             {/* <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography> */}
                         </div>
-                        <div className={classes.actionButtonInner}>
+                        {/* <div className={classes.actionButtonInner}>
                             <Link className={classes.actionButton} to="/request-quote">
                                 <Button className={classes.actionButton}>
                                     <RequestQuoteIcon className={classes.actionIcon} />
                                     Request a Quote
                                 </Button>
                             </Link>
-                            {/* <Typography className={classes.actionButtonText}>Whether your job is simple black and white copies or complex, full-color advertising packages,
-                                we've got you covered! </Typography> */}
-                        </div>
+                         
+                        </div> */}
                         <div className={classes.actionButtonInner}>
                             <Link className={classes.actionButton} to="/send-file">
                                 <Button className={classes.actionButton}>
@@ -739,7 +742,7 @@ const Main = () => {
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Printing Services</Typography>
-                        <Typography className={classes.servicesSubtitle}>Offset, Digital Full Color B/W, INKJET Addressing</Typography>
+                        <Typography className={classes.servicesSubtitle}>Offset, Digital Full Color, and B/W Printing</Typography>
                         <img className={classes.servicesImage} src={printPaper} />
                     </div>
                     <div className={classes.servicesItem}>
@@ -752,16 +755,16 @@ const Main = () => {
                         <Typography className={classes.servicesSubtitle}>Full Service, Postal Presorting, Postage Discounts</Typography>
                         <img className={classes.servicesImage} src={mailOne} />
                     </div>
-                    <div className={classes.servicesItem}>
+                    {/* <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Graphic Design Services</Typography>
                         <Typography className={classes.servicesSubtitle}>Business Stationery, Calenders, Logo Design</Typography>
                         <img className={classes.servicesImage} src={graphicDesignOne} />
-                    </div>
-                    <div className={classes.servicesItem}>
+                    </div> */}
+                    {/* <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>All Other Services</Typography>
                         <Typography className={classes.servicesSubtitle}>Manuals, Books, Business Cards, Embossing</Typography>
                         <img className={classes.servicesImage} src={manualOne} />
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* <Link to="/chill-menu" class="menuContent menuLink chillBlock">
@@ -791,7 +794,7 @@ const Main = () => {
                             </Typography>
                             <br />
                             <Typography className={classes.aboutTextBlue}>
-                                With over 27 years of commercial printing experience, we have built a strong reputation for high quality standards. We care about
+                                Since 1988 we have built a strong reputation for high quality standards. We care about
                                 your satisfaction with every job we do for you. Put our experience to work for you! We go out of our way for the businesses we work with.
                                 Our staff is dedicated to providing first class, professional and friendly service!
                             </Typography>

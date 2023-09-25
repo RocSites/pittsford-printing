@@ -14,6 +14,10 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import FacebookIcon from "../images/facebook_icon4.svg"
 import InstagramIcon from "../images/instagram_icon4.svg"
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 import "./main.css"
 
@@ -27,12 +31,15 @@ const withStyles = makeStyles(() => ({
   navBarRoot: {
     position: "absolute",
     display: "flex",
-    color: "white",
-    backgroundColor: "transparent",
+    color: "black",
+    backgroundColor: "white",
     justifyContent: "space-between",
-    width: "100%",
-    height: "112px",
+    width: "80%",
     top: 0,
+    left: 0,
+    right: 0,
+    margin: "0px auto",
+    height: "180px",
     boxShadow: "none",
     zIndex: "1",
   },
@@ -44,7 +51,6 @@ const withStyles = makeStyles(() => ({
     color: "white",
     justifyContent: "space-between",
     width: "100%",
-    height: "112px",
     top: 0,
     boxShadow: "1px 0 10px 0 rgb(89 98 115 / 20%)",
     zIndex: 2,
@@ -64,7 +70,6 @@ const withStyles = makeStyles(() => ({
     margin: "auto 10px",
     textDecoration: "none",
     fontFamily: '"Roboto", "Helvetica", "Arial", "sans-serif"',
-    color: "white",
     // fontWeight: "bold"
   },
 
@@ -91,7 +96,12 @@ const withStyles = makeStyles(() => ({
   },
   navLogo: {
     display: "flex",
-    width: "150px",
+    width: "340px",
+    margin: "auto",
+  },
+  navLogoScroll: {
+    display: "flex",
+    width: "250px",
     margin: "auto",
   },
   drawerItem: {
@@ -178,6 +188,15 @@ const withStyles = makeStyles(() => ({
     textTransform: "none",
     margin: "10px 16px",
     textDecoration: "none",
+  },
+  bottomHeaderButton: {
+    textTransform: "none",
+    "& > span": {
+     color: "white"
+    }
+  },
+  bottomHeaderIcon: {
+    margin: "0 5px"
   }
 }))
 
@@ -215,7 +234,7 @@ const Header = ({ siteTitle }) => {
   //logo scroll function
   const changeColor = () => {
     if (window.scrollY >= 60) {
-      setNavBarColor("blue")
+      setNavBarColor("white")
     } else {
       setNavBarColor("white")
     }
@@ -228,37 +247,39 @@ const Header = ({ siteTitle }) => {
   })
 
   return (
-    <header
-      className={navbarScroll ? classes.navBarRootScroll : classes.navBarRoot}
-    >
-      <div className={classes.navLeftWrapper}>
-        <div className={classes.navBarTitle}>
-          <Link to="/" style={{ color: '#001841', textDecoration: `none` }}>
-            <img className={classes.navLogo} src={PittsfordPrintingMainLogo} alt="company logo" />
-          </Link>
-        </div>
-        <div className={classes.navBarButtonWrapper}>
-          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
-            to="/#services" title="Services">
-          </AnchorLink>
-          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
-            to="/#about" title="About">
-          </AnchorLink>
-          <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
-            to="/#contact" title="Contact Us">
-          </AnchorLink>
+    <div style={{ marginBottom: "-40px" }}>
+      <header
+        className={navbarScroll ? classes.navBarRootScroll : classes.navBarRoot}
+      >
+        <div className={classes.navLeftWrapper}>
+          <div className={classes.navBarTitle}>
+            <Link to="/" style={{ color: '#001841', textDecoration: `none` }}>
+              <img className={navbarScroll ? classes.navLogoScroll : classes.navLogo} src={PittsfordPrintingMainLogo} alt="company logo" />
+            </Link>
+          </div>
+          <div className={classes.navBarButtonWrapper}>
 
-          <Button
-            className={classes.navCallButton}
-            target="_blank" href="tel:(585) 383-0150"
-          >
-            <PhoneIcon sx={{ color: "red" }} class="drawerPhoneIcon" />
-            Call Us
-          </Button>
-        </div>
-      </div>
+            <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
+              to="/#services" title="Services">
+            </AnchorLink>
+            <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
+              to="/#about" title="About">
+            </AnchorLink>
+            <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
+              to="/#contact" title="Contact Us">
+            </AnchorLink>
 
-      {/* <div class="socialLinkWrapperNav">
+            <Button
+              className={classes.navCallButton}
+              target="_blank" href="tel:(585) 383-0150"
+            >
+              <PhoneIcon sx={{ color: "red" }} class="drawerPhoneIcon" />
+              Call Us
+            </Button>
+          </div>
+        </div>
+
+        {/* <div class="socialLinkWrapperNav">
         <a href="" target="_blank" class="socialLink">
           <img class="socialNav" src={InstagramIcon} />
         </a>
@@ -266,51 +287,51 @@ const Header = ({ siteTitle }) => {
           <img class="socialNavFb" src={FacebookIcon} />
         </a>
       </div> */}
-      <div className={classes.navBarHamburgerDrawerWrapper}>
-        <Button
-          className={classes.navCallButtonMobile}
-          target="_blank" href="tel:(585) 383-0150"
-        >
-          <PhoneIcon sx={{ color: "red", fontWeight: "bold", marginRight: "5px" }} class="drawerPhoneIcon" />
-          Call Us
-        </Button>
-        <MenuIcon
-          className={navbarScroll ? classes.hamburgerIconScroll : classes.hamburgerIcon}
-          onClick={toggleDrawer}
-        />
-        <Drawer
-          open={openDrawer}
-          onClose={toggleDrawer}
-          anchor="right"
-          className={classes.drawerRoot}
-        >
-          <div
-            className={classes.list}
-            role="presentation"
-            onClick={toggleDrawer}
-            onKeyDown={toggleDrawer}
+        <div className={classes.navBarHamburgerDrawerWrapper}>
+          <Button
+            className={classes.navCallButtonMobile}
+            target="_blank" href="tel:(585) 383-0150"
           >
-            <List>
-              <div className={classes.drawerLinkWrapper}>
-                <AnchorLink className={classes.navButtonMobile}
-                  to="/#services" title="Services">
-                </AnchorLink>
-                <AnchorLink className={classes.navButtonMobile}
-                  to="/#about" title="About Us">
-                </AnchorLink>
-                <AnchorLink className={classes.navButtonMobile}
-                  to="/#contact" title="Contact Us">
-                </AnchorLink>
-              </div>
+            <PhoneIcon sx={{ color: "red", fontWeight: "bold", marginRight: "5px" }} class="drawerPhoneIcon" />
+            Call Us
+          </Button>
+          <MenuIcon
+            className={navbarScroll ? classes.hamburgerIconScroll : classes.hamburgerIcon}
+            onClick={toggleDrawer}
+          />
+          <Drawer
+            open={openDrawer}
+            onClose={toggleDrawer}
+            anchor="right"
+            className={classes.drawerRoot}
+          >
+            <div
+              className={classes.list}
+              role="presentation"
+              onClick={toggleDrawer}
+              onKeyDown={toggleDrawer}
+            >
+              <List>
+                <div className={classes.drawerLinkWrapper}>
+                  <AnchorLink className={classes.navButtonMobile}
+                    to="/#services" title="Services">
+                  </AnchorLink>
+                  <AnchorLink className={classes.navButtonMobile}
+                    to="/#about" title="About Us">
+                  </AnchorLink>
+                  <AnchorLink className={classes.navButtonMobile}
+                    to="/#contact" title="Contact Us">
+                  </AnchorLink>
+                </div>
 
-              <Button
-                class="drawerItemLogin"
-                target="_blank" href="tel:"
-              >
-                <PhoneIcon sx={{ color: "red", marginRight: "10px" }} class="drawerPhoneIcon" />
-                Call Us
-              </Button>
-              {/* <div class="socialLinkWrapperNavMobile">
+                <Button
+                  class="drawerItemLogin"
+                  target="_blank" href="tel:"
+                >
+                  <PhoneIcon sx={{ color: "red", marginRight: "10px" }} class="drawerPhoneIcon" />
+                  Call Us
+                </Button>
+                {/* <div class="socialLinkWrapperNavMobile">
                 <a href="" target="_blank" class="socialLink">
                   <img class="socialDrawer" src={InstagramIcon} />
                 </a>
@@ -318,13 +339,38 @@ const Header = ({ siteTitle }) => {
                   <img class="socialDrawerFb" src={FacebookIcon} />
                 </a>
               </div> */}
-            </List>
+              </List>
 
-          </div>
-        </Drawer>
+            </div>
+          </Drawer>
 
+        </div>
+
+      </header>
+      <div class="bottomHeaderRoot">
+        <div class="bottomHeaderWrapper">
+          <Link className={classes.actionButton} to="/send-file">
+            <Button className={classes.bottomHeaderButton}>
+              <CloudUploadIcon className={classes.bottomHeaderIcon} />
+              Send a File
+            </Button>
+          </Link>
+          <Link className={classes.actionButton} to="/order">
+            <Button className={classes.bottomHeaderButton}>
+              <ShoppingCartIcon className={classes.bottomHeaderIcon} />
+              Place an Order
+            </Button>
+          </Link>
+          <Link className={classes.actionButton} to="/send-file">
+            <Button className={classes.bottomHeaderButton}>
+              <RequestQuoteIcon className={classes.bottomHeaderIcon} />
+              Quote Request
+            </Button>
+          </Link>
+        </div>
       </div>
-    </header>
+    </div>
+
   )
 }
 

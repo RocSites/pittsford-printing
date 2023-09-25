@@ -10,7 +10,14 @@ const OrderPage = () => (
   <Layout>
     <SEO title="Page 2" />
     <h1 class="menuHeader">Place an Order</h1>
-    <ContactForm/>
+    <div style={{display: "flex", justifyContent: "center", margin: "auto"}}>
+      <p>Place an order</p>
+      <button style={{margin: "15px"}}>Radio button</button>
+      <p>Request a quote</p>
+      <button style={{margin: "15px"}}>Radio button</button>
+    </div>
+
+    <ContactForm />
   </Layout>
 )
 
