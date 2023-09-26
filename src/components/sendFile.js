@@ -9,7 +9,7 @@ const withStyles = makeStyles((theme) => ({
     formRoot: {
         display: "flex",
         justifyContent: "center",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#f7edd4",
         color: theme.palette.text.primary,
         fontWeight: "bold",
         "& input":{

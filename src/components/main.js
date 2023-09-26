@@ -74,7 +74,7 @@ const withStyles = makeStyles(() => ({
         fontWeight: "bold",
         textAlign: "center",
         marginBottom: "20px",
-        fontSize: "1.25rem",        
+        fontSize: "1.25rem",
         color: "#03178e",
     },
     servicesSubtitle: {
@@ -557,9 +557,9 @@ const withStyles = makeStyles(() => ({
     mainBanner: {
         display: "flex",
         backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${rocRiver})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        paddingTop: "19%",
+        // backgroundSize: "cover",
+        backgroundPosition: "right",
+        paddingTop: "25%",
         paddingRight: "30px",
         justifyContent: "flex-end",
         height: "100vh",
@@ -573,6 +573,8 @@ const withStyles = makeStyles(() => ({
         },
         "@media(max-width:600px)": {
             paddingTop: "70%",
+            backgroundPositionX: "66%",
+            backgroundSize: "cover"
         }
     },
     mainBannerText: {
@@ -678,7 +680,7 @@ const Main = () => {
     return (
         <div className={classes.mainRoot}>
             <div className={classes.mainBanner}>
-            {/* <button>Send a File</button> */}
+                {/* <button>Send a File</button> */}
 
                 <Typography className={classes.mainBannerText}>
                     Printing & Mailing <br />... Made Easy

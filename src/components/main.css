@@ -70,7 +70,7 @@ body {
 }
 
 .menuHeader {
-    margin-top: 150px;
+    margin-top: 270px;
     text-align: center;
 }
 
@@ -133,6 +133,9 @@ body {
 .bottomHeaderWrapper {
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin: auto;
+    height: 100%;
 }
 
 .bottomHeaderButtonText {

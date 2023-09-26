@@ -72,7 +72,8 @@ const withStyles = makeStyles(() => ({
     color: "white",
     padding: `1.45rem 1.0875rem`,
     "@media(max-width: 600px)": {
-      margin: "auto"
+      margin: "auto",
+      padding: "0.25rem"
     }
   },
   navButton: {
@@ -139,7 +140,7 @@ const withStyles = makeStyles(() => ({
     "@media(min-width: 1001px)": {
       display: "none"
     },
-    "@media(max-width: 1000px)":{
+    "@media(max-width: 1000px)": {
       color: "#0047bb",
       margin: "1rem",
     }
@@ -187,7 +188,7 @@ const withStyles = makeStyles(() => ({
       fontSize: "0.8rem",
       fontWeight: "bold",
       margin: "auto",
-      width: "120px",
+      width: "104px",
       "&:hover": {
         backgroundColor: "#03178ed1",
         border: "1px solid #03178ed1",
@@ -210,16 +211,21 @@ const withStyles = makeStyles(() => ({
     backgroundColor: "#03178e",
     position: "relative",
     top: 180,
+    height: "50px",
     width: "80%",
     margin: "auto",
+    borderBottomRightRadius: "25px",
+    borderBottomLeftRadius: "25px",
     "@media(max-width: 1200px)": {
-      width: "100%"
+      width: "100%",
+      borderBottomRightRadius: "0px",
+      borderBottomLeftRadius: "0px",
     }
   },
   bottomHeaderButton: {
     textTransform: "none",
     "& > span": {
-     color: "white"
+      color: "white"
     }
   },
   bottomHeaderIcon: {
@@ -274,7 +280,7 @@ const Header = ({ siteTitle }) => {
   })
 
   return (
-    <div style={{ marginBottom: "-40px" }}>
+    <div style={{ marginBottom: "-50px" }}>
       <header
         className={navbarScroll ? classes.navBarRootScroll : classes.navBarRoot}
       >

@@ -14,6 +14,7 @@ import "../components/main.css"
 const withStyles = makeStyles(() => ({
   formRoot: {
     margin: "10px auto",
+    backgroundColor: "#f7edd4"
     // border: "1px solid red"
   }
 
@@ -31,9 +32,9 @@ const OrderPage = () => {
 
   return (
 
-    <Layout>
+    <Layout backgroundColor="#f7edd4">
       <SEO title="Page 2" />
-      <h1 class="menuHeader">Place an Order</h1>
+      <h1 class="menuHeader">{value === "order" ? "Place an Order" :"Request a Quote"}</h1>
       <div style={{ display: "flex", justifyContent: "center", margin: "auto" }}>
         <FormControl className={classes.formRoot}>
           <FormLabel id="demo-controlled-radio-buttons-group">Select an option:</FormLabel>

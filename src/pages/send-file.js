@@ -7,7 +7,7 @@ import "../components/main.css"
 
 
 const SendFilePage = () => (
-  <Layout>
+  <Layout backgroundColor="#f7edd4">
     <SEO title="Send File" />
     <h1 class="menuHeader">Send File</h1>
     <SendFile/>

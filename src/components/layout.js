@@ -20,6 +20,11 @@ const withStyles = makeStyles(() => ({
       flexGrow: 1,
       minHeight: "100vh"
     },
+    mainContentBackground: {
+      flexGrow: 1,
+      minHeight: "100vh",
+      backgroundColor: "#f7edd4",
+    },
     footerRoot:{
       backgroundColor: "#03178e",
       color: "black",
@@ -63,7 +68,7 @@ const withStyles = makeStyles(() => ({
     }
 })) 
 
-const Layout = ({ children }) => {
+const Layout = (props) => {
   const classes = withStyles();
 
   const data = useStaticQuery(graphql`
@@ -80,7 +85,7 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div className={classes.layoutRoot}>
-        <main className={classes.mainContent}>{children}</main>
+        <main className={props.backgroundColor ? classes.mainContentBackground: classes.mainContent}>{props.children}</main>
         <footer class="footerRoot">
           <div className={classes.footerContent}>
             <p className={classes.copyrightText}> © {new Date().getFullYear()} Pittsford Printing</p>
