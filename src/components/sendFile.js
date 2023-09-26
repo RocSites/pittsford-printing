@@ -126,7 +126,7 @@ const SendFile = (props) => {
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0"/>
         </div>
         <div className={classes.submitButtonWrapper}>
-          <button className={classes.submitButton} type="submit">Send</button>
+          <button className={classes.submitButton} type="submit">Send File</button>
         </div>
       </form>
     </div>

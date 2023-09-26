@@ -5,6 +5,7 @@ import SEO from "../components/seo"
 import "../components/main.css"
 
 const PayInvoice = () => (
+  // OPTED TO DIRECT USER DIRECTLY TO PAYMENT PAGE FROM HOME/LANDING AS OPPOSED TO HAVING IT'S OWN PAGE
   <Layout>
     <SEO title="Pay Invoice" />
     <h1 class="menuHeader">Pay Invoice</h1>

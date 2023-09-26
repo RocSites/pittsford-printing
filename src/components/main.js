@@ -564,9 +564,15 @@ const withStyles = makeStyles(() => ({
         justifyContent: "flex-end",
         height: "100vh",
         padding: "20px",
-        "@media(max-width:600px)": {
+        "@media(max-width:1200px)": {
+            paddingTop: "30%",
+        },
+        "@media(max-width:800px)": {
             paddingTop: "50%",
             justifyContent: "center",
+        },
+        "@media(max-width:600px)": {
+            paddingTop: "70%",
         }
     },
     mainBannerText: {
@@ -575,9 +581,10 @@ const withStyles = makeStyles(() => ({
         fontSize: "5rem",
         textAlign: "right",
         fontWeight: "bold",
+        lineHeight: "1.25",
         fontFamily: "Roboto, sans-serif !important",
         zIndex: 1,
-        "@media(max-width:600px)": {
+        "@media(max-width:700px)": {
             fontSize: "2.5rem",
             textAlign: "center"
         }
@@ -716,12 +723,12 @@ const Main = () => {
                             {/* <Typography className={classes.actionButtonText}>Need to send something to us?</Typography> */}
                         </div>
                         <div className={classes.actionButtonInner}>
-                            <Link className={classes.actionButton} to="/pay-invoice">
+                            <a className={classes.actionButton} href="https://pittsfordprint.securepayments.cardpointe.com/pay?" target="_blank">
                                 <Button className={classes.actionButton}>
                                     <ReceiptLongIcon className={classes.actionIcon} />
                                     Pay My Invoice
                                 </Button>
-                            </Link>
+                            </a>
                             {/* <Typography className={classes.actionButtonText}>Some placeholder text</Typography> */}
                         </div>
 

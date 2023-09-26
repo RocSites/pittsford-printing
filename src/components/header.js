@@ -42,6 +42,18 @@ const withStyles = makeStyles(() => ({
     height: "180px",
     boxShadow: "none",
     zIndex: "1",
+    "@media(max-width: 1200px)": {
+      position: "fixed",
+      display: "flex",
+      // background: "#4c86d1",
+      backgroundColor: "white",
+      color: "white",
+      justifyContent: "space-between",
+      width: "100%",
+      top: 0,
+      boxShadow: "1px 0 10px 0 rgb(89 98 115 / 20%)",
+      zIndex: 2,
+    }
   },
   navBarRootScroll: {
     position: "fixed",
@@ -83,13 +95,13 @@ const withStyles = makeStyles(() => ({
     display: "flex",
     color: "white",
     margin: "10px",
-    "@media(max-width: 600px)": {
+    "@media(max-width: 1000px)": {
       display: "none"
     }
   },
   navBarHamburgerDrawerWrapper: {
     display: "none",
-    "@media(max-width: 601px)": {
+    "@media(max-width: 1001px)": {
       display: "flex",
       margin: "auto 10px"
     }
@@ -124,8 +136,12 @@ const withStyles = makeStyles(() => ({
     fontSize: "2.5rem",
     color: "white",
     // color: "#eb0e2b",
-    "@media(min-width: 601px)": {
+    "@media(min-width: 1001px)": {
       display: "none"
+    },
+    "@media(max-width: 1000px)":{
+      color: "#0047bb",
+      margin: "1rem",
     }
   },
   hamburgerIconScroll: {
@@ -167,7 +183,7 @@ const withStyles = makeStyles(() => ({
       backgroundColor: "#03178ed1",
       border: "1px solid #03178ed1",
     },
-    "@media(max-width: 600px)": {
+    "@media(max-width: 1000px)": {
       fontSize: "0.8rem",
       fontWeight: "bold",
       margin: "auto",
@@ -188,6 +204,17 @@ const withStyles = makeStyles(() => ({
     textTransform: "none",
     margin: "10px 16px",
     textDecoration: "none",
+  },
+  bottomHeaderRoot: {
+    // backgroundColor: "#1ba8e2",
+    backgroundColor: "#03178e",
+    position: "relative",
+    top: 180,
+    width: "80%",
+    margin: "auto",
+    "@media(max-width: 1200px)": {
+      width: "100%"
+    }
   },
   bottomHeaderButton: {
     textTransform: "none",
@@ -347,24 +374,24 @@ const Header = ({ siteTitle }) => {
         </div>
 
       </header>
-      <div class="bottomHeaderRoot">
+      <div className={classes.bottomHeaderRoot}>
         <div class="bottomHeaderWrapper">
           <Link className={classes.actionButton} to="/send-file">
             <Button className={classes.bottomHeaderButton}>
               <CloudUploadIcon className={classes.bottomHeaderIcon} />
-              Send a File
+              <p class="bottomHeaderButtonText">Send a File</p>
             </Button>
           </Link>
           <Link className={classes.actionButton} to="/order">
             <Button className={classes.bottomHeaderButton}>
               <ShoppingCartIcon className={classes.bottomHeaderIcon} />
-              Place an Order
+              <p class="bottomHeaderButtonText">Place an Order</p>
             </Button>
           </Link>
-          <Link className={classes.actionButton} to="/send-file">
+          <Link className={classes.actionButton} to="/order">
             <Button className={classes.bottomHeaderButton}>
               <RequestQuoteIcon className={classes.bottomHeaderIcon} />
-              Quote Request
+              <p class="bottomHeaderButtonText">Quote Request</p>
             </Button>
           </Link>
         </div>

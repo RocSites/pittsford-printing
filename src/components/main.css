@@ -135,6 +135,10 @@ body {
     justify-content: center;
 }
 
+.bottomHeaderButtonText {
+    margin-bottom: 0;
+}
+
 .aboutTitleHeader {
     text-align: center;
     font-size: 2rem;
@@ -349,5 +353,9 @@ body {
     .navCallButton,
     .navCallButtonMobile {
         font-size: 0.75rem;
+    }
+
+    .bottomHeaderButtonText {
+        display: none;
     }
 }
