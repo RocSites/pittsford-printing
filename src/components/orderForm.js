@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
 import ReCAPTCHA from "react-google-recaptcha"
-
+import FileUpload from "./fileUpload";
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -94,8 +94,6 @@ const OrderForm = (props) => {
       <form
         name="pprint-new-order-form"
         method="POST"
-        data-netlify="true"
-        data-netlify-recaptcha="true"
         action="/thank-you"
       >
         <input type="hidden" name="pprint-new-order-form" value="pprint-new-order-form" />
@@ -131,6 +129,8 @@ const OrderForm = (props) => {
           <button className={classes.submitButton} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
         </div>
       </form>
+      <FileUpload/>
+
     </div>
   )
 }
