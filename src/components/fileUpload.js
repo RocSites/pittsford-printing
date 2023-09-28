@@ -5,10 +5,7 @@ import AWS from 'aws-sdk';
 const FileUpload = () => {
     const [file, setFile] = useState(null);
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        setFile(file);
-    };
+  
 
     const uploadFile = async () => {
         const S3_BUCKET = "pittsford-printing-uploads";
@@ -43,6 +40,11 @@ const FileUpload = () => {
           alert("File uploaded successfully.");
         });
       };
+
+      const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        setFile(file);
+    };
 
 
 
