@@ -129,7 +129,7 @@ const OrderForm = (props) => {
           <button className={classes.submitButton} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
         </div>
       </form>
-      <FileUpload/>
+      {/* <FileUpload/> */}
 
     </div>
   )
