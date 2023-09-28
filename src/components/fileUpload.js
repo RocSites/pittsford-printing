@@ -12,8 +12,8 @@ const FileUpload = () => {
         const REGION = "us-east-1";
 
         AWS.config.update({
-            accessKeyId: "AKIAT4KWJP2347US2J4N",
-            secretAccessKey: "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",
+            accessKeyId: "keys",
+            secretAccessKey: "keys",
         });
         const s3 = new AWS.S3({
             params: { Bucket: S3_BUCKET },
