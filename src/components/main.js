@@ -574,7 +574,8 @@ const withStyles = makeStyles(() => ({
         "@media(max-width:600px)": {
             paddingTop: "70%",
             backgroundPositionX: "66%",
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            backgroundPositionY: "70px"
         }
     },
     mainBannerText: {
