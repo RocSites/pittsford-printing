@@ -9,6 +9,9 @@ const withStyles = makeStyles((theme) => ({
   formRoot: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    flexDirection: "column",
     backgroundColor: "#f7edd4",
     color: theme.palette.text.primary,
     fontWeight: "bold",
@@ -91,6 +94,7 @@ const OrderForm = (props) => {
 
   return (
     <div id="orderForm" className={classes.formRoot}>
+
       <form
         name="pprint-new-order-form"
         method="POST"
@@ -118,10 +122,13 @@ const OrderForm = (props) => {
           <textarea name="message" />
         </div>
         <div>
-          <a class="uploadButton" href="https://wetransfer.com/" target="_blank">
-            <p style={{ textAlign: "center", margin: "auto" }}>Upload File</p>
-          </a>
+          {/* <a class="uploadButton" href="https://wetransfer.com/" target="_blank">
+            <p style={{ textAlign: "center", margin: "auto" }}>Upload File(s)</p>
+          </a> */}
+          {/* <FileUpload /> */}
+
         </div>
+
         <div className={classes.captchaWrapper}>
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
         </div>
@@ -129,8 +136,28 @@ const OrderForm = (props) => {
           <button className={classes.submitButton} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
         </div>
       </form>
-      {/* <FileUpload/> */}
-
+      <div>
+        <div>
+          <FileUpload />
+          <br/>
+        </div>
+        <div>
+          <FileUpload />
+          <br/>
+        </div>
+        <div>
+          <FileUpload />
+          <br/>
+        </div>
+        <div>
+          <FileUpload />
+          <br/>
+        </div>
+        <div>
+          <FileUpload />
+          <br/>
+        </div>
+      </div>
     </div>
   )
 }

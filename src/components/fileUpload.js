@@ -7,13 +7,14 @@ const FileUpload = () => {
     const [uploadProgress, setUploadProgress] = useState(null);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
+
     const uploadFile = async () => {
         const S3_BUCKET = "pittsford-printing-uploads";
         const REGION = "us-east-1";
 
         AWS.config.update({
-            accessKeyId: "keys",
-            secretAccessKey: "keys",
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
         });
         const s3 = new AWS.S3({
             params: { Bucket: S3_BUCKET },
@@ -29,9 +30,10 @@ const FileUpload = () => {
         var upload = s3
             .putObject(params)
             .on("httpUploadProgress", (evt) => {
-                    setUploadProgress( "Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%")
-                   
-                
+                evt.preventDefault()
+                setUploadProgress("Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%")
+
+
             })
             .promise();
 
@@ -42,6 +44,7 @@ const FileUpload = () => {
     };
 
     const handleFileChange = (e) => {
+        e.preventDefault()
         const file = e.target.files[0];
         setFile(file);
     };
@@ -55,7 +58,7 @@ const FileUpload = () => {
             {uploadProgress ?
                 <p>{uploadProgress}</p> : null
             }
-            {showUploadComplete === true ? <p>Your upload is complete!</p>: null}
+            {showUploadComplete === true ? <p>Your upload is complete!</p> : null}
 
         </div>
     );
