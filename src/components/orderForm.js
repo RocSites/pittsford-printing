@@ -1,9 +1,11 @@
-import React from "react"
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
 import ReCAPTCHA from "react-google-recaptcha"
 import FileUpload from "./fileUpload";
+import { Link } from "gatsby"
+
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -92,13 +94,33 @@ const OrderForm = (props) => {
 
   const classes = withStyles();
 
+  const [name, setName] = useState(null);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setName(e.target.value)
+  }
+
+  const formData = JSON.stringify({
+    "name": name
+  });
+
+
   return (
     <div id="orderForm" className={classes.formRoot}>
+      {/* <form action="https://u2wvrjablvz5ivuys5s3ktnoha0vrkpq.lambda-url.us-east-1.on.aws/ " method="post"
+
+        enctype="multipart/form-data">
+        <label> Name (required)
+          <input type="input" name="name" value={name} onChange={handleChange}/>
+          <input type="submit" value="Send"/>
+        </label>
+
+      </form> */}
 
       <form
         name="pprint-new-order-form"
         method="POST"
-        action="/thank-you"
       >
         <input type="hidden" name="pprint-new-order-form" value="pprint-new-order-form" />
         <div className={classes.formEmail}>
@@ -122,40 +144,36 @@ const OrderForm = (props) => {
           <textarea name="message" />
         </div>
         <div>
-          {/* <a class="uploadButton" href="https://wetransfer.com/" target="_blank">
-            <p style={{ textAlign: "center", margin: "auto" }}>Upload File(s)</p>
-          </a> */}
-          {/* <FileUpload /> */}
 
         </div>
 
         <div className={classes.captchaWrapper}>
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
         </div>
-        <div className={classes.submitButtonWrapper}>
-          <button className={classes.submitButton} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
-        </div>
+        <Link to="/thank-you" className={classes.submitButtonWrapper}>
+          <button className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+        </Link>
       </form>
       <div>
         <div>
-          <FileUpload />
-          <br/>
+          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
+          <br />
         </div>
         <div>
-          <FileUpload />
-          <br/>
+          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
+          <br />
         </div>
         <div>
-          <FileUpload />
-          <br/>
+          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
+          <br />
         </div>
         <div>
-          <FileUpload />
-          <br/>
+          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
+          <br />
         </div>
         <div>
-          <FileUpload />
-          <br/>
+          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
+          <br />
         </div>
       </div>
     </div>

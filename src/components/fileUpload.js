@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import AWS from 'aws-sdk';
 
 
-const FileUpload = () => {
+const FileUpload = (props) => {
     const [file, setFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(null);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
 
     const uploadFile = async () => {
-        const S3_BUCKET = "pittsford-printing-uploads";
+        const S3_BUCKET = props.bucket;
         const REGION = "us-east-1";
 
         AWS.config.update({

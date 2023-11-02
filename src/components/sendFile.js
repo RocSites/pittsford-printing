@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
 import ReCAPTCHA from "react-google-recaptcha"
 import FileUpload from "./fileUpload";
+import { Link } from "gatsby"
+
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -128,11 +130,11 @@ const SendFile = (props) => {
         <div className={classes.captchaWrapper}>
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
         </div>
-        <div className={classes.submitButtonWrapper}>
+        <Link to="/thank-you" className={classes.submitButtonWrapper}>
           <button className={classes.submitButton} type="submit">Send File</button>
-        </div>
+        </Link>
       </form>
-      <FileUpload />
+      <FileUpload bucket="pp-send-file" />
       <br/>
     </div>
   )

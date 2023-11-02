@@ -7,26 +7,28 @@ const withStyles = makeStyles((theme) => ({
     display: "flex",
     minHeight: "100vh",
     flexDirection: "column",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
+    backgroundColor: "darkgray"
   },
   thankYouMessage:{
     display: "flex",
     fontSize: "2.0rem",
     marginLeft:"auto",
-    marginRight: "auto"
+    marginRight: "auto",
+    color: "black"
   },
   thankYouMessageWrapper: {
     display: "flex",
     flexDirection: "column",  
     justifyContent: "center",
-    marginTop: "130px",
+    marginTop: "400px",
     marginLeft: "20px",
     marginRight: "20px"
   }
 
 }));
 
-const ThankYouPage = () => {
+const ThankYou = () => {
   const classes = withStyles();
   return (
   <Layout showContact={false}>
@@ -40,4 +42,4 @@ const ThankYouPage = () => {
   )
 }
 
-export default ThankYouPage
+export default ThankYou
