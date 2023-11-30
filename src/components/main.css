@@ -138,6 +138,43 @@ body {
     height: 100%;
 }
 
+.bottomHeaderPhone {
+    font-weight: bold;
+    margin: auto 10px;
+    font-size: 1rem;
+}
+
+.bottomHeaderPhone > span {
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+}
+
+.bottomHeaderText {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: auto 10px;
+}
+
+.mainButtonWrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.bottomHeaderEmail {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    margin: auto 10px;
+}
+
+.dot {
+    color: red;
+    margin: auto 10px;
+    font-size: 1.25rem;
+}
 .bottomHeaderButtonText {
     margin-bottom: 0;
 }

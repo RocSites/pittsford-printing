@@ -1,11 +1,12 @@
 import React from 'react'
-import BackgroundImage from "gatsby-background-image"
+import { StaticImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import { Link } from "gatsby"
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import rocRiver from "../images/yassine-khalfalli-river.jpg"
+import blackSwoosh from "../images/BackgroundSwooshBlack.png"
 import signOne from "../images/tim-douglas-signjpg.jpg"
 import printPaper from "../images/rombo-prints.jpg"
 import bindingOne from "../images/anastasia-zhenina-binding.jpg"
@@ -556,12 +557,14 @@ const withStyles = makeStyles(() => ({
     },
     mainBanner: {
         display: "flex",
-        backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(${rocRiver})`,
-        // backgroundSize: "cover",
-        backgroundPosition: "right",
-        paddingTop: "25%",
+        backgroundImage: `url(${blackSwoosh})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        flexDirection: "column",
+        backgroundColor: "black",
+        paddingTop: "20%",
         paddingRight: "30px",
-        justifyContent: "flex-end",
+        justifyContent: "flex-start",
         height: "100vh",
         padding: "20px",
         "@media(max-width:1200px)": {
@@ -578,13 +581,30 @@ const withStyles = makeStyles(() => ({
             backgroundPositionY: "70px"
         }
     },
+    mainButtonLink: {
+        display: "flex",
+        width: "150px"
+    },
+    mainButtonLinkLarge: {
+        display: "flex",
+        width: "165px",
+        marginTop: "5px"
+    },
+    mainButtonImage: {
+        margin: "auto",
+        "& img": {
+            height: "auto",
+            objectFit: "contain !important"
+        }
+    },
     mainBannerText: {
         color: "white",
-        // fontSize: "3rem",
-        fontSize: "5rem",
+        fontSize: "3.5rem",
         textAlign: "right",
         fontWeight: "bold",
-        lineHeight: "1.25",
+        lineHeight: "1.5",
+        margin: "100px 0",
+        width: "92%",
         fontFamily: "Roboto, sans-serif !important",
         zIndex: 1,
         "@media(max-width:700px)": {
@@ -661,27 +681,30 @@ const Main = () => {
     }
   `)
 
-    const sources = [
-        mobileImage.childImageSharp.fluid,
-        {
-            ...desktopImage.childImageSharp.fluid,
-            media: `(min-width: 650px)`
-        }
-    ]
-
-    const FiveStar = () => {
-        return (
-            <div className={classes.fiveStar}>
-                <StarRateIcon /><StarRateIcon /><StarRateIcon /><StarRateIcon /><StarRateIcon />
-            </div>
-        )
-    }
-
-
     return (
         <div className={classes.mainRoot}>
             <div className={classes.mainBanner}>
                 {/* <button>Send a File</button> */}
+                <div className="mainButtonWrapper">
+                    <Link className={classes.mainButtonLink} to="/send-file">
+                        <StaticImage
+                            className={classes.mainButtonImage}
+                            src="../images/SendaFileButton.png"
+                        />
+                    </Link>
+                    <Link className={classes.mainButtonLinkLarge} to="/order">
+                        <StaticImage
+                            className={classes.mainButtonImage}
+                            src="../images/OrderQuoteButton.png"
+                        />
+                    </Link>
+                    <a className={classes.mainButtonLink} href="https://pittsfordprint.securepayments.cardpointe.com/pay?" target="_blank">
+                        <StaticImage
+                            className={classes.mainButtonImage}
+                            src="../images/PayOnlineButton.png"
+                        />
+                    </a>
+                </div>
 
                 <Typography className={classes.mainBannerText}>
                     Printing & Mailing <br />... Made Easy

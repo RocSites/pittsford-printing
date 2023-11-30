@@ -382,24 +382,15 @@ const Header = ({ siteTitle }) => {
       </header>
       <div className={classes.bottomHeaderRoot}>
         <div class="bottomHeaderWrapper">
-          <Link className={classes.actionButton} to="/send-file">
-            <Button className={classes.bottomHeaderButton}>
-              <CloudUploadIcon className={classes.bottomHeaderIcon} />
-              <p class="bottomHeaderButtonText">Send a File</p>
-            </Button>
-          </Link>
-          <Link className={classes.actionButton} to="/order">
-            <Button className={classes.bottomHeaderButton}>
-              <ShoppingCartIcon className={classes.bottomHeaderIcon} />
-              <p class="bottomHeaderButtonText">Place an Order</p>
-            </Button>
-          </Link>
-          <Link className={classes.actionButton} to="/order">
-            <Button className={classes.bottomHeaderButton}>
-              <RequestQuoteIcon className={classes.bottomHeaderIcon} />
-              <p class="bottomHeaderButtonText">Quote Request</p>
-            </Button>
-          </Link>
+          <Button
+            className="bottomHeaderPhone"
+            target="_blank" href="tel:(585) 383-0150"
+          > (585) 383-0150
+          </Button>
+          <span className="dot">&#x2022;</span>
+          <p className="bottomHeaderText">3750 Monroe Avenue, Pittsford NY 14534</p>
+          <span className="dot">&#x2022;</span>
+          <a className="bottomHeaderEmail" href='mailto: info@pittsfordprinting.com'>info@pittsfordprinting.com</a>
         </div>
       </div>
     </div>
