@@ -230,6 +230,9 @@ const withStyles = makeStyles(() => ({
   },
   bottomHeaderIcon: {
     margin: "0 5px"
+  },
+  mapLink: {
+    textDecoration: "none",
   }
 }))
 
@@ -388,7 +391,11 @@ const Header = ({ siteTitle }) => {
           > (585) 383-0150
           </Button>
           <span className="dot">&#x2022;</span>
-          <p className="bottomHeaderText">3750 Monroe Avenue, Pittsford NY 14534</p>
+          <AnchorLink className={classes.mapLink}
+            to="/#map">
+            <p className="bottomHeaderText">3750 Monroe Avenue, Pittsford NY 14534</p>
+
+          </AnchorLink>
           <span className="dot">&#x2022;</span>
           <a className="bottomHeaderEmail" href='mailto: info@pittsfordprinting.com'>info@pittsfordprinting.com</a>
         </div>

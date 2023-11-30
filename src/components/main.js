@@ -848,6 +848,23 @@ const Main = () => {
                 </div>
             </section>
 
+
+            <span className={classes.scrollToLocation} id="map"></span>
+
+            <section>
+                <div className={classes.container}>
+                    <div className={classes.aboutWrapper}>
+                        <div className={classes.aboutSectionWrapper}>
+                            <Typography className={classes.aboutTitleHeader}>Location</Typography>
+                            <Typography className={classes.addressText}>3750 Monroe Avenue, Pittsford NY 14534</Typography>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11653.557992491998!2d-77.5248863!3d43.0963288!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d1352564216f59%3A0x11b4a6fa66d4ca11!2sPittsford%20Printing!5e0!3m2!1sen!2sus!4v1701368378331!5m2!1sen!2sus" width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
             <span className={classes.scrollToContact} id="contact"></span>
             <section class="py-5 section-bubble4">
                 <div className={classes.container}>
