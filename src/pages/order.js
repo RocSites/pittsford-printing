@@ -33,7 +33,7 @@ const OrderPage = () => {
   return (
 
     <Layout backgroundColor="#f7edd4">
-      <SEO title="Page 2" />
+      <SEO title="Orders & Quote" />
       <h1 class="menuHeader">{value === "order" ? "Place an Order" : "Request a Quote"}</h1>
       <div style={{ display: "flex", justifyContent: "center", margin: "auto" }}>
         <FormControl className={classes.formRoot}>

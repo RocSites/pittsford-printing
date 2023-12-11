@@ -1,46 +1,30 @@
 import React, { useState } from 'react';
+// import fetch from 'fetch';
 import AWS from 'aws-sdk';
 
 
 const FileUpload = (props) => {
     const [file, setFile] = useState(null);
+    const [s3Path, setS3Path] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(null);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
+    //  "pittsford-printing-send-file"
 
     const uploadFile = async () => {
-        const S3_BUCKET = props.bucket;
-        const REGION = "us-east-1";
+        const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
+        const body = await resp.json(); 
+        console.log(props.bucket)
 
-        AWS.config.update({
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        });
-        const s3 = new AWS.S3({
-            params: { Bucket: S3_BUCKET },
-            region: REGION,
-        });
-
-        const params = {
-            Bucket: S3_BUCKET,
-            Key: file.name,
-            Body: file,
-        };
-
-        var upload = s3
-            .putObject(params)
-            .on("httpUploadProgress", (evt) => {
-                evt.preventDefault()
-                setUploadProgress("Uploading " + parseInt((evt.loaded * 100) / evt.total) + "%")
-
-
-            })
-            .promise();
-
-        await upload.then((err, data) => {
-            console.log(err);
-            setShowUploadComplete(true)
-        });
+        const uploadResult = await fetch(body.url, {
+            method: "PUT",
+            headers:{
+                'Content-Type': file.type
+            },
+            body: file,
+          });
+          setShowUploadComplete(true)
+          setS3Path(`${body.prefix}/${body.fileName}`)
     };
 
     const handleFileChange = (e) => {
@@ -54,7 +38,9 @@ const FileUpload = (props) => {
     return (
         <div>
             <input type="file" onChange={handleFileChange} />
-            <button onClick={uploadFile}>Upload</button>
+            {file && <input type="hidden" name="file_name" value={s3Path}/> }
+            {file && <input type="hidden" name="file_type" value={file.type}/> }
+            <button type="button" onClick={uploadFile}>Upload</button>
             {uploadProgress ?
                 <p>{uploadProgress}</p> : null
             }

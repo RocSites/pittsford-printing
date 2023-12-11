@@ -121,19 +121,20 @@ const OrderForm = (props) => {
       <form
         name="pprint-new-order-form"
         method="POST"
+        action="https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/"
       >
-        <input type="hidden" name="pprint-new-order-form" value="pprint-new-order-form" />
+        <input type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
         <div className={classes.formEmail}>
           <label>Name (required)</label>
-          <input type="" name="" />
+          <input type="text" name="name" />
         </div>
         <div className={classes.formEmail}>
           <label>Company</label>
-          <input type="" name="" />
+          <input type="text" name="company" />
         </div>
         <div className={classes.formEmail}>
           <label>Phone Number (required)</label>
-          <input type="" name="" />
+          <input type="text" name="phone" />
         </div>
         <div className={classes.formEmail}>
           <label>Email (required)</label>
@@ -150,32 +151,34 @@ const OrderForm = (props) => {
         <div className={classes.captchaWrapper}>
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
         </div>
-        <Link to="/thank-you" className={classes.submitButtonWrapper}>
-          <button className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
-        </Link>
+        <div>
+          <div>
+            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <br />
+          </div>
+          <div>
+            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <br />
+          </div>
+          <div>
+            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <br />
+          </div>
+          <div>
+            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <br />
+          </div>
+          <div>
+            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <br />
+          </div>
+          
+        </div>
+        <div className={classes.submitButtonWrapper}>
+          <button type="submit" className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+        </div>
       </form>
-      <div>
-        <div>
-          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
-          <br />
-        </div>
-        <div>
-          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
-          <br />
-        </div>
-        <div>
-          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
-          <br />
-        </div>
-        <div>
-          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
-          <br />
-        </div>
-        <div>
-          <FileUpload bucket={props.actionTitle === "order" ? "pp-place-order" : "pp-request-quote"} />
-          <br />
-        </div>
-      </div>
+
     </div>
   )
 }

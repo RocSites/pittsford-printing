@@ -84,6 +84,10 @@ body {
     fill: red;
 }
 
+.formErrorText {
+    color: red;
+}
+
 .marginBottomSmall {
     margin-bottom: 80px;
 }
@@ -144,7 +148,7 @@ body {
     font-size: 1rem;
 }
 
-.bottomHeaderPhone > span {
+.bottomHeaderPhone>span {
     font-weight: bold;
     font-size: 1rem;
     color: white;
@@ -175,6 +179,7 @@ body {
     margin: auto 10px;
     font-size: 1.25rem;
 }
+
 .bottomHeaderButtonText {
     margin-bottom: 0;
 }
@@ -343,7 +348,7 @@ body {
 .paymentLink {
     display: flex;
     text-decoration: none;
-    background-color:#03178e;
+    background-color: #03178e;
     color: white;
     padding: 20px;
     border-radius: 35px;

@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import rocRiver from "../images/yassine-khalfalli-river.jpg"
 import blackSwoosh from "../images/BackgroundSwooshBlack.png"
+import redSwoosh from "../images/BackgroundSwooshRed.png"
 import signOne from "../images/tim-douglas-signjpg.jpg"
 import printPaper from "../images/rombo-prints.jpg"
 import bindingOne from "../images/anastasia-zhenina-binding.jpg"
@@ -899,7 +900,7 @@ const Main = () => {
                         </div>
                         <div className={classes.reviewsWrapper}>
                             <a className={classes.reviewLink}
-                                href=""
+                                href="https://g.page/r/CRHK1Gb6prQREAI/review"
                                 target="_blank"
                             >
                                 <Button
