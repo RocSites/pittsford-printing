@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 // import fetch from 'fetch';
 import AWS from 'aws-sdk';
+import { Formik, Form, Field } from 'formik';
+
 
 
 const FileUpload = (props) => {
     const [file, setFile] = useState(null);
-    const [s3Path, setS3Path] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(null);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
@@ -24,13 +25,14 @@ const FileUpload = (props) => {
             body: file,
           });
           setShowUploadComplete(true)
-          setS3Path(`${body.prefix}/${body.fileName}`)
+          props.setS3Path(`${body.prefix}/${body.fileName}`)
     };
 
     const handleFileChange = (e) => {
         e.preventDefault()
         const file = e.target.files[0];
         setFile(file);
+        props.setFileType(file.type)
     };
 
 
@@ -38,8 +40,8 @@ const FileUpload = (props) => {
     return (
         <div>
             <input type="file" onChange={handleFileChange} />
-            {file && <input type="hidden" name="file_name" value={s3Path}/> }
-            {file && <input type="hidden" name="file_type" value={file.type}/> }
+            {file && <Field type="hidden" name="file_name" value={props.s3Path}/> }
+            {file && <Field type="hidden" name="file_type" value={file.type}/> }
             <button type="button" onClick={uploadFile}>Upload</button>
             {uploadProgress ?
                 <p>{uploadProgress}</p> : null

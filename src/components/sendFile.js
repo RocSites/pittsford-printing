@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -96,6 +96,8 @@ const withStyles = makeStyles((theme) => ({
 const SendFile = (props) => {
 
   const classes = withStyles();
+  const [s3Path, setS3Path] = useState(null);
+  const [fileType, setFileType] = useState(null);
 
   // const handleSubmit = () => {
   //   navigate("/thank-you")
@@ -110,18 +112,22 @@ const SendFile = (props) => {
     company: Yup.string(),
     phone: Yup.string()
       .matches(phoneRegExp, 'Please provide a valid phone number'),
-    extraInfo: Yup.string()
+    message: Yup.string(),
+
   });
 
   const submitForm = async (values) => {
+    values.file_name = s3Path;
+    values.file_type = fileType;
+    values.bucket = "pittsford-printing-send-file"
     console.log(values)
     const response = await fetch(
       'https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/',
       {
         method: 'POST',
         headers: {
-         
-        }
+        },
+        body: btoa(new URLSearchParams(values).toString())
       }
     );
     if (!response.ok) {
@@ -139,7 +145,7 @@ const SendFile = (props) => {
           email: '',
           company: '',
           phone: '',
-          extraInfo: ''
+          message: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values) => {
@@ -148,7 +154,7 @@ const SendFile = (props) => {
       >
         {({ errors, touched, isSubmitting }) => (
           <Form>
-            <input type="hidden" name="bucket" value="pittsford-printing-send-file" />
+            <Field type="hidden" name="bucket" value="pittsford-printing-send-file" />
 
             <div className={classes.formEmail}>
               <label htmlFor="name">Name (required)</label>
@@ -177,13 +183,13 @@ const SendFile = (props) => {
             </div>
 
             <div className={classes.formEmail}>
-              <label htmlFor="extraInfo">Anything else we should know?</label>
-              <Field name="extraInfo" type="extraInfo" />
+              <label htmlFor="message">Anything else we should know?</label>
+              <Field name="message" component="textarea" />
             </div>
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            <FileUpload bucket="pittsford-printing-send-file" />
+            <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
             <div className={classes.submitButtonWrapper}>
               <button className={classes.submitButton} type="submit" disabled={isSubmitting}>Send File</button>
             </div>
@@ -224,7 +230,7 @@ const SendFile = (props) => {
           <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
         </div>
 
-        <FileUpload bucket="pittsford-printing-send-file" />
+        <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
         <div className={classes.submitButtonWrapper}>
           <button className={classes.submitButton} type="submit">Send File</button>
         </div>
