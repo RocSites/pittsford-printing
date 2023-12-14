@@ -111,7 +111,6 @@ const SendFile = (props) => {
     .required("Please enter a phone number")
     .matches(phoneRegExp, 'Please provide a valid phone number'),
     message: Yup.string(),
-    // file_name2: Yup.mixed().required("Please select a file to upload")
 
   });
 
@@ -147,14 +146,13 @@ const SendFile = (props) => {
           company: '',
           phone: '',
           message: '',
-          // file_name2: ''
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values) => {
           await submitForm(values);
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched }) => (
           <Form>
             <Field type="hidden" name="bucket" value="pittsford-printing-send-file" />
 
@@ -193,10 +191,6 @@ const SendFile = (props) => {
             </div>
             <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
-            {/* <Field type="hidden" name="file_name2"/>
-            {errors.file_name2 && touched.file_name2 ? (
-                <div class="formErrorText">{errors.file_name2}</div>
-              ) : null} */}
             <div className={classes.submitButtonWrapper}>
               <button type="submit" disabled={fileUploaded === false}>Send File</button>
             </div>

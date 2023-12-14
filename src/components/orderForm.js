@@ -99,6 +99,8 @@ const OrderForm = (props) => {
   const [name, setName] = useState(null);
   const [s3Path, setS3Path] = useState(null);
   const [fileType, setFileType] = useState(null);
+  const [fileUploaded, setFileUploaded] = useState(false);
+
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -153,7 +155,7 @@ const OrderForm = (props) => {
           await submitForm(values);
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched }) => (
           <Form>
             <Field type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
 
@@ -191,27 +193,29 @@ const OrderForm = (props) => {
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
             <div>
-              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
               <br />
             </div>
             <div>
-              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
               <br />
             </div>
             <div>
-              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
               <br />
             </div>
             <div>
-              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
               <br />
             </div>
             <div>
-              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
               <br />
             </div>
+            {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
+
             <div className={classes.submitButtonWrapper}>
-              <button type="submit" className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+              <button disabled = {fileUploaded === false} type="submit" >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
             </div>
           </Form>
         )}
