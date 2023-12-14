@@ -98,10 +98,7 @@ const SendFile = (props) => {
   const classes = withStyles();
   const [s3Path, setS3Path] = useState(null);
   const [fileType, setFileType] = useState(null);
-
-  // const handleSubmit = () => {
-  //   navigate("/thank-you")
-  // }
+  const [fileUploaded, setFileUploaded] = useState(false);
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -111,8 +108,10 @@ const SendFile = (props) => {
     email: Yup.string().email('Invalid email').required('Please enter a valid email'),
     company: Yup.string(),
     phone: Yup.string()
-      .matches(phoneRegExp, 'Please provide a valid phone number'),
+    .required("Please enter a phone number")
+    .matches(phoneRegExp, 'Please provide a valid phone number'),
     message: Yup.string(),
+    // file_name2: Yup.mixed().required("Please select a file to upload")
 
   });
 
@@ -132,6 +131,8 @@ const SendFile = (props) => {
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+      navigate("/thank-you")
     }
 
     return response;
@@ -146,6 +147,7 @@ const SendFile = (props) => {
           company: '',
           phone: '',
           message: '',
+          // file_name2: ''
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values) => {
@@ -170,13 +172,13 @@ const SendFile = (props) => {
             </div>
 
             <div className={classes.formEmail}>
-              <label htmlFor="phone">Phone</label>
+              <label htmlFor="phone">Phone (required)</label>
               <Field name="phone" />
               {errors.phone && touched.phone ? <div class="formErrorText">{errors.phone}</div> : null}
             </div>
 
             <div className={classes.formEmail}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email (required)</label>
               <Field name="email" type="email" />
               {errors.email && touched.email ? <div class="formErrorText">{errors.email}</div> : null}
 
@@ -189,55 +191,19 @@ const SendFile = (props) => {
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
+            <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
+            {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
+            {/* <Field type="hidden" name="file_name2"/>
+            {errors.file_name2 && touched.file_name2 ? (
+                <div class="formErrorText">{errors.file_name2}</div>
+              ) : null} */}
             <div className={classes.submitButtonWrapper}>
-              <button className={classes.submitButton} type="submit" disabled={isSubmitting}>Send File</button>
+              <button type="submit" disabled={fileUploaded === false}>Send File</button>
             </div>
           </Form>
         )}
       </Formik>
-      <form
-        name="pprint-send-file-form"
-        method="POST"
-        action="https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/"
-      // onSubmit={event => {
-      //   event.preventDefault()
-      //   navigate("/thank-you")
-      // }}
-      >
-        <input type="hidden" name="bucket" value="pittsford-printing-send-file" />
-        <div className={classes.formEmail}>
-          <label>Name (required)</label>
-          <input type="" name="name" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Company</label>
-          <input type="" name="company" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Phone Number (required)</label>
-          <input type="" name="phone" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Email (required)</label>
-          <input type="email" name="email" />
-        </div>
-        <div className={classes.formTextarea}>
-          <label>Anything else we should know?</label>
-          <textarea name="message" />
-        </div>
-        <div className={classes.captchaWrapper}>
-          <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
-        </div>
-
-        <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
-        <div className={classes.submitButtonWrapper}>
-          <button className={classes.submitButton} type="submit">Send File</button>
-        </div>
-
-      </form>
-
-      <br />
+      
     </div>
   )
 }

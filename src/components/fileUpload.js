@@ -10,7 +10,6 @@ const FileUpload = (props) => {
     const [uploadProgress, setUploadProgress] = useState(null);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
-    //  "pittsford-printing-send-file"
 
     const uploadFile = async () => {
         const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
@@ -25,6 +24,7 @@ const FileUpload = (props) => {
             body: file,
           });
           setShowUploadComplete(true)
+          props.setFileUploaded(true)
           props.setS3Path(`${body.prefix}/${body.fileName}`)
     };
 
@@ -42,7 +42,7 @@ const FileUpload = (props) => {
             <input type="file" onChange={handleFileChange} />
             {file && <Field type="hidden" name="file_name" value={props.s3Path}/> }
             {file && <Field type="hidden" name="file_type" value={file.type}/> }
-            <button type="button" onClick={uploadFile}>Upload</button>
+            <button type="button" disabled={file === null } onClick={uploadFile}>Upload</button>
             {uploadProgress ?
                 <p>{uploadProgress}</p> : null
             }

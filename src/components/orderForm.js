@@ -4,7 +4,9 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
 import ReCAPTCHA from "react-google-recaptcha"
 import FileUpload from "./fileUpload";
-import { Link } from "gatsby"
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { Link, navigate } from "gatsby"
 
 
 const withStyles = makeStyles((theme) => ({
@@ -95,90 +97,125 @@ const OrderForm = (props) => {
   const classes = withStyles();
 
   const [name, setName] = useState(null);
+  const [s3Path, setS3Path] = useState(null);
+  const [fileType, setFileType] = useState(null);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setName(e.target.value)
-  }
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  const formData = JSON.stringify({
-    "name": name
+  const SignupSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Please enter your name'),
+    email: Yup.string().email('Invalid email').required('Please enter a valid email'),
+    company: Yup.string(),
+    phone: Yup.string()
+      .required("Please enter a phone number")
+      .matches(phoneRegExp, 'Please provide a valid phone number'),
+    message: Yup.string(),
+
   });
 
+  const submitForm = async (values) => {
+    values.file_name = s3Path;
+    values.file_type = fileType;
+    values.bucket = `${props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"}`
+    console.log(values)
+    const response = await fetch(
+      'https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/',
+      {
+        method: 'POST',
+        headers: {
+        },
+        body: btoa(new URLSearchParams(values).toString())
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }  else {
+      navigate("/thank-you")
+    }
+
+    return response;
+  };
 
   return (
     <div id="orderForm" className={classes.formRoot}>
-      {/* <form action="https://u2wvrjablvz5ivuys5s3ktnoha0vrkpq.lambda-url.us-east-1.on.aws/ " method="post"
 
-        enctype="multipart/form-data">
-        <label> Name (required)
-          <input type="input" name="name" value={name} onChange={handleChange}/>
-          <input type="submit" value="Send"/>
-        </label>
-
-      </form> */}
-
-      <form
-        name="pprint-new-order-form"
-        method="POST"
-        action="https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/"
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          message: '',
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={async (values) => {
+          await submitForm(values);
+        }}
       >
-        <input type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-        <div className={classes.formEmail}>
-          <label>Name (required)</label>
-          <input type="text" name="name" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Company</label>
-          <input type="text" name="company" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Phone Number (required)</label>
-          <input type="text" name="phone" />
-        </div>
-        <div className={classes.formEmail}>
-          <label>Email (required)</label>
-          <input type="email" name="email" />
-        </div>
-        <div className={classes.formTextarea}>
-          <label>Detailed Project Description</label>
-          <textarea name="message" />
-        </div>
-        <div>
+        {({ errors, touched, isSubmitting }) => (
+          <Form>
+            <Field type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
 
-        </div>
+            <div className={classes.formEmail}>
+              <label htmlFor="name">Name (required)</label>
+              <Field name="name" />
+              {errors.name && touched.name ? (
+                <div class="formErrorText">{errors.name}</div>
+              ) : null}
+            </div>
 
-        <div className={classes.captchaWrapper}>
-          <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
-        </div>
-        <div>
-          <div>
-            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-            <br />
-          </div>
-          <div>
-            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-            <br />
-          </div>
-          <div>
-            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-            <br />
-          </div>
-          <div>
-            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-            <br />
-          </div>
-          <div>
-            <FileUpload bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-            <br />
-          </div>
-          
-        </div>
-        <div className={classes.submitButtonWrapper}>
-          <button type="submit" className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
-        </div>
-      </form>
+            <div className={classes.formEmail}>
+              <label htmlFor="company">Company</label>
+              <Field name="company" />
+            </div>
 
+            <div className={classes.formEmail}>
+              <label htmlFor="phone">Phone (required)</label>
+              <Field name="phone" />
+              {errors.phone && touched.phone ? <div class="formErrorText">{errors.phone}</div> : null}
+            </div>
+
+            <div className={classes.formEmail}>
+              <label htmlFor="email">Email (required)</label>
+              <Field name="email" type="email" />
+              {errors.email && touched.email ? <div class="formErrorText">{errors.email}</div> : null}
+
+            </div>
+
+            <div className={classes.formEmail}>
+              <label htmlFor="message">Detailed Project Description</label>
+              <Field name="message" component="textarea" />
+            </div>
+            <div className={classes.captchaWrapper}>
+              <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
+            </div>
+            <div>
+              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <br />
+            </div>
+            <div>
+              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <br />
+            </div>
+            <div>
+              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <br />
+            </div>
+            <div>
+              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <br />
+            </div>
+            <div>
+              <FileUpload setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+              <br />
+            </div>
+            <div className={classes.submitButtonWrapper}>
+              <button type="submit" className={classes.submitButton} >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   )
 }
