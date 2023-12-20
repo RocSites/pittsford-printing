@@ -4,6 +4,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 
 
@@ -43,15 +44,19 @@ const FileUpload = (props) => {
 
 
     return (
-        <div>
+        <div style={{width: "110%"}}>
             <input type="file" onChange={handleFileChange} />
             {file && <Field type="hidden" name="file_name" value={props.s3Path} />}
             {file && <Field type="hidden" name="file_type" value={file.type} />}
-            <button type="button" disabled={file === null} onClick={uploadFile}>Upload</button>
+            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null} onClick={uploadFile}>
+                <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
+            Upload</button>
+
+
             {uploadProgress ?
-                <CircularProgress style={{marginLeft: "10px", marginBottom: "-13px", color: "#03178e"}} value={uploadProgress} /> : null
+                <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null
             }
-            {showUploadComplete === true ? <CheckIcon style={{backgroundColor: "#5bd75b", borderRadius: "15px", marginLeft: "10px", marginBottom: "-7px"}}/> : null}
+            {showUploadComplete === true ? <CheckIcon style={{ backgroundColor: "#5bd75b", borderRadius: "15px", marginLeft: "10px", marginBottom: "-7px" }} /> : null}
 
         </div>
     );

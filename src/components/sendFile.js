@@ -21,13 +21,16 @@ const withStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     fontWeight: "bold",
     "& input": {
-      borderRadius: "3px",
+      borderRadius: "15px",
+      padding: "6px 10px",
       fontWeight: "normal",
       background: theme.palette.background.default
     },
     "& textarea": {
       fontWeight: "normal",
       height: "100px",
+      borderRadius: "15px",
+      padding: "6px 10px",
       background: theme.palette.background.default
     },
     "& form": {
@@ -109,7 +112,7 @@ const SendFile = (props) => {
     company: Yup.string(),
     phone: Yup.string()
     .required("Please enter a phone number")
-    .matches(phoneRegExp, 'Please provide a valid phone number'),
+    .matches(phoneRegExp, 'Please provide a valid phone number, no spaces or special characters please'),
     message: Yup.string(),
 
   });
@@ -192,7 +195,7 @@ const SendFile = (props) => {
             <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
             <div className={classes.submitButtonWrapper}>
-              <button type="submit" disabled={fileUploaded === false}>Send File</button>
+              <button style={{padding: "6px", borderRadius: "15px", width: "200px"}} type="submit" disabled={fileUploaded === false}>Send File</button>
             </div>
           </Form>
         )}
