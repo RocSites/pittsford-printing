@@ -48,7 +48,7 @@ const FileUpload = (props) => {
             <input type="file" onChange={handleFileChange} />
             {file && <Field type="hidden" name="file_name" value={props.s3Path} />}
             {file && <Field type="hidden" name="file_type" value={file.type} />}
-            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null} onClick={uploadFile}>
+            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
             Upload</button>
 

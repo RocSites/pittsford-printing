@@ -7,7 +7,8 @@ import FileUpload from "./fileUpload";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Link, navigate } from "gatsby"
-
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -20,13 +21,16 @@ const withStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     fontWeight: "bold",
     "& input": {
-      borderRadius: "3px",
+      borderRadius: "15px",
+      padding: "6px 10px",
       fontWeight: "normal",
       background: theme.palette.background.default
     },
     "& textarea": {
       fontWeight: "normal",
       height: "100px",
+      borderRadius: "15px",
+      padding: "6px 10px",
       background: theme.palette.background.default
     },
     "& form": {
@@ -35,7 +39,6 @@ const withStyles = makeStyles((theme) => ({
       "@media(max-width: 650px)": {
         width: "75%"
       }
-
     }
   },
   formHeader: {
@@ -79,7 +82,8 @@ const withStyles = makeStyles((theme) => ({
   },
   submitButtonWrapper: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: "25px"
   },
   captchaWrapper: {
     margin: "10px"
@@ -100,7 +104,7 @@ const OrderForm = (props) => {
   const [s3Path, setS3Path] = useState(null);
   const [fileType, setFileType] = useState(null);
   const [fileUploaded, setFileUploaded] = useState(false);
-
+  const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -111,12 +115,13 @@ const OrderForm = (props) => {
     company: Yup.string(),
     phone: Yup.string()
       .required("Please enter a phone number")
-      .matches(phoneRegExp, 'Please provide a valid phone number'),
+      .matches(phoneRegExp, 'Please provide a valid phone number, no spaces or special characters please'),
     message: Yup.string(),
 
   });
 
   const submitForm = async (values) => {
+    setSendFileFormLoading(true)
     values.file_name = s3Path;
     values.file_type = fileType;
     values.bucket = `${props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"}`
@@ -132,7 +137,8 @@ const OrderForm = (props) => {
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
-    }  else {
+    } else {
+      setSendFileFormLoading(false)
       navigate("/thank-you")
     }
 
@@ -215,11 +221,14 @@ const OrderForm = (props) => {
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
 
             <div className={classes.submitButtonWrapper}>
-              <button disabled = {fileUploaded === false} type="submit" >{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+              <button disabled={fileUploaded === false || sendFileFormLoading === true} style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
             </div>
           </Form>
         )}
       </Formik>
+      <Box sx={{ width: '100%' }}>
+        {sendFileFormLoading === true ? <LinearProgress /> : null}
+      </Box>
     </div>
   )
 }

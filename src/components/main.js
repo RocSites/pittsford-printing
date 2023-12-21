@@ -68,6 +68,7 @@ const withStyles = makeStyles(() => ({
     },
     servicesImage: {
         width: "100%",
+        maxWidth: "450px",
         aspectRatio: "1/1",
         objectFit: "cover",
         borderRadius: "5px"

@@ -85,7 +85,8 @@ const withStyles = makeStyles((theme) => ({
   },
   submitButtonWrapper: {
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    marginTop: "25px"
   },
   captchaWrapper: {
     margin: "10px"
@@ -200,12 +201,11 @@ const SendFile = (props) => {
             <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
             <div className={classes.submitButtonWrapper}>
-              <button style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit" disabled={fileUploaded === false}>Send File</button>
+              <button style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit" disabled={fileUploaded === false || sendFileFormLoading === true}>Send File</button>
             </div>
           </Form>
         )}
       </Formik>
-      {}
       <Box sx={{ width: '100%' }}>
         {sendFileFormLoading === true ? <LinearProgress /> : null}
       </Box>
