@@ -579,7 +579,7 @@ const withStyles = makeStyles(() => ({
             justifyContent: "center",
         },
         "@media(max-width:600px)": {
-            paddingTop: "15%",
+            paddingTop: "30%",
             backgroundSize: "cover",
             backgroundPositionY: "60px"
         }
