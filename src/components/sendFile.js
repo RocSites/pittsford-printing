@@ -8,6 +8,8 @@ import FileUpload from "./fileUpload";
 import { Link, navigate } from "gatsby"
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 
 
 const withStyles = makeStyles((theme) => ({
@@ -102,6 +104,7 @@ const SendFile = (props) => {
   const [s3Path, setS3Path] = useState(null);
   const [fileType, setFileType] = useState(null);
   const [fileUploaded, setFileUploaded] = useState(false);
+  const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -111,13 +114,14 @@ const SendFile = (props) => {
     email: Yup.string().email('Invalid email').required('Please enter a valid email'),
     company: Yup.string(),
     phone: Yup.string()
-    .required("Please enter a phone number")
-    .matches(phoneRegExp, 'Please provide a valid phone number, no spaces or special characters please'),
+      .required("Please enter a phone number")
+      .matches(phoneRegExp, 'Please provide a valid phone number, no spaces or special characters please'),
     message: Yup.string(),
 
   });
 
   const submitForm = async (values) => {
+    setSendFileFormLoading(true)
     values.file_name = s3Path;
     values.file_type = fileType;
     values.bucket = "pittsford-printing-send-file"
@@ -134,6 +138,7 @@ const SendFile = (props) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     } else {
+      setSendFileFormLoading(false)
       navigate("/thank-you")
     }
 
@@ -195,12 +200,15 @@ const SendFile = (props) => {
             <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
             <div className={classes.submitButtonWrapper}>
-              <button style={{padding: "6px", borderRadius: "15px", width: "200px"}} type="submit" disabled={fileUploaded === false}>Send File</button>
+              <button style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit" disabled={fileUploaded === false}>Send File</button>
             </div>
           </Form>
         )}
       </Formik>
-      
+      {}
+      <Box sx={{ width: '100%' }}>
+        {sendFileFormLoading === true ? <LinearProgress /> : null}
+      </Box>
     </div>
   )
 }
