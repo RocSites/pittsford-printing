@@ -380,6 +380,34 @@ body {
 }
 
 @media(max-width:600px) {
+    .mainButtonWrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .mainButtonWrapper a {
+        margin: 10px 0;
+    }
+    .bottomHeaderWrapper {
+        flex-direction: column;
+    }
+    .dot {
+        display: none;
+    }
+    .bottomHeaderText {
+        padding: 6px 8px;
+        margin: 5px;
+        font-size: 0.9rem;
+    }
+    .bottomHeaderEmail {
+        padding: 6px 8px;
+        margin: 5px;
+        font-size: 0.9rem;
+    }
+
+    .bottomHeaderPhone>span {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
     .menuLink {
         font-size: 1.25rem;
     }

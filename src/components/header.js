@@ -53,6 +53,10 @@ const withStyles = makeStyles(() => ({
       top: 0,
       boxShadow: "1px 0 10px 0 rgb(89 98 115 / 20%)",
       zIndex: 2,
+    },
+    "@media(max-width: 600px)": {
+      height: "110px",
+
     }
   },
   navBarRootScroll: {
@@ -220,7 +224,11 @@ const withStyles = makeStyles(() => ({
       width: "100%",
       borderBottomRightRadius: "0px",
       borderBottomLeftRadius: "0px",
-    }
+    },
+    "@media(max-width: 600px)": {
+      height: "auto",
+      top: 110,
+    },
   },
   bottomHeaderButton: {
     textTransform: "none",

@@ -579,10 +579,9 @@ const withStyles = makeStyles(() => ({
             justifyContent: "center",
         },
         "@media(max-width:600px)": {
-            paddingTop: "70%",
-            backgroundPositionX: "66%",
+            paddingTop: "15%",
             backgroundSize: "cover",
-            backgroundPositionY: "70px"
+            backgroundPositionY: "60px"
         }
     },
     mainButtonLink: {
@@ -613,7 +612,8 @@ const withStyles = makeStyles(() => ({
         zIndex: 1,
         "@media(max-width:700px)": {
             fontSize: "2.5rem",
-            textAlign: "center"
+            textAlign: "center",
+            margin: "40px 0 20px 0"
         }
     },
     actionButton: {
