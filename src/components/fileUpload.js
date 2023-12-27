@@ -20,13 +20,6 @@ const FileUpload = (props) => {
         const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
         const body = await resp.json();
 
-        const uploadResult = await fetch(body.url, {
-            method: "PUT",
-            headers: {
-                'Content-Type': file.type
-            },
-            body: file,
-        });
         setUploadProgress(false)
         setShowUploadComplete(true)
         props.setFileUploaded(true)

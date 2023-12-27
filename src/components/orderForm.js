@@ -9,6 +9,12 @@ import * as Yup from 'yup';
 import { Link, navigate } from "gatsby"
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import MultipleFileUpload from './multipleFileUpload';
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -102,9 +108,14 @@ const OrderForm = (props) => {
 
   const [name, setName] = useState(null);
   const [s3Path, setS3Path] = useState(null);
+  const [s3Paths, setS3Paths] = useState(null);
+  const [fileTypes, setFileTypes] = useState(null);
   const [fileType, setFileType] = useState(null);
   const [fileUploaded, setFileUploaded] = useState(false);
   const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
+  const [multipleFiles, setMultipleFiles] = useState(false);
+  const [singleFileUpload, setSingleFileUpload] = useState(false);
+  const [value, setValue] = useState("");
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -143,6 +154,18 @@ const OrderForm = (props) => {
     }
 
     return response;
+  };
+
+  const handleChange = (event) => {
+    let val = event.target.value;
+    setValue(val)
+    if(val === "single") {
+      setSingleFileUpload(true)
+      setMultipleFiles(false)
+    } else if(val === "multiple") {
+      setMultipleFiles(true);
+      setSingleFileUpload(false)
+    }
   };
 
   return (
@@ -198,26 +221,35 @@ const OrderForm = (props) => {
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
+            <div>How many files would you like to upload (maximum of 5)?</div>
+            <div style={{ display: "flex", justifyContent: "center", margin: "auto" }}>
+              <FormControl className={classes.formRoot}>
+                <FormLabel id="demo-controlled-radio-buttons-group">Select an option:</FormLabel>
+                <RadioGroup
+                  aria-labelledby="demo-controlled-radio-buttons-group"
+                  name="controlled-radio-buttons-group"
+                  onChange={handleChange}
+                  value={value}
+                  row
+                >
+                  <FormControlLabel value="single" control={<Radio />} label="Single file" />
+                  <FormControlLabel value="multiple" control={<Radio />} label="Multiple files" />
+                </RadioGroup>
+              </FormControl>
+
             </div>
+
             <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
+              {singleFileUpload === true ? (
+                <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+
+              ) : null}
+              {multipleFiles === true ? (
+                <MultipleFileUpload setFileUploaded={setFileUploaded} setFileTypes={setFileTypes} setS3Paths={setS3Paths} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"}/>
+              ) : null
+              }
             </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
+
             {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
 
             <div className={classes.submitButtonWrapper}>
