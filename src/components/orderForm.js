@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography';
@@ -100,11 +100,21 @@ const OrderForm = (props) => {
 
   const classes = withStyles();
 
-  const [name, setName] = useState(null);
   const [s3Path, setS3Path] = useState(null);
-  const [fileType, setFileType] = useState(null);
-  const [fileUploaded, setFileUploaded] = useState(false);
   const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
+  const bucket = useMemo(() => props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote", [props.actionTitle])
+
+  const updateInfo = useCallback((vals, id, key, val) => {
+    if (!vals[id]) {
+      vals[id] = {}
+    }
+    vals[id][key] = val
+    return vals
+  }, [])
+
+  const callbackHandler = useCallback((id, key, vals, setter) => {
+    return val => setter(updateInfo(vals, id, key, val))
+  }, [])
 
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -122,17 +132,17 @@ const OrderForm = (props) => {
 
   const submitForm = async (values) => {
     setSendFileFormLoading(true)
-    values.file_name = s3Path;
-    values.file_type = fileType;
-    values.bucket = `${props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"}`
+    values.files = Object.values(values.files).filter(file=>file.uploaded)
+    values.bucket = bucket
     console.log(values)
     const response = await fetch(
       'https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/',
       {
         method: 'POST',
         headers: {
+          // "content-type": "application/json"
         },
-        body: btoa(new URLSearchParams(values).toString())
+        body: JSON.stringify(values)
       }
     );
     if (!response.ok) {
@@ -155,13 +165,19 @@ const OrderForm = (props) => {
           company: '',
           phone: '',
           message: '',
+          files: []
+        }}
+        validate={(values, props) => {
+          if(!values.files.some(f=>f.uploaded)){
+            return {
+              files: "Please select a file to upload."
+            }
+          }
         }}
         validationSchema={SignupSchema}
-        onSubmit={async (values) => {
-          await submitForm(values);
-        }}
+        onSubmit={submitForm}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values, setFieldValue, isSubmitting, isValid, dirty }) => (
           <Form>
             <Field type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
 
@@ -198,30 +214,26 @@ const OrderForm = (props) => {
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            <div>
-              <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
-              <br />
-            </div>
-            {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
+            {[1, 2, 3, 4, 5].map((k) => (
+              <div>
+                <FileUpload
+                  setFileUploaded={callbackHandler(k, "uploaded",values.files,(f=>setFieldValue("files",f)))}
+                  setFileType={callbackHandler(k, "file_type",values.files,(f=>setFieldValue("files",f)))}
+                  setS3Path={callbackHandler(k, "file_name",values.files,(f=>setFieldValue("files",f)))}
+                  bucket={bucket} />
+                <br />
+              </div>
+            ))}
+            {errors.files ? <p class="formErrorText">{errors.files}</p> : null}
 
             <div className={classes.submitButtonWrapper}>
-              <button disabled={fileUploaded === false || sendFileFormLoading === true} style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
+              <button 
+                disabled={!isValid || isSubmitting || !dirty}
+                style={{ padding: "6px", borderRadius: "15px", width: "200px" }} 
+                type="submit"
+              >
+                {props.actionTitle === "order" ? "Place Order" : "Request Quote"}
+              </button>
             </div>
           </Form>
         )}
