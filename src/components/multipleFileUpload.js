@@ -6,12 +6,13 @@ import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-
+const MAX_COUNT = 5;
 
 const MultipleFileUpload = (props) => {
-    const [files, setFiles] = useState([]);
+    const [uploadedFiles, setUploadedFiles] = useState([]);
     const [uploadProgress, setUploadProgress] = useState(false);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
+    const [fileLimit, setFileLimit] = useState(false);
 
 
 
@@ -19,50 +20,63 @@ const MultipleFileUpload = (props) => {
         setUploadProgress(true)
         // const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
         // const body = await resp.json();
-
         setUploadProgress(false)
         setShowUploadComplete(true)
         // props.setFilesUploaded(true)
         // props.setS3Path(`${body.prefix}/${body.files}`)
     };
 
-    const handleFileChange = (e) => {
+    const handleUploadFiles = (files) => {
         console.log(files)
-        e.preventDefault()
-
-        setShowUploadComplete(false)    
+    
+        // setShowUploadComplete(false)
         //refactor to pass array
-        let fileTypes = files.map(file => file.type)
-        props.setFileTypes(fileTypes)
+        // let fileTypes = files.map(file => file.type)
+        // props.setFileTypes(fileTypes)
+
+        const uploaded = [...uploadedFiles];
+        let limitExceeded = false;
+        files.some((file) => {
+            if (uploaded.findIndex((f) => f.name === file.name) === -1) {
+                uploaded.push(file);
+                if (uploaded.length === MAX_COUNT) setFileLimit(true);
+                if (uploaded.length > MAX_COUNT) {
+                    alert(`You can only add a maximum of ${MAX_COUNT} files`);
+                    setFileLimit(false);
+                    limitExceeded = true;
+                    return true;
+                }
+            }
+        })
+        if (!limitExceeded) setUploadedFiles(uploaded)
     };
 
-    const packFiles = (files)=> {
-        const data = new FormData();
-
-        [...files].forEach((file, i) => {
-            data.append(`file-${i}`, file, file.name)
-        })
-        return data
+    const handleFileEvent =  (e) => {
+        const chosenFiles = Array.prototype.slice.call(e.target.files)
+        handleUploadFiles(chosenFiles);
     }
 
-    const renderFileList = () => (<ol>
-        {[...files].map((f, i) => (
-            <li key={i}>{f.name} - {f.type}</li>
-        ))}
-    </ol>)
-
+    const handleRemove = (f) => {
+        setUploadedFiles(uploadedFiles.filter(x => x.name !== f.name));
+      };
 
 
     return (
-        <div style={{width: "110%"}}>
-            <input type="file" multiple onChange={(e) => setFiles(e.target.files)} />
-            {renderFileList()}
-            {files && <Field type="hidden" name="file_name" value={props.s3Path} />}
-            {files && <Field type="hidden" name="file_type" value={files.type} />}
-            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={files === null || showUploadComplete === true} onClick={uploadFile}>
+        <div style={{ width: "110%" }}>
+            <input type="file" multiple onChange={handleFileEvent} />
+            {uploadedFiles && <Field type="hidden" name="file_name" value={props.s3Path} />}
+            {uploadedFiles && <Field type="hidden" name="file_type" value={uploadedFiles.type} />}
+            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={uploadedFiles.length <= 0} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
-            Upload</button>
-
+                Upload</button>
+                <div className="uploaded-files-list">
+				{uploadedFiles.map(file => (
+                    <div style={{display: "flex", justifyContent: "space-between", border: "1px solid black", borderRadius: "4px", padding: "4px", margin: "4px", width: "50%"}}>
+                        <p style={{marginBottom: 0, padding: "4px"}}>{file.name}</p>
+                        <span className="remove-icon" onClick={() => handleRemove(file)}></span>
+                    </div>
+                ))}
+			</div>
 
             {uploadProgress ?
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null

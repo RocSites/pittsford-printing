@@ -199,7 +199,7 @@ const SendFile = (props) => {
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
             <FileUpload setFileUploaded={setFileUploaded} setFileType={setFileType} setS3Path={setS3Path} bucket="pittsford-printing-send-file" />
-            {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
+            {fileUploaded === false ? <p class="formErrorText">Please upload a file to submit your request.</p> : null}
             <div className={classes.submitButtonWrapper}>
               <button style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit" disabled={fileUploaded === false || sendFileFormLoading === true}>Send File</button>
             </div>

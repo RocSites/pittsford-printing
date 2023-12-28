@@ -250,7 +250,7 @@ const OrderForm = (props) => {
               }
             </div>
 
-            {fileUploaded === false ? <p class="formErrorText">Please select a file to upload.</p> : null}
+            {fileUploaded === false ? <p class="formErrorText">Please upload a file to submit your request.</p> : null}
 
             <div className={classes.submitButtonWrapper}>
               <button disabled={fileUploaded === false || sendFileFormLoading === true} style={{ padding: "6px", borderRadius: "15px", width: "200px" }} type="submit">{props.actionTitle === "order" ? "Place Order" : "Request Quote"}</button>
