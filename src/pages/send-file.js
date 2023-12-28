@@ -10,7 +10,7 @@ const SendFilePage = () => (
   <Layout backgroundColor="#f7edd4">
     <SEO title="Send File" />
     <h1 class="menuHeader">Send File</h1>
-    <OrderForm bucket="pittsford-printing-send-file"/>
+    <OrderForm bucket="pittsford-printing-send-file" actionTitle="Send File(s)"/>
   </Layout>
 )
 

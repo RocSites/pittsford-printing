@@ -101,18 +101,6 @@ const OrderForm = (props) => {
 
   const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
 
-  const updateInfo = useCallback((vals, id, key, val) => {
-    if (!vals[id]) {
-      vals[id] = {}
-    }
-    vals[id][key] = val
-    return vals
-  }, [])
-
-  const callbackHandler = useCallback((id, key, vals, setter) => {
-    return val => setter(updateInfo(vals, id, key, val))
-  }, [])
-
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const SignupSchema = Yup.object().shape({
@@ -129,8 +117,7 @@ const OrderForm = (props) => {
 
   const submitForm = async (values) => {
     setSendFileFormLoading(true)
-    console.log(values)
-    values.files = Object.values(values.files).filter(Boolean).filter(file=>file.uploaded)
+    values.files = Object.values(values.files).filter(Boolean).filter(file=>file.uploaded && !file.deleted)
     values.bucket = props.bucket
     console.log(values)
     const response = await fetch(
@@ -179,7 +166,7 @@ const OrderForm = (props) => {
         validationSchema={SignupSchema}
         onSubmit={submitForm}
       >
-        {({ errors, touched, values, setFieldValue, isSubmitting, isValid, dirty }) => (
+        {({ errors, touched, values, setFieldValue, isSubmitting, isValid, dirty, getFieldProps }) => (
           <Form>
             <Field type="hidden" name="bucket" value={props.bucket} />
 
@@ -216,16 +203,13 @@ const OrderForm = (props) => {
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            {Object.keys(values.files).filter(k=>!!values.files[k]).map((k) => (
-              <div>
+            {Object.keys(values.files).filter(k=>!values.files[k].deleted).map((k) => (
+              <div key={k}>
                 <FileUpload
-                  setFileUploaded={callbackHandler(k, "uploaded",values.files,(f=>setFieldValue("files",f)))}
-                  setFileType={callbackHandler(k, "file_type",values.files,(f=>setFieldValue("files",f)))}
-                  setS3Path={callbackHandler(k, "file_name",values.files,(f=>setFieldValue("files",f)))}
-                  onDelete={()=>setFieldValue("files", {
-                    ...values.files,
-                    [k]: undefined
-                  })}
+                  setFileUploaded={val => setFieldValue(`files.${k}.uploaded`,val)}
+                  setFileType={val => setFieldValue(`files.${k}.file_type`,val)}
+                  setS3Path={val => setFieldValue(`files.${k}.file_name`,val)}
+                  onDelete={val => setFieldValue(`files.${k}.deleted`,true)}
                   bucket={props.bucket} />
                 <br />
               </div>
@@ -251,9 +235,10 @@ const OrderForm = (props) => {
                 style={{ padding: "6px", borderRadius: "15px", width: "200px" }} 
                 type="submit"
               >
-                {props.actionTitle === "order" ? "Place Order" : "Request Quote"}
+                {props.actionTitle}
               </button>
             </div>
+            <p><pre>{JSON.stringify(values,null,4)}</pre></p>
           </Form>
         )}
       </Formik>
