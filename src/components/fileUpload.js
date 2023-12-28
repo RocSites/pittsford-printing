@@ -6,8 +6,6 @@ import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-
-
 const FileUpload = (props) => {
     const [file, setFile] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(false);
@@ -51,12 +49,9 @@ const FileUpload = (props) => {
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null
             }
             {showUploadComplete === true ? <CheckIcon style={{ backgroundColor: "#5bd75b", borderRadius: "15px", marginLeft: "10px", marginBottom: "-7px" }} /> : null}
-            {!uploadProgress && !showUploadComplete && (
-                <button style={{ borderRadius: "15px", padding: "5px" }} type="button" onClick={()=>props.onDelete()}>
-                    Remove
-                </button>
-            )}
-
+            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" onClick={()=>props.onDelete()}>
+                Remove
+            </button>
         </div>
     );
 };

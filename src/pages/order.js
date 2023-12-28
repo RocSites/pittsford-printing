@@ -52,7 +52,7 @@ const OrderPage = () => {
        
       </div>
 
-      <OrderForm actionTitle={value}/>
+      <OrderForm bucket={value === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"}/>
     </Layout>
   )
 }

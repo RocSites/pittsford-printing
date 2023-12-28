@@ -100,7 +100,6 @@ const OrderForm = (props) => {
   const classes = withStyles();
 
   const [sendFileFormLoading, setSendFileFormLoading] = useState(false);
-  const bucket = useMemo(() => props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote", [props.actionTitle])
 
   const updateInfo = useCallback((vals, id, key, val) => {
     if (!vals[id]) {
@@ -132,7 +131,7 @@ const OrderForm = (props) => {
     setSendFileFormLoading(true)
     console.log(values)
     values.files = Object.values(values.files).filter(Boolean).filter(file=>file.uploaded)
-    values.bucket = bucket
+    values.bucket = props.bucket
     console.log(values)
     const response = await fetch(
       'https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/',
@@ -182,7 +181,7 @@ const OrderForm = (props) => {
       >
         {({ errors, touched, values, setFieldValue, isSubmitting, isValid, dirty }) => (
           <Form>
-            <Field type="hidden" name="bucket" value={props.actionTitle === "order" ? "pittsford-printing-orders" : "pittsford-printing-request-quote"} />
+            <Field type="hidden" name="bucket" value={props.bucket} />
 
             <div className={classes.formEmail}>
               <label htmlFor="name">Name (required)</label>
@@ -227,7 +226,7 @@ const OrderForm = (props) => {
                     ...values.files,
                     [k]: undefined
                   })}
-                  bucket={bucket} />
+                  bucket={props.bucket} />
                 <br />
               </div>
             ))}
