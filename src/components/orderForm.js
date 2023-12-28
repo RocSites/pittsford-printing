@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
-import ReCAPTCHA from "react-google-recaptcha"
+import ReCAPTCHA from "react-google-recaptcha-enterprise"
 import FileUpload from "./fileUpload";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
