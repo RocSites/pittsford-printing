@@ -203,7 +203,7 @@ const OrderForm = (props) => {
             <div className={classes.captchaWrapper}>
               <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
             </div>
-            {Object.keys(values.files).filter(k=>!values.files[k].deleted).map((k) => (
+            {Object.keys(values.files).filter(k=>!values.files[k].deleted).reverse().map((k) => (
               <div key={k}>
                 <FileUpload
                   setFileUploaded={val => setFieldValue(`files.${k}.uploaded`,val)}
