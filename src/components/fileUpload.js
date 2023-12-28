@@ -13,8 +13,6 @@ const FileUpload = (props) => {
     const [uploadProgress, setUploadProgress] = useState(false);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
-
-
     const uploadFile = async () => {
         setUploadProgress(true)
         const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
@@ -37,14 +35,11 @@ const FileUpload = (props) => {
 
 
     return (
-        <div style={{width: "110%"}}>
+        <div style={{ width: "110%" }}>
             <input type="file" onChange={handleFileChange} />
-            {file && <Field type="hidden" name="file_name" value={props.s3Path} />}
-            {file && <Field type="hidden" name="file_type" value={file.type} />}
             <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
-            Upload</button>
-
+                Upload</button>
 
             {uploadProgress ?
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null
