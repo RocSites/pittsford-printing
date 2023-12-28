@@ -10670,7 +10670,7 @@ rc@1.2.8, rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-async-script@^1.1.1:
+react-async-script@^1.1.1, react-async-script@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-async-script/-/react-async-script-1.2.0.tgz#ab9412a26f0b83f5e2e00de1d2befc9400834b21"
   integrity sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==
@@ -10731,6 +10731,14 @@ react-fast-compare@^3.1.1:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.2.tgz#929a97a532304ce9fee4bcae44234f1ce2c21d49"
   integrity sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==
+
+react-google-recaptcha-enterprise@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-google-recaptcha-enterprise/-/react-google-recaptcha-enterprise-1.0.3.tgz#951cd4bed19ec2ba40c5974b4cc6ef3eea47ed90"
+  integrity sha512-pRtKoYTVGCAPGk1TdNfmlZE1l8U0WNUe98h/MV5c0AsYxFRw5U167DldKc/Gfhv4a8pSCiqM8+ZdWQVQnW1vEg==
+  dependencies:
+    prop-types "^15.5.0"
+    react-async-script "^1.2.0"
 
 react-google-recaptcha@^2.1.0:
   version "2.1.0"

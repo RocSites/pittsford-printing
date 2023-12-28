@@ -201,7 +201,7 @@ const OrderForm = (props) => {
               <Field name="message" component="textarea" />
             </div>
             <div className={classes.captchaWrapper}>
-              <ReCAPTCHA sitekey="6Ld8rj4pAAAAAGuVXGCvVy5PvqdA8mQFJul_rlRq" />
+              <ReCAPTCHA sitekey="6Lf9Sj8pAAAAANYliYrX3MJdWxOWL9N4khq_ZhDW" />
             </div>
             {Object.keys(values.files).filter(k=>!values.files[k].deleted).reverse().map((k) => (
               <div key={k}>
