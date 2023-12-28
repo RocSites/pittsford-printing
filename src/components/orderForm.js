@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
-import ReCAPTCHA from "react-google-recaptcha-enterprise"
 import FileUpload from "./fileUpload";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -8,6 +7,8 @@ import { Link, navigate } from "gatsby"
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import { v4 as uuidv4 } from 'uuid';
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import Recaptcha from './recaptcha';
 
 const withStyles = makeStyles((theme) => ({
   formRoot: {
@@ -117,7 +118,7 @@ const OrderForm = (props) => {
 
   const submitForm = async (values) => {
     setSendFileFormLoading(true)
-    values.files = Object.values(values.files).filter(Boolean).filter(file=>file.uploaded && !file.deleted)
+    values.files = Object.values(values.files).filter(Boolean).filter(file => file.uploaded && !file.deleted)
     values.bucket = props.bucket
     console.log(values)
     const response = await fetch(
@@ -157,7 +158,7 @@ const OrderForm = (props) => {
           }
         }}
         validate={(values, props) => {
-          if(!Object.values(values.files).filter(Boolean).some(f=>f.uploaded)){
+          if (!Object.values(values.files).filter(Boolean).some(f => f.uploaded)) {
             return {
               files: "Please select a file to upload."
             }
@@ -201,25 +202,27 @@ const OrderForm = (props) => {
               <Field name="message" component="textarea" />
             </div>
             <div className={classes.captchaWrapper}>
-              <ReCAPTCHA sitekey="6Lf9Sj8pAAAAANYliYrX3MJdWxOWL9N4khq_ZhDW" />
+              <GoogleReCaptchaProvider reCaptchaKey="6Lf9Sj8pAAAAANYliYrX3MJdWxOWL9N4khq_ZhDW">
+                <Recaptcha />
+              </GoogleReCaptchaProvider>
             </div>
-            {Object.keys(values.files).filter(k=>!values.files[k].deleted).reverse().map((k) => (
+            {Object.keys(values.files).filter(k => !values.files[k].deleted).reverse().map((k) => (
               <div key={k}>
                 <FileUpload
-                  setFileUploaded={val => setFieldValue(`files.${k}.uploaded`,val)}
-                  setFileType={val => setFieldValue(`files.${k}.file_type`,val)}
-                  setS3Path={val => setFieldValue(`files.${k}.file_name`,val)}
-                  onDelete={val => setFieldValue(`files.${k}.deleted`,true)}
+                  setFileUploaded={val => setFieldValue(`files.${k}.uploaded`, val)}
+                  setFileType={val => setFieldValue(`files.${k}.file_type`, val)}
+                  setS3Path={val => setFieldValue(`files.${k}.file_name`, val)}
+                  onDelete={val => setFieldValue(`files.${k}.deleted`, true)}
                   bucket={props.bucket} />
                 <br />
               </div>
             ))}
 
-            <button 
-              style={{ padding: "6px", borderRadius: "15px", width: "200px", backgroundColor: "rgb(91, 215, 91)" }} 
+            <button
+              style={{ padding: "6px", borderRadius: "15px", width: "200px", backgroundColor: "rgb(91, 215, 91)" }}
               type="button"
-              onClick={()=>setFieldValue("files",{
-                [uuidv4()]:{
+              onClick={() => setFieldValue("files", {
+                [uuidv4()]: {
                   uploaded: false
                 },
                 ...values.files
@@ -230,9 +233,9 @@ const OrderForm = (props) => {
             {errors.files ? <p class="formErrorText">{errors.files}</p> : null}
 
             <div className={classes.submitButtonWrapper}>
-              <button 
+              <button
                 disabled={!isValid || isSubmitting || !dirty}
-                style={{ padding: "6px", borderRadius: "15px", width: "200px" }} 
+                style={{ padding: "6px", borderRadius: "15px", width: "200px" }}
                 type="submit"
               >
                 {props.actionTitle}
