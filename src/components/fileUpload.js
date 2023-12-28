@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import "../components/main.css"
 
 const FileUpload = (props) => {
     const [file, setFile] = useState(null);
@@ -31,8 +32,8 @@ const FileUpload = (props) => {
     };
 
     return (
-        <div style={{ width: "110%" }}>
-            <input type="file" onChange={handleFileChange} />
+        <div className="fileUploadWrapper">
+            <input className="fileUploadInput" type="file" onChange={handleFileChange} />
             <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
                 Upload</button>

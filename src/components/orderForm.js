@@ -24,7 +24,7 @@ const withStyles = makeStyles((theme) => ({
       borderRadius: "15px",
       padding: "6px 10px",
       fontWeight: "normal",
-      background: theme.palette.background.default
+      background: theme.palette.background.default,
     },
     "& textarea": {
       fontWeight: "normal",

@@ -15,7 +15,10 @@ const withStyles = makeStyles((theme) => ({
     fontSize: "2.0rem",
     marginLeft:"auto",
     marginRight: "auto",
-    color: "black"
+    color: "black",
+    lineHeight: "2.5rem",
+    textAlign: "center"
+  
   },
   thankYouMessageWrapper: {
     display: "flex",
@@ -23,7 +26,11 @@ const withStyles = makeStyles((theme) => ({
     justifyContent: "center",
     marginTop: "400px",
     marginLeft: "20px",
-    marginRight: "20px"
+    marginRight: "20px",
+    "@media(max-width: 600px)": {
+      marginTop: "200px",
+
+    }
   }
 
 }));
