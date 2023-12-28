@@ -18,6 +18,11 @@ const MultipleFileUpload = (props) => {
 
     const uploadFile = async () => {
         setUploadProgress(true)
+
+        //TODO - refactor the resp to send file_names (multiple), better way than queryParams?
+        //Then refactor orderForm to pass multiple file names and types (s3Path and fileType respectively)
+
+
         // const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
         // const body = await resp.json();
         setUploadProgress(false)
@@ -30,8 +35,7 @@ const MultipleFileUpload = (props) => {
         console.log(files)
     
         // setShowUploadComplete(false)
-        //refactor to pass array
-        // let fileTypes = files.map(file => file.type)
+        //refactor to pass array that includes upload data, name and type
         // props.setFileTypes(fileTypes)
 
         const uploaded = [...uploadedFiles];
@@ -60,6 +64,19 @@ const MultipleFileUpload = (props) => {
         setUploadedFiles(uploadedFiles.filter(x => x.name !== f.name));
       };
 
+      const formatBytes = (b) => {
+        const units = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        let l = 0
+        let n = b
+      
+        while (n >= 1024) {
+          n /= 1024
+          l += 1
+        }
+      
+        return `${n.toFixed(n >= 10 || l < 1 ? 0 : 1)}${units[l]}`
+      }
+
 
     return (
         <div style={{ width: "110%" }}>
@@ -72,7 +89,7 @@ const MultipleFileUpload = (props) => {
                 <div className="uploaded-files-list">
 				{uploadedFiles.map(file => (
                     <div style={{display: "flex", justifyContent: "space-between", border: "1px solid black", borderRadius: "4px", padding: "4px", margin: "4px", width: "50%"}}>
-                        <p style={{marginBottom: 0, padding: "4px"}}>{file.name}</p>
+                        <p style={{marginBottom: 0, padding: "4px"}}>{file.name}, {formatBytes(file.size)}</p>
                         <span className="remove-icon" onClick={() => handleRemove(file)}></span>
                     </div>
                 ))}
