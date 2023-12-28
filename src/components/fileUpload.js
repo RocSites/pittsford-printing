@@ -18,6 +18,14 @@ const FileUpload = (props) => {
         const resp = await fetch(`https://u6gk632v5cmbxsom35w2eykmoq0xdraf.lambda-url.us-east-1.on.aws/?file_name=${file.name}&bucket=${props.bucket}`)
         const body = await resp.json();
 
+        const uploadResult = await fetch(body.url, {
+            method: "PUT",
+            headers: {
+                'Content-Type': file.type
+            },
+            body: file,
+        });
+
         setUploadProgress(false)
         setShowUploadComplete(true)
         props.setFileUploaded(true)
@@ -32,8 +40,6 @@ const FileUpload = (props) => {
         props.setFileType(file.type)
     };
 
-
-
     return (
         <div style={{ width: "110%" }}>
             <input type="file" onChange={handleFileChange} />
@@ -45,6 +51,11 @@ const FileUpload = (props) => {
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null
             }
             {showUploadComplete === true ? <CheckIcon style={{ backgroundColor: "#5bd75b", borderRadius: "15px", marginLeft: "10px", marginBottom: "-7px" }} /> : null}
+            {!uploadProgress && !showUploadComplete && (
+                <button style={{ borderRadius: "15px", padding: "5px" }} type="button" onClick={()=>props.onDelete()}>
+                    Remove
+                </button>
+            )}
 
         </div>
     );
