@@ -20,9 +20,8 @@ const Recaptcha = () => {
 
     useEffect(() => {
         handleReCaptchaVerify();
-    }, [handleReCaptchaVerify]);
-
-    return <button onClick={handleReCaptchaVerify}>Verify recaptcha</button>;
+    }, []);
+return <span></span>
 };
 
 
