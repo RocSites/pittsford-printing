@@ -197,11 +197,11 @@ const OrderForm = (props) => {
             </div>
 
             <div className={classes.formEmail}>
-              <label htmlFor="message">Detailed Project Description</label>
+              <label htmlFor="message">{props.messageText ? props.messageText : "Detailed Project Description"}</label>
               <Field name="message" component="textarea" />
             </div>
             <div className={classes.captchaWrapper}>
-              <ReCAPTCHA sitekey="6Le2xqwaAAAAAIIYnSh04me11jxlWXvz2ITqWoU0" />
+              <ReCAPTCHA sitekey="6Ld8rj4pAAAAAGuVXGCvVy5PvqdA8mQFJul_rlRq" />
             </div>
             {Object.keys(values.files).filter(k=>!values.files[k].deleted).reverse().map((k) => (
               <div key={k}>
@@ -216,7 +216,7 @@ const OrderForm = (props) => {
             ))}
 
             <button 
-              style={{ padding: "6px", borderRadius: "15px", width: "200px" }} 
+              style={{ padding: "6px", borderRadius: "15px", width: "200px", backgroundColor: "rgb(91, 215, 91)" }} 
               type="button"
               onClick={()=>setFieldValue("files",{
                 [uuidv4()]:{
@@ -238,7 +238,6 @@ const OrderForm = (props) => {
                 {props.actionTitle}
               </button>
             </div>
-            <p><pre>{JSON.stringify(values,null,4)}</pre></p>
           </Form>
         )}
       </Formik>
