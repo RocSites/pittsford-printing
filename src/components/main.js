@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StaticImage } from "gatsby-plugin-image"
 import { useStaticQuery, graphql } from "gatsby"
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import { Link } from "gatsby"
 import Typography from '@material-ui/core/Typography'
+import Modal from '@mui/material/Modal'
+import Box from '@mui/material/Box';
 import Button from '@material-ui/core/Button'
 import rocRiver from "../images/yassine-khalfalli-river.jpg"
 import blackSwoosh from "../images/BackgroundSwooshBlack.png"
@@ -18,16 +20,12 @@ import windowGraphicOne from "../images/metin-ozer-window-graphic.jpg"
 import manualOne from "../images/brett-jordan-manual.jpg"
 import fiveStar from '../images/fiveStar.png'
 import Divider from '@material-ui/core/Divider'
+import CloseIcon from '@mui/icons-material/Close';
 import PhoneIcon from '@material-ui/icons/Phone'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import StarRateIcon from '@material-ui/icons/StarRate';
-import FacebookIcon from "../images/facebook_icon4.svg"
-import InstagramIcon from "../images/instagram_icon4.svg"
 import GoogleIcon from "../images/google_icon.png"
-import PittsfordPrintingMainLogo from "../images/pittsford_printing_main_logo.png"
 import "./main.css"
 
 const withStyles = makeStyles(() => ({
@@ -665,29 +663,57 @@ const withStyles = makeStyles(() => ({
 
 const Main = () => {
     const classes = withStyles();
-    const { mobileImage, desktopImage } = useStaticQuery(graphql`
-    query { 
-      desktopImage: file(relativePath: { eq: "yassine-khalfalli-roc-image.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 1920, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      mobileImage: file(relativePath: { eq: "yassine-khalfalli-roc-image.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 650, quality: 100) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      
-    }
-  `)
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClose = () => setModalOpen(false);
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: "100%",
+        maxWidth: 400,
+        bgcolor: 'background.paper',
+        borderRadius: '15px',
+        border: '2px solid #03178e',
+        boxShadow: 24,
+        p: 4,
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setModalOpen(true)
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, []);
+
+
 
     return (
         <div className={classes.mainRoot}>
             <div className={classes.mainBanner}>
+                <div>
+                    <Modal
+                        open={modalOpen}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <button onClick={handleClose} className="closeIcon"><CloseIcon/></button>
+                            <Typography style={{textAlign: "center"}} id="modal-modal-title" variant="h6" component="h2">
+                                Holiday Hours
+                            </Typography>
+                            <br/>
+                            <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
+                                Hi there! We will be closed on 12/25 and 1/1.
+                            </Typography>
+                            <br/>
+                            <Typography style={{textAlign: "center"}}>Thanks!</Typography>
+                        </Box>
+                    </Modal>
+                </div>
                 {/* <button>Send a File</button> */}
                 <div className="mainButtonWrapper">
                     <Link className={classes.mainButtonLink} to="/send-file">
