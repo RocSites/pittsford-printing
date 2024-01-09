@@ -695,7 +695,8 @@ const Main = () => {
             <div className={classes.mainBanner}>
                 <div>
                     <Modal
-                        open={modalOpen}
+                        // open={modalOpen}
+                        open={false}
                         onClose={handleClose}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
