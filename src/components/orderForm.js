@@ -120,7 +120,6 @@ const OrderForm = (props) => {
     setSendFileFormLoading(true)
     values.files = Object.values(values.files).filter(Boolean).filter(file => file.uploaded && !file.deleted)
     values.bucket = props.bucket
-    console.log(values)
     const response = await fetch(
       'https://pnyv5y4jkruaruzcwpi3mb3hli0jamay.lambda-url.us-east-1.on.aws/',
       {
