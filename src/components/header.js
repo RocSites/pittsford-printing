@@ -90,6 +90,10 @@ const withStyles = makeStyles(() => ({
     // fontWeight: "bold"
   },
 
+  scrollHideNav: {
+    display: "none"
+  },
+
   navButtonScroll: {
     color: "black",
     textTransform: "none",
@@ -115,6 +119,12 @@ const withStyles = makeStyles(() => ({
     display: "flex",
     width: "340px",
     margin: "auto",
+    "@media(max-width: 600px)": {
+      maxWidth: "200px"
+    },
+    "@media(max-width: 400px)": {
+      width: "340px",
+    }
   },
   navLogoScroll: {
     display: "flex",
@@ -302,7 +312,18 @@ const Header = ({ siteTitle }) => {
             </Link>
           </div>
           <div className={classes.navBarButtonWrapper}>
-
+            <Link className={navbarScroll ? classes.navButtonScroll : classes.scrollHideNav} to="/send-file">
+              Send a File
+            </Link>
+            <Link className={navbarScroll ? classes.navButtonScroll : classes.scrollHideNav} to="/order">
+              Order/Quote
+            </Link>
+            <a className={navbarScroll ? classes.navButtonScroll : classes.scrollHideNav} href="https://pittsfordprint.securepayments.cardpointe.com/pay?" target="_blank">
+              Pay Online
+            </a>
+            <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
+              to="/#location" title="Location">
+            </AnchorLink>
             <AnchorLink className={navbarScroll ? classes.navButtonScroll : classes.navButton}
               to="/#services" title="Services">
             </AnchorLink>
@@ -357,6 +378,18 @@ const Header = ({ siteTitle }) => {
             >
               <List>
                 <div className={classes.drawerLinkWrapper}>
+                  <Link className={classes.navButtonMobile} to="/send-file">
+                    Send a File
+                  </Link>
+                  <Link className={classes.navButtonMobile} to="/order">
+                    Order/Quote
+                  </Link>
+                  <a className={classes.navButtonMobile} href="https://pittsfordprint.securepayments.cardpointe.com/pay?" target="_blank">
+                    Pay Online
+                  </a>
+                  <AnchorLink className={classes.navButtonMobile}
+                    to="/#location" title="Location">
+                  </AnchorLink>
                   <AnchorLink className={classes.navButtonMobile}
                     to="/#services" title="Services">
                   </AnchorLink>

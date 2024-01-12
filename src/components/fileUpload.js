@@ -42,7 +42,7 @@ const FileUpload = (props) => {
     return (
         <div className="fileUploadWrapper">
             <input className="fileUploadInput" type="file" onChange={handleFileChange} />
-            <button style={{ borderRadius: "15px", padding: "5px" }} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
+            <button className={ file === null || showUploadComplete === true ? `fileUploadButtonDisabled`: `fileUploadButtonEnabled`} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
                 Upload</button>
 

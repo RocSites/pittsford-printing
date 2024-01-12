@@ -56,8 +56,8 @@ const withStyles = makeStyles(() => ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        flex: "1 0 25%",
+        justifyContent: "space-between",
+        flex: "1 0 20%",
         margin: "5px",
         padding: "25px",
         "@media(max-width:600px)": {
@@ -742,57 +742,6 @@ const Main = () => {
                 </Typography>
 
             </div>
-
-            <section class="actionSectionWrapper">
-                <div className={classes.actionSection}>
-                    {/* <div className={classes.container}>
-                        <span className={classes.scrollToSectionOne} id="sectionOne"></span>
-                    </div> */}
-                    {/* <div className={classes.containerMarginBottomSmall}>
-                        <Typography className={classes.someOfWorkHeader}>Let's Get Started</Typography>
-                    </div> */}
-                    <div className={classes.actionButtonWrapper}>
-                        <div className={classes.actionButtonInner}>
-                            <Link className={classes.actionButton} to="/order">
-                                <Button className={classes.actionButton}>
-                                    <ShoppingCartIcon className={classes.actionIcon} />
-                                    Order/Quote Request
-                                </Button>
-                            </Link>
-                            {/* <Typography className={classes.actionButtonText}>Already know what you'd like? Reoccurring order? Let's get started!</Typography> */}
-                        </div>
-                        {/* <div className={classes.actionButtonInner}>
-                            <Link className={classes.actionButton} to="/request-quote">
-                                <Button className={classes.actionButton}>
-                                    <RequestQuoteIcon className={classes.actionIcon} />
-                                    Request a Quote
-                                </Button>
-                            </Link>
-                         
-                        </div> */}
-                        <div className={classes.actionButtonInner}>
-                            <Link className={classes.actionButton} to="/send-file">
-                                <Button className={classes.actionButton}>
-                                    <CloudUploadIcon className={classes.actionIcon} />
-                                    Send a File
-                                </Button>
-                            </Link>
-                            {/* <Typography className={classes.actionButtonText}>Need to send something to us?</Typography> */}
-                        </div>
-                        <div className={classes.actionButtonInner}>
-                            <a className={classes.actionButton} href="https://pittsfordprint.securepayments.cardpointe.com/pay?" target="_blank">
-                                <Button className={classes.actionButton}>
-                                    <ReceiptLongIcon className={classes.actionIcon} />
-                                    Pay My Invoice
-                                </Button>
-                            </a>
-                            {/* <Typography className={classes.actionButtonText}>Some placeholder text</Typography> */}
-                        </div>
-
-                    </div>
-                </div>
-
-            </section>
             <div className={classes.servicesContainer}>
                 <span className={classes.scrollToSectionOne} id="services"></span>
             </div>
@@ -819,24 +768,9 @@ const Main = () => {
                         <Typography className={classes.servicesSubtitle}>Full Service, Postal Presorting, Postage Discounts</Typography>
                         <img className={classes.servicesImage} src={mailOne} />
                     </div>
-                    {/* <div className={classes.servicesItem}>
-                        <Typography className={classes.servicesTitle}>Graphic Design Services</Typography>
-                        <Typography className={classes.servicesSubtitle}>Business Stationery, Calenders, Logo Design</Typography>
-                        <img className={classes.servicesImage} src={graphicDesignOne} />
-                    </div> */}
-                    {/* <div className={classes.servicesItem}>
-                        <Typography className={classes.servicesTitle}>All Other Services</Typography>
-                        <Typography className={classes.servicesSubtitle}>Manuals, Books, Business Cards, Embossing</Typography>
-                        <img className={classes.servicesImage} src={manualOne} />
-                    </div> */}
+           
                 </div>
 
-                {/* <Link to="/chill-menu" class="menuContent menuLink chillBlock">
-                    Page 2
-                </Link>
-                <Link to="/grill-menu" class="menuContent menuLink grillBlock">
-                    Page 3
-                </Link> */}
             </section>
             <span className={classes.scrollToLocation} id="about"></span>
 
@@ -878,8 +812,8 @@ const Main = () => {
             </section>
 
 
-            <span className={classes.scrollToLocation} id="map"></span>
-
+            <span className={classes.scrollToLocation} id="location"></span>
+                <br/>
             <section>
                 <div className={classes.container}>
                     <div className={classes.aboutWrapper}>

@@ -89,7 +89,7 @@ const Layout = (props) => {
         <footer class="footerRoot">
           <div className={classes.footerContent}>
             <p className={classes.copyrightText}> © {new Date().getFullYear()} Pittsford Printing</p>
-            <p class="rocsitesText">Website created and maintained by <span><a href="https://www.rocsites.com/" target="_blank">RocSites</a></span></p>
+            <p class="rocsitesText">Website by <span><a href="https://www.rocsites.com/" target="_blank">RocSites</a></span></p>
           </div>
         </footer>
       </div>

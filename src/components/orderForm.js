@@ -218,7 +218,7 @@ const OrderForm = (props) => {
             ))}
 
             <button
-              style={{ padding: "6px", borderRadius: "15px", width: "200px", backgroundColor: "rgb(91, 215, 91)" }}
+              style={{ padding: "6px", borderRadius: "15px", width: "200px" }}
               type="button"
               onClick={() => setFieldValue("files", {
                 [uuidv4()]: {
@@ -234,7 +234,7 @@ const OrderForm = (props) => {
             <div className={classes.submitButtonWrapper}>
               <button
                 disabled={!isValid || isSubmitting || !dirty}
-                style={{ padding: "6px", borderRadius: "15px", width: "200px" }}
+                className={!isValid || isSubmitting || !dirty ? `orderQuoteSubmitButtonDisabled` : `orderQuoteSubmitButtonEnabled`}
                 type="submit"
               >
                 {props.actionTitle}

@@ -396,6 +396,33 @@ body {
     width: 110%;
 }
 
+.fileUploadButtonEnabled {
+    border-radius: 15px;
+    padding: 5px;
+    background-color: rgb(91, 215, 91);
+}
+
+.fileUploadButtonDisabled {
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.orderQuoteSubmitButtonDisabled {
+    padding: 6px;
+    border-radius: 15px;
+    width: 200px;
+}
+
+.orderQuoteSubmitButtonEnabled {
+    padding: 6px;
+    border-radius: 15px;
+    width: 200px;
+    background-color: rgb(91, 215, 91);
+
+}
+
+
+
 @keyframes twinkle {
     from {
         transform: translateX(1vw);

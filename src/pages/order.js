@@ -67,7 +67,7 @@ const OrderPage = () => {
             ? "pittsford-printing-orders"
             : "pittsford-printing-request-quote"
         }
-        actionTitle={value === "order" ? "Place an Order" : "Request a Quote"}
+        actionTitle={"Submit"}
       />
     </Layout>
   )
