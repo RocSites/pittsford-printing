@@ -71,12 +71,6 @@ body {
     font-size: 3rem;
 }
 
-.sprinkles {
-    animation: twinkle 5s infinite alternate ease-in-out;
-    width: 110vw !important;
-    height: auto;
-    overflow: hidden;
-}
 
 .bannerImage {
     width: 100%;
@@ -393,7 +387,20 @@ body {
 }
 
 .fileUploadWrapper {
+    display: flex;
     width: 110%;
+    flex-wrap: wrap;
+}
+
+.fileDetailStyle {
+    margin: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    border-radius: 14px;
+    padding: 10px;
+    color: white;
 }
 
 .fileUploadButtonEnabled {
@@ -418,22 +425,55 @@ body {
     border-radius: 15px;
     width: 200px;
     background-color: rgb(91, 215, 91);
+}
 
+.customFileUpload {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #efefef;
+    border-radius: 14px;
+    max-width: 130px;
+}
+
+.customFileUploadEnabled {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: rgb(91, 215, 91);
+    border-radius: 14px;
+    max-width: 130px;
+}
+
+.uploadCheckIcon {
+    background-color: #5bd75b;
+    border-radius: 15px;
+    margin-left: 10px; 
+    margin-bottom: -7px;
+}
+
+input[type="file"] {
+    display: none;
 }
 
 
 
-@keyframes twinkle {
-    from {
-        transform: translateX(1vw);
-    }
-
-    to {
-        transform: translateX(-1vw);
-    }
-}
 
 @media(max-width:600px) {
+
+    .uploadCheckIcon {
+        margin: 20px 0;
+    }
+
+    .fileDetailStyle {
+        margin: 20px 0;
+    }
+
+    .fileUploadWrapper {
+        flex-direction: column;
+    }
 
     .fileUploadInput {
         max-width: 300px;

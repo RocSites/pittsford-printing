@@ -6,9 +6,11 @@ import Box from '@mui/material/Box';
 import CheckIcon from '@mui/icons-material/Check';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import "../components/main.css"
+import prettyBytes from 'pretty-bytes';
 
 const FileUpload = (props) => {
     const [file, setFile] = useState(null);
+    const [fileSize, setFileSize] = useState(null);
     const [uploadProgress, setUploadProgress] = useState(false);
     const [showUploadComplete, setShowUploadComplete] = useState(false);
 
@@ -36,22 +38,31 @@ const FileUpload = (props) => {
         setShowUploadComplete(false)
         const file = e.target.files[0];
         setFile(file);
+        setFileSize(prettyBytes(file.size));
         props.setFileType(file.type)
     };
 
     return (
         <div className="fileUploadWrapper">
-            <input className="fileUploadInput" type="file" onChange={handleFileChange} />
-            <button className={ file === null || showUploadComplete === true ? `fileUploadButtonDisabled`: `fileUploadButtonEnabled`} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
-                <span style={{ verticalAlign: "middle", marginRight: "7px" }}><CloudUploadIcon /></span>
+            <label className={file === null ? `customFileUploadEnabled` : `customFileUpload`}>
+                Choose file
+                <input name="file-upload" className="fileUploadInput" type="file" onChange={handleFileChange} />
+
+            </label>
+            <div style={{display: "flex"}}>
+                {file !== null ? <div className="fileDetailStyle">{`${file.name},  ${fileSize}`}</div> : null}
+            </div>
+
+            <button className={file === null || showUploadComplete === true ? `fileUploadButtonDisabled` : `fileUploadButtonEnabled`} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
+                <span style={{ verticalAlign: "middle", marginRight: "7px", cursor: "pointer" }}><CloudUploadIcon /></span>
                 Upload</button>
 
             {uploadProgress ?
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null
             }
-            {showUploadComplete === true ? <CheckIcon style={{ backgroundColor: "#5bd75b", borderRadius: "15px", marginLeft: "10px", marginBottom: "-7px" }} /> : null}
+            {showUploadComplete === true ? <CheckIcon className="uploadCheckIcon" /> : null}
             {showUploadComplete === true ? (
-                <button style={{ borderRadius: "15px", verticalALign: "middle", padding: "6px", margin: "4px", backgroundColor: "#ff00006e"}} type="button" onClick={() => props.onDelete()}>
+                <button style={{ borderRadius: "15px", verticalALign: "middle", padding: "6px", margin: "4px", backgroundColor: "#ff00006e" }} type="button" onClick={() => props.onDelete()}>
                     Remove File
                 </button>
             ) : null}
