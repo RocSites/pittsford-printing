@@ -68,6 +68,7 @@ const OrderPage = () => {
             : "pittsford-printing-request-quote"
         }
         actionTitle={"Submit"}
+        uploadRequired={false}
       />
     </Layout>
   )

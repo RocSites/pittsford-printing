@@ -156,12 +156,15 @@ const OrderForm = (props) => {
             }
           }
         }}
-        validate={(values, props) => {
-          if (!Object.values(values.files).filter(Boolean).some(f => f.uploaded)) {
-            return {
-              files: "Please select a file to upload."
+        validate={(values) => {
+          if(props.uploadRequired === true) {
+            if (!Object.values(values.files).filter(Boolean).some(f => f.uploaded)) {
+              return {
+                files: "Please select a file to upload."
+              }
             }
           }
+    
         }}
         validationSchema={SignupSchema}
         onSubmit={submitForm}
