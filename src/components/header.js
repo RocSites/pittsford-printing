@@ -433,7 +433,7 @@ const Header = ({ siteTitle }) => {
           </Button>
           <span className="dot">&#x2022;</span>
           <AnchorLink className={classes.mapLink}
-            to="/#map">
+            to="/#location">
             <p className="bottomHeaderText">3750 Monroe Avenue, Pittsford NY 14534</p>
 
           </AnchorLink>
