@@ -19,15 +19,11 @@ const withStyles = makeStyles((theme) => ({
     justifyContent: "flex-start",
     height: "100vh",
     padding: "20px",
-    "@media(max-width:1200px)": {
-        paddingTop: "30%",
-    },
     "@media(max-width:800px)": {
-        paddingTop: "50%",
         justifyContent: "center",
     },
     "@media(max-width:600px)": {
-        paddingTop: "60%",
+
         backgroundSize: "cover",
         backgroundPositionY: "60px"
     }
@@ -59,11 +55,7 @@ const withStyles = makeStyles((theme) => ({
     flexDirection: "column",  
     justifyContent: "center",
     marginLeft: "20px",
-    marginRight: "20px",
-    "@media(max-width: 600px)": {
-      marginTop: "200px",
-
-    }
+    marginRight: "20px"
   }
 
 }));
