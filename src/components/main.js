@@ -664,7 +664,7 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const handleClose = () => setModalOpen(false);
 
     const style = {
@@ -695,20 +695,19 @@ const Main = () => {
             <div className={classes.mainBanner}>
                 <div>
                     <Modal
-                        // open={modalOpen}
-                        open={false}
+                        open={modalOpen}
                         onClose={handleClose}
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
                             <button onClick={handleClose} className="closeIcon"><CloseIcon/></button>
-                            <Typography style={{textAlign: "center"}} id="modal-modal-title" variant="h6" component="h2">
-                                Holiday Hours
-                            </Typography>
+                            {/* <Typography style={{textAlign: "center"}} id="modal-modal-title" variant="h6" component="h2">
+                                July 4th Hours
+                            </Typography> */}
                             <br/>
                             <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
-                                Hi there! We will be closed on 12/25 and 1/1.
+                                We will be closed on 7/4 and 7/5. We will be monitoring emails.
                             </Typography>
                             <br/>
                             <Typography style={{textAlign: "center"}}>Thanks!</Typography>
