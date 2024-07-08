@@ -664,7 +664,7 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const handleClose = () => setModalOpen(false);
 
     const style = {
@@ -681,12 +681,12 @@ const Main = () => {
         p: 4,
     };
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setModalOpen(true)
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, []);
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setModalOpen(true)
+    //     }, 1000);
+    //     return () => clearTimeout(timer);
+    // }, []);
 
 
 
