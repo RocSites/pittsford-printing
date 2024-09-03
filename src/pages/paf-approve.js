@@ -67,7 +67,7 @@ const PafApprove = () => {
     <div className={classes.thankYouRoot}>
       <div className={classes.thankYouMessageWrapper}>
         <p className={classes.thankYouMessage}>Your annual USPS PAF submission </p>
-        <p className={classes.thankYouMessage}>has been recieved and accepted. </p>
+        <p className={classes.thankYouMessage}>has been received and accepted. </p>
         <p className={classes.thankYouMessageItalics}>Thank you!</p>
       </div>
     </div>
