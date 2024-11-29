@@ -664,7 +664,7 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const handleClose = () => setModalOpen(false);
 
     const style = {
@@ -707,8 +707,10 @@ const Main = () => {
                             </Typography> */}
                             <br/>
                             <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
-                                We will be closed on 7/4 and 7/5. We will be monitoring emails.
+                                We will be closed Thursday and Friday in observance of Thanksgiving.
                             </Typography>
+                            <br/>
+                            <Typography style={{textAlign: "center"}}>We will re-open on Monday 12/2/24.</Typography> 
                             <br/>
                             <Typography style={{textAlign: "center"}}>Thanks!</Typography>
                         </Box>
