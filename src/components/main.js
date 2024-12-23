@@ -26,6 +26,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import GoogleIcon from "../images/google_icon.png"
+import holidayPopup from "../images/xmasPop2.png"
 import "./main.css"
 
 const withStyles = makeStyles(() => ({
@@ -664,16 +665,18 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const handleClose = () => setModalOpen(false);
 
     const style = {
         position: 'absolute',
+        display: 'flex',
+        justifyContent: 'center',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: "100%",
-        maxWidth: 400,
+        maxWidth: 550,
         bgcolor: 'background.paper',
         borderRadius: '15px',
         border: '2px solid #03178e',
@@ -702,17 +705,15 @@ const Main = () => {
                     >
                         <Box sx={style}>
                             <button onClick={handleClose} className="closeIcon"><CloseIcon/></button>
-                            {/* <Typography style={{textAlign: "center"}} id="modal-modal-title" variant="h6" component="h2">
-                                July 4th Hours
-                            </Typography> */}
                             <br/>
-                            <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
+                            <img class="holidayImage" src={holidayPopup}/>
+                            {/* <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
                                 We will be closed Thursday and Friday in observance of Thanksgiving.
                             </Typography>
                             <br/>
                             <Typography style={{textAlign: "center"}}>We will re-open on Monday 12/2/24.</Typography> 
                             <br/>
-                            <Typography style={{textAlign: "center"}}>Thanks!</Typography>
+                            <Typography style={{textAlign: "center"}}>Thanks!</Typography> */}
                         </Box>
                     </Modal>
                 </div>
