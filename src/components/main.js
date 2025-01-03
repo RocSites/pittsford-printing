@@ -665,7 +665,7 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(true);
+    const [modalOpen, setModalOpen] = useState(false);
     const handleClose = () => setModalOpen(false);
 
     const style = {
