@@ -55,7 +55,7 @@ const FileUpload = (props) => {
 
             <button className={file === null || showUploadComplete === true ? `fileUploadButtonDisabled` : `fileUploadButtonEnabled`} type="button" disabled={file === null || showUploadComplete === true} onClick={uploadFile}>
                 <span style={{ verticalAlign: "middle", marginRight: "7px", cursor: "pointer" }}><CloudUploadIcon /></span>
-                Upload</button>
+                Confirm</button>
 
             {uploadProgress ?
                 <CircularProgress style={{ marginLeft: "10px", marginBottom: "-13px", color: "#03178e" }} value={uploadProgress} /> : null

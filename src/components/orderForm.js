@@ -230,7 +230,7 @@ const OrderForm = (props) => {
                 ...values.files
               })}
             >
-              Upload Another File
+              Add Another File
             </button>
             {errors.files ? <p class="formErrorText">{errors.files}</p> : null}
 
