@@ -665,7 +665,7 @@ const withStyles = makeStyles(() => ({
 const Main = () => {
     const classes = withStyles();
 
-    const [modalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(true);
     const handleClose = () => setModalOpen(false);
 
     const style = {
@@ -704,16 +704,17 @@ const Main = () => {
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
-                            <button onClick={handleClose} className="closeIcon"><CloseIcon/></button>
-                            <br/>
-                            <img class="holidayImage" src={holidayPopup}/>
-                            {/* <Typography style={{textAlign: "center"}} id="modal-modal-description" sx={{ mt: 2 }}>
-                                We will be closed Thursday and Friday in observance of Thanksgiving.
+                            <button onClick={handleClose} className="closeIcon"><CloseIcon /></button>
+                            <br />
+                            {/*<img class="holidayImage" src={holidayPopup} /> */}
+                            <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
+                                We'll be closing at 3pm Wednesday, All day Thursday & Friday, 11/27 &
+                                11/28. Reopening Monday morning, 12/1.
                             </Typography>
-                            <br/>
-                            <Typography style={{textAlign: "center"}}>We will re-open on Monday 12/2/24.</Typography> 
-                            <br/>
-                            <Typography style={{textAlign: "center"}}>Thanks!</Typography> */}
+                            <br />
+                            {/* <Typography style={{ textAlign: "center" }}>We will re-open on Monday 12/2/24.</Typography> */}
+                            <br />
+                            {/* <Typography style={{ textAlign: "center" }}>Thanks!</Typography> */}
                         </Box>
                     </Modal>
                 </div>
@@ -770,7 +771,7 @@ const Main = () => {
                         <Typography className={classes.servicesSubtitle}>Full Service, Postal Presorting, Postage Discounts</Typography>
                         <img className={classes.servicesImage} src={mailOne} />
                     </div>
-           
+
                 </div>
 
             </section>
@@ -815,7 +816,7 @@ const Main = () => {
 
 
             <span className={classes.scrollToLocation} id="location"></span>
-                <br/>
+            <br />
             <section>
                 <div className={classes.container}>
                     <div className={classes.aboutWrapper}>
