@@ -27,6 +27,7 @@ import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import GoogleIcon from "../images/google_icon.png"
 import holidayPopup from "../images/xmasPop2.png"
+import holidayBlurb2025 from "../images/pp_holiday_photo-1.png"
 import "./main.css"
 
 const withStyles = makeStyles(() => ({
@@ -706,11 +707,11 @@ const Main = () => {
                         <Box sx={style}>
                             <button onClick={handleClose} className="closeIcon"><CloseIcon /></button>
                             <br />
-                            {/*<img class="holidayImage" src={holidayPopup} /> */}
-                            <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
+                            <img class="holidayImage" src={holidayBlurb2025} />
+                            {/* <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
                                 We'll be closing at 3pm Wednesday, All day Thursday & Friday, 11/27 &
                                 11/28. Reopening Monday morning, 12/1.
-                            </Typography>
+                            </Typography> */}
                             <br />
                             {/* <Typography style={{ textAlign: "center" }}>We will re-open on Monday 12/2/24.</Typography> */}
                             <br />
