@@ -664,9 +664,22 @@ const withStyles = makeStyles(() => ({
 }))
 
 const Main = () => {
-    const classes = withStyles();
+    let isHoliday;
+    const newYearDate = '2026-01-05';
+   
+    const checkHoliday = (date) => {
+        let today = new Date()
+        today.setHours(0,0,0,0)
 
-    const [modalOpen, setModalOpen] = useState(true);
+        const formatedDate = new Date(date).setHours(0,0,0,0);
+
+        today > formatedDate ? isHoliday = false : isHoliday = true
+    };
+
+    checkHoliday(newYearDate);
+
+    const classes = withStyles();
+    const [modalOpen, setModalOpen] = useState(isHoliday);
     const handleClose = () => setModalOpen(false);
 
     const style = {
