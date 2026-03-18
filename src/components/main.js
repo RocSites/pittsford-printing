@@ -772,7 +772,7 @@ const Main = () => {
                     </div>
                     <div className={classes.servicesItem}>
                         <Typography className={classes.servicesTitle}>Printing Services</Typography>
-                        <Typography className={classes.servicesSubtitle}>Offset, Digital Full Color, and B/W Printing</Typography>
+                        <Typography className={classes.servicesSubtitle}>Digital Full Color and B/W Printing</Typography>
                         <img className={classes.servicesImage} src={printPaper} />
                     </div>
                     <div className={classes.servicesItem}>
@@ -820,7 +820,7 @@ const Main = () => {
                             <br />
                             <Typography className={classes.aboutTextBlue}>
                                 Whether your job is simple black and white copies or complex, full-color advertising packages, Pittsford Printing can produce it from concept to
-                                finished product in the fastest possible time. We offer design and type services, one to 4-color offset printing, digital B/W, digital color copying/printing,
+                                finished product in the fastest possible time. We offer design and type services, digital B/W, digital color copying/printing,
                                 and bulk mailing services of any size. Pittsford Printing would like to be your printer – give us a call!
                             </Typography>
                         </div>
