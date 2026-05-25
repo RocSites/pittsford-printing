@@ -665,13 +665,15 @@ const withStyles = makeStyles(() => ({
 
 const Main = () => {
     let isHoliday;
-    const newYearDate = '2026-01-05';
-   
+    //pick a date that is one day ahead of when you want the banner to go away, ex. Memorial Day this year is on a Monday (5/25), we want the banner to show 
+    //all day monday but then go away on Tuesday (see line 678) today > newYearDate
+    const newYearDate = '2026-05-26';
+
     const checkHoliday = (date) => {
         let today = new Date()
-        today.setHours(0,0,0,0)
+        today.setHours(0, 0, 0, 0)
 
-        const formatedDate = new Date(date).setHours(0,0,0,0);
+        const formatedDate = new Date(date).setHours(0, 0, 0, 0);
 
         today > formatedDate ? isHoliday = false : isHoliday = true
     };
@@ -698,12 +700,6 @@ const Main = () => {
         p: 4,
     };
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setModalOpen(true)
-    //     }, 1000);
-    //     return () => clearTimeout(timer);
-    // }, []);
 
 
 
@@ -718,17 +714,17 @@ const Main = () => {
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
-                            <button onClick={handleClose} className="closeIcon"><CloseIcon /></button>
                             <br />
-                            <img class="holidayImage" src={holidayBlurb2025} />
-                            {/* <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
-                                We'll be closing at 3pm Wednesday, All day Thursday & Friday, 11/27 &
-                                11/28. Reopening Monday morning, 12/1.
-                            </Typography> */}
+                            {/* <img class="holidayImage" src={holidayBlurb2025} /> */}
+                            <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
+                                We will be closed Monday, May 25th, in observance of Memorial Day
+                            </Typography>
                             <br />
                             {/* <Typography style={{ textAlign: "center" }}>We will re-open on Monday 12/2/24.</Typography> */}
                             <br />
                             {/* <Typography style={{ textAlign: "center" }}>Thanks!</Typography> */}
+                            <button onClick={handleClose} className="closeIcon"><CloseIcon /></button>
+
                         </Box>
                     </Modal>
                 </div>
