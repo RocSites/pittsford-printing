@@ -667,7 +667,7 @@ const Main = () => {
     let isHoliday;
     //pick a date that is one day ahead of when you want the banner to go away, ex. Memorial Day this year is on a Monday (5/25), we want the banner to show 
     //all day monday but then go away on Tuesday (see line 678) today > newYearDate
-    const newYearDate = '2026-07-04';
+    const newYearDate = '2026-11-27';
 
     const checkHoliday = (date) => {
         let today = new Date()
@@ -717,7 +717,7 @@ const Main = () => {
                             <br />
                             {/* <img class="holidayImage" src={holidayBlurb2025} /> */}
                             <Typography style={{ textAlign: "center" }} id="modal-modal-description" sx={{ mt: 2 }}>
-                                We will be closed Friday, July 3rd, in observance of the 4th of July
+                                We will be closed Thursday & Friday (11/25-11/26) in observance of Thanksgiving. We will open Monday (11/30) at 9:00am.
                             </Typography>
                             <br />
                             {/* <Typography style={{ textAlign: "center" }}>We will re-open on Monday 12/2/24.</Typography> */}
